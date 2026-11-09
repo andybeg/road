@@ -1,6 +1,6 @@
 {
   "common": {
-    "appTitle": "Hiddify",
+    "appTitle": "HiddifyExt",
     "start": "Start",
     "version": "Version",
     "ok": "OK",
@@ -354,6 +354,11 @@
         "enableAnalytics": "Turn on analytics",
         "enableAnalyticsMsg": "Send analytics and crash reports from your device to help improve the app",
         "autoIpCheck": "Automatically check connection IP",
+        "vlessServerPing": "Ping VLESS server IP",
+        "vlessServerPingMsg": "TCP ping of the VLESS node’s own address, separate from the tunnel URL-test",
+        "vlessServerPingShow": "Show ping on the home screen",
+        "vlessServerPingShowMsg": "Show whether the server IP replies and the delay in milliseconds",
+        "vlessServerPingInterval": "Server IP ping interval",
         "dynamicNotification": "Display speed in notification",
         "hapticFeedback": "Haptic feedback",
         "alwaysOnVpn": "Always-on VPN",
@@ -664,6 +669,12 @@
         "padding": {
           "enable": "Turn on padding",
           "size": "Padding size"
+        },
+        "keyShare": "REALITY key share",
+        "keyShareMsg": "Classical is the 4.1.1 handshake: a small ClientHello that older Xray and filtered networks accept. Hybrid is the 5.5.5 Chrome post-quantum handshake; Xray 26.9.8+ may require it.",
+        "keyShareModes": {
+          "classical": "Classical (4.1.1)",
+          "hybrid": "Hybrid (Chrome PQ)"
         }
       },
       "chain": {
@@ -1094,6 +1105,12 @@
     "errorDetails": "Error details",
     "reconnect": "Reconnect",
     "reconnectMsg": "Reconnecting to apply changes…",
+    "serverPing": {
+      "title": "VLESS server IP",
+      "ok": "Server IP replies",
+      "fail": "Server IP does not reply",
+      "testing": "Pinging server IP…"
+    },
     "health": {
       "title": "Connection check",
       "allGood": "Your traffic gets through",
@@ -1129,6 +1146,7 @@
     "profiles": {
       "unexpected": "Unexpected error",
       "notFound": "Profile not found",
+      "missingFileMsg": "This profile has no config file. Delete it and add the profile again.",
       "invalidConfig": "Invalid configuration",
       "invalidUrl": "Invalid URL",
       "canceledByUser": "Canceled by user"

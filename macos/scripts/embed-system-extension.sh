@@ -38,7 +38,7 @@ if [[ "${HIDDIFY_NETWORK_EXTENSION_ENABLED:-NO}" != YES ]]; then
   rm -rf "$task_system_extension" "$task_app_extension" "$task_migration" "$task_resources/TunnelHelper"
   rmdir "$(dirname "$task_system_extension")" "$(dirname "$task_app_extension")" 2>/dev/null || true
   # Without a Network Extension the VPN runs in hiddify-core's tunnel service: the app's executable
-  # as `Hiddify --tunnel run`, installed as root from the app with an administrator password.
+  # as `HiddifyExt --tunnel run`, installed as root from the app with administrator authentication.
   mkdir -p "$task_service_destination"
   # Bundle under Resources/TunnelService so existing installs and method-channel paths stay stable.
   install -m 755 "$task_root/macos/AdminBgService/install-admin-bgservice.sh" \

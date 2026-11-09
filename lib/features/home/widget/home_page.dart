@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/app_info/app_info_provider.dart';
 import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/router/bottom_sheets/bottom_sheets_notifier.dart';
 import 'package:hiddify/features/home/widget/connection_button.dart';
 import 'package:hiddify/features/home/widget/local_proxy_hint.dart';
@@ -10,6 +11,7 @@ import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/features/profile/widget/profile_tile.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_card.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_delay_indicator.dart';
+import 'package:hiddify/features/proxy/active/vless_server_ping_indicator.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -141,7 +143,7 @@ class HomePage extends HookConsumerWidget {
                             ),
                             _ => const Text(""),
                           },
-                          const SliverFillRemaining(
+                          SliverFillRemaining(
                             hasScrollBody: false,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,11 +152,17 @@ class HomePage extends HookConsumerWidget {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [ConnectionButton(), ActiveProxyDelayIndicator()],
+                                    children: [
+                                      const ConnectionButton(),
+                                      const ActiveProxyDelayIndicator(),
+                                      if (ref.watch(Preferences.vlessServerPingEnabled) &&
+                                          ref.watch(Preferences.vlessServerPingShowResult))
+                                        const VlessServerPingIndicator(),
+                                    ],
                                   ),
                                 ),
-                                ActiveProxyFooter(),
-                                Gap(32),
+                                const ActiveProxyFooter(),
+                                const Gap(32),
                               ],
                             ),
                           ),

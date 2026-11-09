@@ -14,4 +14,7 @@ class ProfilePathResolver {
   }
 
   File tempFile(String fileName) => file("$fileName.tmp");
+
+  /// Patched copy used at connect time (REALITY key_share). The stored profile stays as imported.
+  File runtimeFile(String fileName) => file("$fileName.runtime");
 }

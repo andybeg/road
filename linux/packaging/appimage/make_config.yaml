@@ -1,4 +1,4 @@
-display_name: Hiddify
+display_name: HiddifyExt
 
 icon: assets/images/source/ic_launcher_border.png
 
@@ -12,7 +12,7 @@ keywords:
   - Psiphon
   - OpenVPN
 
-generic_name: Hiddify
+generic_name: HiddifyExt
 
 actions:
   - name: Start

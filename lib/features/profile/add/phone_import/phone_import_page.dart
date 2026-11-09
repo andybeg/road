@@ -61,7 +61,7 @@ String phoneImportPage(
     '<meta name="theme-color" content="#455FE9">',
     '<meta name="referrer" content="no-referrer">',
     '<title>${e(t.title)}</title><style>$_css</style></head><body><main class="wrap">',
-    '<header class="brand"><span class="logo">$_logo</span><span class="word">Hiddify</span></header>',
+    '<header class="brand"><span class="logo">$_logo</span><span class="word">HiddifyExt</span></header>',
     '<h1>${e(t.title)}</h1><p class="intro">${e(t.intro)}</p>',
     notice,
     '<ol class="steps">',

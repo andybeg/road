@@ -59,6 +59,7 @@ class CoreInterfaceMacOS extends CoreInterfaceDesktop {
   // the service exposes the same port/secret status fields as the extension.
   bool _tunnelServiceAvailable = false;
   bool _tunnelServiceReady = false;
+  bool _runningAsRoot = false;
 
   /// Suppresses [clientChanges] during stop-before-start so coreRestartSignal does not rebuild UI mid-connect.
   bool _suppressClientChanges = false;
@@ -69,6 +70,10 @@ class CoreInterfaceMacOS extends CoreInterfaceDesktop {
 
   /// True when the root service matches this app build (connect needs no password).
   bool get tunnelServiceReady => _tunnelServiceReady;
+
+  /// True when this GUI process is already root (unusual). The VPN helper still
+  /// runs as a launchd daemon; the Flutter window is not relaunched as root.
+  bool get runningAsRoot => _runningAsRoot;
 
   @override
   bool get managesLifecycle => true;
@@ -119,6 +124,7 @@ class CoreInterfaceMacOS extends CoreInterfaceDesktop {
     _proxyThroughTunnel = state['proxyThroughTunnel'] == true;
     _tunnelServiceAvailable = state['tunnelService'] == true;
     _tunnelServiceReady = state['serviceReady'] == true;
+    _runningAsRoot = state['runningAsRoot'] == true;
     _nativeStatus = state['status'] as String? ?? 'disconnected';
     if (_stoppingVPN &&
         (_nativeStatus == 'connected' || _nativeStatus == 'connecting' || _nativeStatus == 'reasserting')) {

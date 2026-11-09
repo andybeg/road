@@ -7,7 +7,11 @@ import 'package:path/path.dart' as p;
 /// Rewrites local file references in a profile into an in-memory resource map for
 /// privileged VPN engines that cannot read the app's working directory.
 Future<(String, Map<String, Uint8List>)> snapshotVpnConfiguration(String path, Directory workingDirectory) async {
-  final content = await File(path).readAsString();
+  final file = File(path);
+  if (!file.existsSync()) {
+    throw PathNotFoundException(path, const OSError('No such file or directory', 2));
+  }
+  final content = await file.readAsString();
   final resources = <String, Uint8List>{};
   final document = jsonDecode(content);
   var totalBytes = 0;

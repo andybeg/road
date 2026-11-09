@@ -1,6 +1,6 @@
 {
   "common": {
-    "appTitle": "Hiddify",
+    "appTitle": "HiddifyExt",
     "start": "Начать",
     "version": "Версия",
     "ok": "OK",
@@ -351,6 +351,11 @@
         "enableAnalytics": "Включить аналитику",
         "enableAnalyticsMsg": "Отправлять аналитику и отчеты о сбоях с вашего устройства, чтобы помочь улучшить приложение",
         "autoIpCheck": "Автоматически проверять IP-адрес",
+        "vlessServerPing": "Пинг IP сервера VLESS",
+        "vlessServerPingMsg": "TCP-пинг адреса узла VLESS, отдельно от URL-теста туннеля",
+        "vlessServerPingShow": "Показывать пинг на главном экране",
+        "vlessServerPingShowMsg": "Показывать, отвечает ли IP сервера, и задержку в миллисекундах",
+        "vlessServerPingInterval": "Интервал пинга IP сервера",
         "dynamicNotification": "Отображать скорость в уведомлении",
         "hapticFeedback": "Тактильный отклик",
         "alwaysOnVpn": "Постоянное VPN-подключение",
@@ -647,6 +652,12 @@
         "padding": {
           "enable": "Включить padding",
           "size": "Размер padding"
+        },
+        "keyShare": "REALITY key share",
+        "keyShareMsg": "Classical — рукопожатие 4.1.1: короткий ClientHello, который принимают старый Xray и фильтрованные сети. Hybrid — постквантовый Chrome из 5.5.5; Xray 26.9.8+ может требовать его.",
+        "keyShareModes": {
+          "classical": "Classical (4.1.1)",
+          "hybrid": "Hybrid (Chrome PQ)"
         }
       },
       "chain": {
@@ -1030,6 +1041,12 @@
     "errorDetails": "Подробности ошибки",
     "reconnect": "Переподключить",
     "reconnectMsg": "Переподключение для применения изменений…",
+    "serverPing": {
+      "title": "IP сервера VLESS",
+      "ok": "IP сервера отвечает",
+      "fail": "IP сервера не отвечает",
+      "testing": "Пинг IP сервера…"
+    },
     "health": {
       "title": "Проверка подключения",
       "allGood": "Трафик проходит",
@@ -1065,6 +1082,7 @@
     "profiles": {
       "unexpected": "Непредвиденная ошибка",
       "notFound": "Профиль не найден",
+      "missingFileMsg": "У этого профиля нет файла конфигурации. Удалите его и добавьте профиль заново.",
       "invalidConfig": "Неверная конфигурация",
       "invalidUrl": "Неверный URL",
       "canceledByUser": "Отменено пользователем"

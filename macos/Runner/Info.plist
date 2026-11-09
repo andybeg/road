@@ -11,7 +11,11 @@
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>NSSystemExtensionUsageDescription</key>
-	<string>Hiddify uses a packet tunnel extension to provide VPN connectivity while the app is closed.</string>
+	<string>HiddifyExt uses a packet tunnel extension to provide VPN connectivity while the app is closed.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>HiddifyExt uses Touch ID to confirm administrator permission for the VPN.</string>
+	<key>CFBundleDisplayName</key>
+	<string>HiddifyExt</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

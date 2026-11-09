@@ -23,7 +23,8 @@ enum ServiceMode {
   /// system proxy.
   static bool get _macAppStore => Platform.isMacOS && Release.read() == Release.appStore;
 
-  static ServiceMode get defaultMode => PlatformUtils.isDesktop && !_macAppStore ? systemProxy : tun;
+  /// Unsigned macOS has no Network Extension: VPN is the root tunnel helper, so the default is TUN.
+  static ServiceMode get defaultMode => Platform.isMacOS || !PlatformUtils.isDesktop || _macAppStore ? tun : systemProxy;
 
   /// supported service mode based on platform, use this instead of [values] in UI
   static List<ServiceMode> get choices {
@@ -377,6 +378,27 @@ enum PsiphonRegion {
 }
 
 enum MuxProtocol { h2mux, smux, yamux }
+
+/// REALITY ClientHello key share. Classical matches Hiddify 4.1.1 (~500 B);
+/// hybrid is the 5.5.5 Chrome post-quantum hello (~1.7 KB).
+enum RealityKeyShare {
+  classical('classical'),
+  hybrid('hybrid');
+
+  const RealityKeyShare(this.key);
+
+  final String key;
+
+  static RealityKeyShare fromKey(String? key) => switch (key) {
+    'hybrid' => hybrid,
+    _ => classical,
+  };
+
+  String present(TranslationsEn t) => switch (this) {
+    classical => t.pages.settings.tlsTricks.keyShareModes.classical,
+    hybrid => t.pages.settings.tlsTricks.keyShareModes.hybrid,
+  };
+}
 
 // @JsonEnum(valueField: 'key')
 // enum WarpDetourMode {

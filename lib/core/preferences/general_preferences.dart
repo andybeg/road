@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hiddify/core/logger/ring/log_ring.dart';
 import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/preferences/actions_at_closing.dart';
+import 'package:hiddify/core/utils/json_converters.dart';
 import 'package:hiddify/core/utils/preferences_utils.dart';
 import 'package:hiddify/features/app_based_routing/model/per_app_proxy_mode.dart';
 import 'package:hiddify/features/profile/model/profile_sort_enum.dart';
@@ -112,6 +113,22 @@ abstract class Preferences {
   static final dynamicNotification = PreferencesNotifier.create<bool, bool>("dynamic_notification", true);
 
   static final autoCheckIp = PreferencesNotifier.create<bool, bool>("auto_check_ip", true);
+
+  /// TCP ping of the VLESS node's own host:port, independent of the tunnel URL-test.
+  static final vlessServerPingEnabled = PreferencesNotifier.create<bool, bool>("vless_server_ping_enabled", true);
+
+  /// Home-screen pill with the last VLESS server ping.
+  static final vlessServerPingShowResult = PreferencesNotifier.create<bool, bool>(
+    "vless_server_ping_show_result",
+    true,
+  );
+
+  static final vlessServerPingInterval = PreferencesNotifier.create<Duration, int>(
+    "vless_server_ping_interval",
+    const Duration(seconds: 15),
+    mapFrom: const IntervalInSecondsConverter().fromJson,
+    mapTo: const IntervalInSecondsConverter().toJson,
+  );
 
   static final startedByUser = PreferencesNotifier.create<bool, bool>("started_by_user", false);
 

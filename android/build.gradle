@@ -1,9 +1,21 @@
 allprojects {
+    def localMavenRepo = System.getenv("LOCAL_MAVEN_REPO")
+    buildscript {
+        repositories {
+            if (localMavenRepo) {
+                maven { url uri(localMavenRepo) }
+            }
+            mavenCentral()
+            google()
+        }
+    }
     repositories {
+        if (localMavenRepo) {
+            maven { url uri(localMavenRepo) }
+        }
         mavenCentral()
         google()
     }
-
 }
 
 

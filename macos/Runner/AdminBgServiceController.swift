@@ -1,5 +1,8 @@
+import Darwin
 import FlutterMacOS
 import Foundation
+import LocalAuthentication
+import Security
 
 // Builds without a Developer ID cannot use a Network Extension. Their VPN runs the full core in
 // hiddify-core's tunnel service: the app's own executable, run as `Hiddify --tunnel run` by launchd
@@ -20,6 +23,7 @@ final class TunnelServiceController {
     /// Keeps status from flipping back to "connected" if Flutter re-subscribes mid-stop.
     private var disconnecting = false
     private var lastMessage: String?
+    private var pendingAuth: AuthorizationRef?
     /// Lets MacOSVPNController push EventChannel updates when our flags change.
     var onStateChanged: (() -> Void)?
 
@@ -46,6 +50,8 @@ final class TunnelServiceController {
             "tunnelService": available,
             // True when the root service matches this app build (no password needed to connect).
             "serviceReady": serviceReady(),
+            // The Flutter UI stays as the logged-in user. Root is only the launchd tunnel helper.
+            "runningAsRoot": geteuid() == 0,
             "status": status,
             "activation": "idle",
             "port": Int(Self.servicePort),
@@ -154,7 +160,7 @@ final class TunnelServiceController {
         }
         let request: [String: Any] = [
             "configContent": configContent,
-            "configName": arguments["configName"] as? String ?? "Hiddify",
+            "configName": arguments["configName"] as? String ?? "HiddifyExt",
             "settingsJSON": settingsJSON,
             "resources": resources,
             "disableMemoryLimit": arguments["disableMemoryLimit"] as? Bool ?? false,
@@ -317,23 +323,207 @@ final class TunnelServiceController {
         return "The VPN service is not part of the App Store build."
         #else
         guard let script = installScript?.path else { return "The VPN service is missing from this build." }
+        let bundlePath = Bundle.main.bundlePath
+        let owner = NSUserName()
+        NSLog("hiddify tunnel-service: install euid=%d script=%@", geteuid(), script)
+        if geteuid() == 0 {
+            return runInstallScript(script: script, bundlePath: bundlePath, owner: owner)
+        }
+        if let error = authenticateTouchID() { return error }
+        if authenticateAdministrator() == nil, runInstallWithAuthorization(script: script, bundlePath: bundlePath, owner: owner) == nil {
+            return nil
+        }
+        return runInstallWithOsascript(script: script, bundlePath: bundlePath, owner: owner)
+        #endif
+    }
+
+    private func runInstallScript(script: String, bundlePath: String, owner: String) -> String? {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/bin/bash")
+        process.arguments = [script, bundlePath, owner]
+        let stderr = Pipe()
+        process.standardError = stderr
+        process.standardOutput = Pipe()
+        do {
+            try process.run()
+        } catch {
+            return "Couldn't install the VPN service."
+        }
+        process.waitUntilExit()
+        if process.terminationStatus == 0 { return nil }
+        let message = String(data: stderr.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return message?.isEmpty == false ? message : "Couldn't install the VPN service."
+    }
+
+    /// Touch ID / Optic ID first when the Mac has it. Nil means continue (success or no biometrics).
+    private func authenticateTouchID() -> String? {
+        let context = LAContext()
+        var error: NSError?
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            NSLog("hiddify tunnel-service: Touch ID unavailable (%@)", error?.localizedDescription ?? "none")
+            return nil
+        }
+        var result: String?
+        let done = DispatchSemaphore(value: 0)
+        let reason = "HiddifyExt needs administrator permission to run the VPN."
+        context.localizedFallbackTitle = "Use Password"
+        DispatchQueue.main.async {
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, err in
+                if success {
+                    NSLog("hiddify tunnel-service: Touch ID succeeded")
+                } else if let laError = err as? LAError {
+                    NSLog("hiddify tunnel-service: Touch ID error %d", laError.code.rawValue)
+                    switch laError.code {
+                    case .userCancel, .appCancel, .systemCancel:
+                        result = "Installing the VPN service was cancelled."
+                    case .userFallback, .biometryNotAvailable, .biometryNotEnrolled, .biometryLockout:
+                        break
+                    default:
+                        break
+                    }
+                }
+                done.signal()
+            }
+        }
+        done.wait()
+        return result
+    }
+
+    /// System admin dialog (Touch ID when the OS offers it). Must run on the main thread.
+    private func authenticateAdministrator() -> String? {
+        var error: String?
+        let work = {
+            error = self.copyAdministratorRights()
+        }
+        if Thread.isMainThread {
+            work()
+        } else {
+            let done = DispatchSemaphore(value: 0)
+            DispatchQueue.main.async {
+                work()
+                done.signal()
+            }
+            done.wait()
+        }
+        return error
+    }
+
+    private func copyAdministratorRights() -> String? {
+        if let old = pendingAuth {
+            AuthorizationFree(old, [.destroyRights])
+            pendingAuth = nil
+        }
+        var auth: AuthorizationRef?
+        var status = AuthorizationCreate(nil, nil, [], &auth)
+        guard status == errAuthorizationSuccess, let auth else { return "Couldn't create an authorization session." }
+        let prompt = "VPN mode sends all of this Mac's traffic through HiddifyExt, which needs administrator permission. Use Touch ID, then the password if Touch ID is unavailable."
+        status = kAuthorizationEnvironmentPrompt.withCString { promptName in
+            prompt.withCString { promptCString in
+                var promptItem = AuthorizationItem(
+                    name: promptName,
+                    valueLength: prompt.utf8.count + 1,
+                    value: UnsafeMutableRawPointer(mutating: promptCString),
+                    flags: 0
+                )
+                return withUnsafeMutablePointer(to: &promptItem) { itemPtr in
+                    var environment = AuthorizationEnvironment(count: 1, items: itemPtr)
+                    return "system.privilege.admin".withCString { name in
+                        var right = AuthorizationItem(name: name, valueLength: 0, value: nil, flags: 0)
+                        return withUnsafeMutablePointer(to: &right) { rightPtr in
+                            var rights = AuthorizationRights(count: 1, items: rightPtr)
+                            return AuthorizationCopyRights(
+                                auth,
+                                &rights,
+                                &environment,
+                                [.interactionAllowed, .extendRights, .preAuthorize],
+                                nil
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        NSLog("hiddify tunnel-service: AuthorizationCopyRights status=%d", status)
+        if status == errAuthorizationCanceled {
+            AuthorizationFree(auth, [.destroyRights])
+            return "Installing the VPN service was cancelled."
+        }
+        if status != errAuthorizationSuccess {
+            AuthorizationFree(auth, [.destroyRights])
+            return "Couldn't authorize administrator access."
+        }
+        pendingAuth = auth
+        return nil
+    }
+
+    private func runInstallWithAuthorization(script: String, bundlePath: String, owner: String) -> String? {
+        guard let execSymbol = dlsym(UnsafeMutableRawPointer(bitPattern: -2), "AuthorizationExecuteWithPrivileges") else {
+            return "AuthorizationExecuteWithPrivileges is unavailable."
+        }
+        typealias AuthorizationExecuteWithPrivilegesFn = @convention(c) (
+            AuthorizationRef, UnsafePointer<CChar>, AuthorizationFlags,
+            UnsafePointer<UnsafeMutablePointer<CChar>?>,
+            UnsafeMutablePointer<UnsafeMutablePointer<FILE>?>?
+        ) -> OSStatus
+        let execute = unsafeBitCast(execSymbol, to: AuthorizationExecuteWithPrivilegesFn.self)
+        guard let auth = pendingAuth else { return "Missing authorization." }
+        pendingAuth = nil
+        defer { AuthorizationFree(auth, [.destroyRights]) }
+        var argv: [UnsafeMutablePointer<CChar>?] = [strdup(script), strdup(bundlePath), strdup(owner), nil]
+        defer { argv.forEach { free($0) } }
+        var pipe: UnsafeMutablePointer<FILE>?
+        let status = argv.withUnsafeMutableBufferPointer { buffer in
+            "/bin/bash".withCString { path in execute(auth, path, [], buffer.baseAddress!, &pipe) }
+        }
+        NSLog("hiddify tunnel-service: AEWP status=%d", status)
+        var output = ""
+        if let pipe {
+            let fd = fileno(pipe)
+            var bytes = [UInt8](repeating: 0, count: 4096)
+            while true {
+                let n = read(fd, &bytes, bytes.count)
+                if n <= 0 { break }
+                output += String(bytes: bytes[0..<n], encoding: .utf8) ?? ""
+            }
+            fclose(pipe)
+        }
+        if status != errAuthorizationSuccess {
+            return "Couldn't install the VPN service."
+        }
+        if output.contains("Hiddify VPN service installed") { return nil }
+        return "privileged install produced no confirmation"
+    }
+
+    /// Password sheet used only when Touch ID and Authorization Services cannot elevate.
+    private func runInstallWithOsascript(script: String, bundlePath: String, owner: String) -> String? {
         let quote = { (text: String) in
             "\"" + text.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "\"", with: "\\\"") + "\""
         }
-        let owner = NSUserName()
+        let prompt = "VPN mode sends all of this Mac's traffic through HiddifyExt, which needs administrator permission. HiddifyExt asks for it once."
         let source = "do shell script \"/bin/bash \" & quoted form of \(quote(script)) & \" \" & quoted form of "
-            + "\(quote(Bundle.main.bundlePath)) & \" \" & quoted form of \(quote(owner)) with prompt "
-            + "\"VPN mode sends all of this Mac's traffic through Hiddify, "
-            + "which needs administrator permission. Hiddify asks for it once.\" "
-            + "with administrator privileges"
-        var error: NSDictionary?
-        NSAppleScript(source: source)?.executeAndReturnError(&error)
-        guard let error = error else { return nil }
-        if error[NSAppleScript.errorNumber] as? Int == -128 {
+            + "\(quote(bundlePath)) & \" \" & quoted form of \(quote(owner)) with prompt "
+            + "\(quote(prompt)) with administrator privileges"
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
+        process.arguments = ["-e", source]
+        let stderr = Pipe()
+        process.standardError = stderr
+        process.standardOutput = Pipe()
+        do {
+            try process.run()
+        } catch {
+            return "Couldn't show the administrator password dialog."
+        }
+        process.waitUntilExit()
+        let message = String(data: stderr.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)?
+            .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        NSLog("hiddify tunnel-service: osascript status=%d stderr=%@", process.terminationStatus, message)
+        if process.terminationStatus == 0 { return nil }
+        if message.contains("User canceled") || message.contains("-128") {
             return "Installing the VPN service was cancelled."
         }
-        return "Couldn't install the VPN service: \(error[NSAppleScript.errorMessage] as? String ?? "unknown error")"
-        #endif
+        return message.isEmpty ? "Couldn't install the VPN service." : message
     }
 
     private static func flutterError(_ message: String) -> FlutterError {

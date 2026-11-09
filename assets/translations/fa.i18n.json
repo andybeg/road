@@ -1,6 +1,6 @@
 {
   "common": {
-    "appTitle": "هیدیفای",
+    "appTitle": "HiddifyExt",
     "start": "شروع",
     "version": "نسخه",
     "ok": "باشه",
@@ -354,6 +354,11 @@
         "enableAnalytics": "فعال‌سازی آمار",
         "enableAnalyticsMsg": "ارسال آمار و گزارش‌های خطا از دستگاه شما برای کمک به بهبود برنامه",
         "autoIpCheck": "بررسی خودکار IP اتصال",
+        "vlessServerPing": "پینگ IP سرور VLESS",
+        "vlessServerPingMsg": "پینگ TCP آدرس خود گره VLESS، جدا از تست URL تونل",
+        "vlessServerPingShow": "نمایش پینگ در صفحه اصلی",
+        "vlessServerPingShowMsg": "نمایش پاسخ‌دادن IP سرور و تأخیر به میلی‌ثانیه",
+        "vlessServerPingInterval": "فاصله زمانی پینگ IP سرور",
         "dynamicNotification": "نمایش سرعت در اعلان",
         "hapticFeedback": "بازخورد لرزشی",
         "alwaysOnVpn": "VPN همیشه روشن",
@@ -664,6 +669,12 @@
         "padding": {
           "enable": "فعال‌سازی padding",
           "size": "اندازه padding"
+        },
+        "keyShare": "REALITY key share",
+        "keyShareMsg": "Classical دست‌دهی نسخه ۴.۱.۱ است: ClientHello کوتاه که Xray قدیمی و شبکه‌های فیلترشده می‌پذیرند. Hybrid دست‌دهی پساکوانتومی کروم در ۵.۵.۵ است؛ Xray ۲۶.۹.۸ به بعد ممکن است به آن نیاز داشته باشد.",
+        "keyShareModes": {
+          "classical": "Classical (4.1.1)",
+          "hybrid": "Hybrid (Chrome PQ)"
         }
       },
       "chain": {
@@ -1094,6 +1105,12 @@
     "errorDetails": "جزئیات خطا",
     "reconnect": "اتصال مجدد",
     "reconnectMsg": "در حال اتصال مجدد برای اعمال تغییرات…",
+    "serverPing": {
+      "title": "IP سرور VLESS",
+      "ok": "IP سرور پاسخ می‌دهد",
+      "fail": "IP سرور پاسخ نمی‌دهد",
+      "testing": "در حال پینگ IP سرور…"
+    },
     "health": {
       "title": "بررسی اتصال",
       "allGood": "ترافیک شما برقرار است",
@@ -1129,6 +1146,7 @@
     "profiles": {
       "unexpected": "خطای غیرمنتظره",
       "notFound": "پروفایل یافت نشد",
+      "missingFileMsg": "فایل پیکربندی این پروفایل وجود ندارد. آن را حذف کنید و دوباره اضافه کنید.",
       "invalidConfig": "پیکربندی نامعتبر",
       "invalidUrl": "URL نامعتبر",
       "canceledByUser": "توسط کاربر لغو شد"

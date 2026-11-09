@@ -12,6 +12,7 @@ import 'package:hiddify/features/connection/model/connection_failure.dart';
 import 'package:hiddify/features/connection/model/connection_status.dart';
 import 'package:hiddify/features/profile/data/profile_data_providers.dart';
 import 'package:hiddify/features/profile/data/profile_path_resolver.dart';
+import 'package:hiddify/features/profile/data/reality_handshake.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
 import 'package:hiddify/features/settings/data/config_option_repository.dart';
 import 'package:hiddify/hiddifycore/core_interface/core_interface_desktop_tun.dart';
@@ -94,16 +95,16 @@ class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements Con
   }
 
   @override
-  @override
   TaskEither<ConnectionFailure, Unit> connect(ProfileEntity activeProfile, bool disableMemoryLimit) => setup().flatMap(
     (_) => applyConfigOption(activeProfile).flatMap(
       (_) =>
           TaskEither.tryCatch(() async {
             await _prepareAdminBgService(activeProfile);
             return unit;
-          }, (err, st) => err is ConnectionFailure ? err : ConnectionFailure.unexpected(err, st)).flatMap(
-            (_) =>
-                singbox.start(profilePathResolver.file(activeProfile.id).path, activeProfile.name, disableMemoryLimit),
+          }, (err, st) => err is ConnectionFailure ? err : ConnectionFailure.fromError(err, st)).flatMap(
+            (_) => _requireProfileFile(activeProfile).flatMap(
+              (file) => singbox.start(file.path, activeProfile.name, disableMemoryLimit),
+            ),
           ),
     ),
   );
@@ -203,16 +204,10 @@ class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements Con
     if (!core.tunnelServiceAvailable || !options.enableTun) return;
 
     final dialogs = ref.read(dialogNotifierProvider.notifier);
-    final pref = profile.userOverride?.adminPreference ?? UserAdminPreference.unset;
 
     if (core.tunnelServiceReady) return;
 
-    if (pref == UserAdminPreference.unset) {
-      final choice = await dialogs.showVpnAdminBgService();
-      if (choice != VpnAdminBgDialogResult.connectWithAdmin) {
-        throw const ConnectionFailure.missingPrivilege();
-      }
-    }
+    // The macOS password sheet is the consent. An extra in-app dialog hid that prompt.
 
     try {
       final ok = await dialogs.runWhileVpnAdminWaiting(core.installAdminBgService());
@@ -272,10 +267,36 @@ class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements Con
         return disconnect().flatMap((_) => connect(activeProfile, disableMemoryLimit));
       }
       // hot reload when possible, restart otherwise
-      return singbox
-          .reload(profilePathResolver.file(activeProfile.id).path, activeProfile.name, disableMemoryLimit)
-          .mapLeft(UnexpectedConnectionFailure.new);
+      return _requireProfileFile(activeProfile).flatMap(
+        (file) =>
+            singbox.reload(file.path, activeProfile.name, disableMemoryLimit).mapLeft(UnexpectedConnectionFailure.new),
+      );
     });
+  }
+
+  TaskEither<ConnectionFailure, File> _requireProfileFile(ProfileEntity profile) {
+    final file = _profileForCore(profile);
+    if (!file.existsSync()) {
+      return TaskEither.left(const ConnectionFailure.invalidConfig('missing-profile-file'));
+    }
+    return TaskEither.right(file);
+  }
+
+  /// Stored profile with REALITY `key_share` applied. Falls back to the original on any patch error.
+  File _profileForCore(ProfileEntity profile) {
+    final source = profilePathResolver.file(profile.id);
+    try {
+      if (!source.existsSync()) return source;
+      final original = source.readAsStringSync();
+      final patched = RealityHandshake.apply(original, ref.read(ConfigOptions.realityKeyShare));
+      if (patched == original) return source;
+      final runtime = profilePathResolver.runtimeFile(profile.id);
+      runtime.writeAsStringSync(patched);
+      return runtime;
+    } catch (error, stackTrace) {
+      loggy.warning('reality handshake patch skipped: $error', error, stackTrace);
+      return source;
+    }
   }
 
   @visibleForTesting

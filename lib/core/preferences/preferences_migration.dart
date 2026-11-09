@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:hiddify/core/model/environment.dart';
 import 'package:hiddify/core/utils/proxy_secret.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +20,7 @@ class PreferencesMigration with InfraLogger {
       PreferencesVersion2Migration(sharedPreferences),
       PreferencesVersion3Migration(sharedPreferences),
       PreferencesVersion4Migration(sharedPreferences),
+      PreferencesVersion5Migration(sharedPreferences),
     ];
 
     if (currentVersion == migrationSteps.length) {
@@ -168,5 +172,21 @@ class PreferencesVersion4Migration extends PreferencesMigrationStep with InfraLo
     if ((sharedPreferences.getString(key) ?? '').isNotEmpty) return;
     loggy.debug("making the proxy secret");
     await sharedPreferences.setString(key, generateProxySecret());
+  }
+}
+
+/// Unsigned macOS used the desktop default (system-proxy), so Connect never asked for the
+/// administrator password and never started the root tunnel helper.
+class PreferencesVersion5Migration extends PreferencesMigrationStep with InfraLogger {
+  PreferencesVersion5Migration(super.sharedPreferences);
+
+  @override
+  Future<void> migrate() async {
+    if (!Platform.isMacOS) return;
+    if (Release.read() == Release.appStore) return;
+    final mode = sharedPreferences.getString("service-mode");
+    if (mode != null && mode != "system-proxy") return;
+    loggy.debug("unsigned macOS: service-mode [${mode ?? "unset"}] -> vpn");
+    await sharedPreferences.setString("service-mode", "vpn");
   }
 }

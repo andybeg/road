@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/optional_range.dart';
+import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
+import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/features/settings/data/config_option_repository.dart';
 import 'package:hiddify/features/settings/widget/preference_tile.dart';
+import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TlsTricksPage extends HookConsumerWidget {
@@ -82,6 +85,29 @@ class TlsTricksPage extends HookConsumerWidget {
             presentValue: (value) => value.format(),
             formatInputValue: (value) => value.format(),
             enabled: canChangeOption,
+          ),
+          ChoicePreferenceWidget(
+            selected: ref.watch(ConfigOptions.realityKeyShare),
+            preferences: ref.watch(ConfigOptions.realityKeyShare.notifier),
+            choices: RealityKeyShare.values,
+            title: t.pages.settings.tlsTricks.keyShare,
+            icon: Icons.vpn_key_rounded,
+            presentChoice: (value) => value.present(t),
+            autoUpdate: false,
+            onChanged: (value) async {
+              await ref.read(ConfigOptions.realityKeyShare.notifier).update(value);
+              final profile = ref.read(activeProfileProvider).valueOrNull;
+              if (profile != null) {
+                await ref.read(connectionNotifierProvider.notifier).reconnect(profile);
+              }
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(72, 0, 16, 16),
+            child: Text(
+              t.pages.settings.tlsTricks.keyShareMsg,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
         ],
       ),

@@ -3,10 +3,12 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/theme/theme_extensions.dart';
 import 'package:hiddify/features/chain/model/chain_enum.dart';
 import 'package:hiddify/features/chain/overview/chain_mode_icon.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
+import 'package:hiddify/features/proxy/active/vless_server_ping_notifier.dart';
 import 'package:hiddify/features/proxy/model/connection_health.dart';
 import 'package:hiddify/features/proxy/model/proxy_entity.dart';
 import 'package:hiddify/features/settings/data/config_option_repository.dart';
@@ -124,8 +126,29 @@ class ConnectionHealthSheet extends ConsumerWidget {
             ],
           );
 
+    final pingEnabled = ref.watch(Preferences.vlessServerPingEnabled);
+    final ping = pingEnabled ? ref.watch(vlessServerPingProvider).valueOrNull : null;
+    final pingState = switch (ping?.state) {
+      VlessServerPingState.reachable => HealthState.ok,
+      VlessServerPingState.unreachable => HealthState.failed,
+      VlessServerPingState.testing => HealthState.pending,
+      _ => HealthState.pending,
+    };
+
     // the steps in the order they connect: the unblocker before the servers, extra security after
     final steps = <_Step>[
+      if (ping != null && ping.state != VlessServerPingState.none)
+        _Step(
+          state: pingState,
+          icon: Icons.lan_rounded,
+          title: t.connection.serverPing.title,
+          detail: switch (ping.state) {
+            VlessServerPingState.reachable => '${ping.endpoint?.address}  ·  ${ping.delayMs} ms',
+            VlessServerPingState.unreachable => '${ping.endpoint?.address}  ·  ${t.connection.serverPing.fail}',
+            VlessServerPingState.testing => t.connection.serverPing.testing,
+            VlessServerPingState.none => t.connection.serverPing.testing,
+          },
+        ),
       if (unblocker && hopStep != null) hopStep,
       // the fastest server is the pick itself with lowest, and the way out when the picked proxy is dead
       if (health.fastest != null && (!health.pickedByHand || offer))
@@ -196,7 +219,10 @@ class ConnectionHealthSheet extends ConsumerWidget {
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: TextButton.icon(
-                onPressed: () => active.urlTest(""),
+                onPressed: () {
+                  active.urlTest("");
+                  ref.invalidate(vlessServerPingProvider);
+                },
                 icon: const Icon(Icons.refresh_rounded, size: 18),
                 label: Text(h.retry),
               ),

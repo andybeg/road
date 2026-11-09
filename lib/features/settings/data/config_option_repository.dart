@@ -267,6 +267,14 @@ abstract class ConfigOptions {
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
 
+  /// 4.1.1-compatible REALITY hello. Hybrid is the 5.5.5 Chrome PQ handshake.
+  static final realityKeyShare = PreferencesNotifier.create<RealityKeyShare, String>(
+    "reality-key-share",
+    RealityKeyShare.classical,
+    mapFrom: RealityKeyShare.fromKey,
+    mapTo: (value) => value.key,
+  );
+
   static final enableMux = PreferencesNotifier.create<bool, bool>("enable-mux", false);
 
   static final muxPadding = PreferencesNotifier.create<bool, bool>("mux-padding", false);
@@ -525,6 +533,7 @@ abstract class ConfigOptions {
     "tls-tricks.mixed-sni-case": enableTlsMixedSniCase,
     "tls-tricks.enable-padding": enableTlsPadding,
     "tls-tricks.padding-size": tlsPaddingSize,
+    "tls-tricks.reality-key-share": realityKeyShare,
 
     // EXTRA-SECURITY
     // warp

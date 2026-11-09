@@ -466,7 +466,7 @@ jobs:
         if: startsWith(matrix.platform, 'macos') && inputs.upload-artifact
         # AppIcon.icon (Icon Composer) needs Xcode 26; older Xcode builds the app without any icon.
         run: |
-          app=build/macos/Build/Products/Release/Hiddify.app
+          app=build/macos/Build/Products/Release/HiddifyExt.app
           xcodebuild -version
           for f in Assets.car AppIcon.icns; do
             [[ -s "$app/Contents/Resources/$f" ]] || { echo "::error::$app has no Contents/Resources/$f (app icon)"; exit 1; }

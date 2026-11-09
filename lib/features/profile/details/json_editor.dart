@@ -262,7 +262,7 @@ const Map<String, Map<String, Map<String, dynamic>>> exampleSchemaValues = {
         "min_version": "",
         "max_version": "",
         "utls": {"enabled": true, "fingerprint": "chrome"},
-        "reality": {"enabled": true, "public_key": "", "short_id": ""},
+        "reality": {"enabled": true, "public_key": "", "short_id": "", "key_share": "classical"},
       },
     },
     "tls": {
@@ -334,6 +334,7 @@ const Map<String, List<String>> possibleValues = {
   "config.outbounds.multiplex.protocol": <String>["", "smux", "yamux", "h2mux"],
   "config.outbounds.tls.min_version": <String>["", "1.0", "1.1", "1.2", "1.3"],
   "config.outbounds.tls.max_version": <String>["", "1.0", "1.1", "1.2", "1.3"],
+  "config.outbounds.tls.reality.key_share": <String>["", "classical", "hybrid"],
   "config.outbounds.tls.utls.fingerprint": <String>[
     "",
     "chrome",

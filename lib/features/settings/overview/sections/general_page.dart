@@ -35,6 +35,46 @@ class GeneralPage extends HookConsumerWidget {
             secondary: const Icon(Icons.flag_rounded),
             onChanged: ref.read(Preferences.autoCheckIp.notifier).update,
           ),
+          SwitchListTile.adaptive(
+            title: Text(t.pages.settings.general.vlessServerPing),
+            subtitle: Text(t.pages.settings.general.vlessServerPingMsg),
+            secondary: const Icon(Icons.lan_rounded),
+            value: ref.watch(Preferences.vlessServerPingEnabled),
+            onChanged: ref.read(Preferences.vlessServerPingEnabled.notifier).update,
+          ),
+          if (ref.watch(Preferences.vlessServerPingEnabled)) ...[
+            SwitchListTile.adaptive(
+              title: Text(t.pages.settings.general.vlessServerPingShow),
+              subtitle: Text(t.pages.settings.general.vlessServerPingShowMsg),
+              secondary: const Icon(Icons.visibility_rounded),
+              value: ref.watch(Preferences.vlessServerPingShowResult),
+              onChanged: ref.read(Preferences.vlessServerPingShowResult.notifier).update,
+            ),
+            ListTile(
+              title: Text(t.pages.settings.general.vlessServerPingInterval),
+              subtitle: Text(
+                ref.watch(Preferences.vlessServerPingInterval).toApproximateTime(isRelativeToNow: false),
+              ),
+              leading: const Icon(Icons.timer_outlined),
+              onTap: () async => await ref
+                  .read(dialogNotifierProvider.notifier)
+                  .showSettingSlider(
+                    title: t.pages.settings.general.vlessServerPingInterval,
+                    initialValue: ref.watch(Preferences.vlessServerPingInterval).inSeconds.coerceIn(5, 60).toDouble(),
+                    onReset: ref.read(Preferences.vlessServerPingInterval.notifier).reset,
+                    min: 5,
+                    max: 60,
+                    divisions: 11,
+                    labelGen: (value) => Duration(seconds: value.toInt()).toApproximateTime(isRelativeToNow: false),
+                  )
+                  .then((value) async {
+                    if (value == null) return;
+                    await ref
+                        .read(Preferences.vlessServerPingInterval.notifier)
+                        .update(Duration(seconds: value.toInt()));
+                  }),
+            ),
+          ],
           if (PlatformUtils.isAndroid) ...[
             SwitchListTile.adaptive(
               title: Text(t.pages.settings.general.dynamicNotification),
