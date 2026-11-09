@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/features/connection/model/connection_status.dart';
-import 'package:hiddify/features/proxy/model/connection_health.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/features/connection/model/connection_status.dart';
+import 'package:tropa/features/proxy/model/connection_health.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
 
 const _timeout = 65000;
 

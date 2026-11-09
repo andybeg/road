@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/features/profile/data/profile_data_providers.dart';
-import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
-import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
-import 'package:hiddify/features/proxy/data/vless_server_endpoint.dart';
-import 'package:hiddify/features/proxy/model/proxy_entity.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
+import 'package:tropa/core/preferences/general_preferences.dart';
+import 'package:tropa/features/profile/data/profile_data_providers.dart';
+import 'package:tropa/features/profile/notifier/active_profile_notifier.dart';
+import 'package:tropa/features/proxy/active/active_proxy_notifier.dart';
+import 'package:tropa/features/proxy/data/vless_server_endpoint.dart';
+import 'package:tropa/features/proxy/model/proxy_entity.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 enum VlessServerPingState { none, testing, reachable, unreachable }

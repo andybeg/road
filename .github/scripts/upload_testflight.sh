@@ -2,7 +2,7 @@
 # Uploads an IPA or a Mac App Store pkg to App Store Connect (TestFlight) with an
 # Apple ID and an app-specific password instead of an App Store Connect API key.
 # API keys cannot be limited to particular apps; a team member can. Use a dedicated
-# Apple ID with the Developer or App Manager role and access to the Hiddify apps only.
+# Apple ID with the Developer or App Manager role and access to the Tropa apps only.
 #
 # usage: upload_testflight.sh ios|macos <file>
 # env:   APPLE_UPLOAD_APPLE_ID      the Apple ID (email)

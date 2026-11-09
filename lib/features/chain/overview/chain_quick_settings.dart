@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/constants.dart';
-import 'package:hiddify/features/chain/overview/chain_mode_button.dart';
-import 'package:hiddify/features/common/custom_text_scroll.dart';
-import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/model/constants.dart';
+import 'package:tropa/features/chain/overview/chain_mode_button.dart';
+import 'package:tropa/features/common/custom_text_scroll.dart';
+import 'package:tropa/features/profile/notifier/active_profile_notifier.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ChainQuickSettings extends HookConsumerWidget {

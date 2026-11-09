@@ -1,3 +1,10 @@
+# Tropa
+
+Tropa is a fork of [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app).
+The original additional conditions below still apply.
+
+---
+
 # Hiddify Extended GNU General Public License v3
 
 The Hiddify project is licensed under GPL v3, with the following additional conditions in accordance with GPL v3 Section 7. Failure to comply with these terms may result in requests to app stores to remove or restrict access to your app.

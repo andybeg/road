@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "HiddifyExt" "\0"
-            VALUE "FileDescription", "HiddifyExt" "\0"
+            VALUE "CompanyName", "Tropa" "\0"
+            VALUE "FileDescription", "Tropa" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "hiddifyext" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 Hiddify.com. All rights reserved." "\0"
-            VALUE "OriginalFilename", "HiddifyExt.exe" "\0"
-            VALUE "ProductName", "HiddifyExt" "\0"
+            VALUE "InternalName", "tropa" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Tropa. All rights reserved." "\0"
+            VALUE "OriginalFilename", "Tropa.exe" "\0"
+            VALUE "ProductName", "Tropa" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -3,19 +3,19 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/core/widget/unique_keys_layout.dart';
-import 'package:hiddify/features/proxy/active/ip_widget.dart';
-import 'package:hiddify/features/proxy/model/proxy_entity.dart';
-import 'package:hiddify/features/proxy/overview/proxies_overview_notifier.dart';
-import 'package:hiddify/features/proxy/widget/proxy_type_label.dart';
-import 'package:hiddify/features/proxy/widget/upload_speed.dart';
-import 'package:hiddify/gen/assets.gen.dart';
-import 'package:hiddify/gen/fonts.gen.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
-import 'package:hiddify/utils/custom_loggers.dart';
-import 'package:hiddify/utils/platform_utils.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/core/widget/unique_keys_layout.dart';
+import 'package:tropa/features/proxy/active/ip_widget.dart';
+import 'package:tropa/features/proxy/model/proxy_entity.dart';
+import 'package:tropa/features/proxy/overview/proxies_overview_notifier.dart';
+import 'package:tropa/features/proxy/widget/proxy_type_label.dart';
+import 'package:tropa/features/proxy/widget/upload_speed.dart';
+import 'package:tropa/gen/assets.gen.dart';
+import 'package:tropa/gen/fonts.gen.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:tropa/utils/custom_loggers.dart';
+import 'package:tropa/utils/platform_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProxyTile extends HookConsumerWidget with PresLogger {
@@ -329,7 +329,7 @@ class _Badge extends StatelessWidget {
   }
 }
 
-/// The Hiddify logo as the signal: its three columns light like a phone's three bars.
+/// The Tropa logo as the signal: its three columns light like a phone's three bars.
 class _Logo extends StatelessWidget {
   const _Logo(this.colors);
   final List<Color> colors;

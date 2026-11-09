@@ -2,17 +2,17 @@ import 'dart:io';
 
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/haptic/haptic_service.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/features/auto_start/notifier/auto_start_notifier.dart';
-import 'package:hiddify/features/common/general_pref_tiles.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/features/settings/widget/preference_tile.dart';
-import 'package:hiddify/hiddifycore/core_interface/core_interface_mobile.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/haptic/haptic_service.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/preferences/general_preferences.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/features/auto_start/notifier/auto_start_notifier.dart';
+import 'package:tropa/features/common/general_pref_tiles.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/features/settings/widget/preference_tile.dart';
+import 'package:tropa/core_bridge/core_interface/core_interface_mobile.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:humanizer/humanizer.dart';
 

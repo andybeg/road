@@ -1,9 +1,9 @@
-display_name: HiddifyExt
+display_name: Tropa
 
 icon: ..\..\assets\images\windows.ico
 
 keywords:
-  - Hiddify
+  - Tropa
   - Proxy
   - VPN
   - V2ray
@@ -12,7 +12,7 @@ keywords:
   - Psiphon
   - OpenVPN
 
-generic_name: HiddifyExt
+generic_name: Tropa
 
 actions:
   - name: Start

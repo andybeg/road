@@ -33,9 +33,9 @@ param(
 
     [string[]]$Path = @('dist'),
 
-    [string]$Description = 'Hiddify',
+    [string]$Description = 'Tropa',
 
-    [string]$DescriptionUrl = 'https://hiddify.com',
+    [string]$DescriptionUrl = 'https://github.com/andybeg/tropa',
 
     # RFC 3161 timestamp server. Default depends on the backend.
     [string]$TimestampUrl = ''

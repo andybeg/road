@@ -6,9 +6,9 @@ import UserNotifications
 class AppDelegate: FlutterAppDelegate {
   // Launchd and the install script must never open the Flutter UI. Intercept every CLI form the
   // root service uses and run parseCli from the bundled hiddify-core instead:
-  //   Hiddify --tunnel … | Hiddify tunnel … | Hiddify admin_bgservice …
+  //   Tropa --tunnel … | Tropa tunnel … | Tropa admin_bgservice …
   static func main() {
-    #if !HIDDIFY_APP_STORE
+    #if !TROPA_APP_STORE
     // the App Store build has no root service to run for
     let arguments = CommandLine.arguments
     if arguments.count >= 2 {

@@ -1,5 +1,7 @@
 # Changelog
 
+Upstream history of the project this repository was forked from ([hiddify/hiddify-app](https://github.com/hiddify/hiddify-app)).
+
 
 ## 5.5.5 (2026-11-04)
 

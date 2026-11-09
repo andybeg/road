@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/features/profile/add/phone_import/phone_import_server.dart';
+import 'package:tropa/features/profile/add/phone_import/phone_import_server.dart';
 
 const _text = (
   lang: 'en',

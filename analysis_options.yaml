@@ -8,10 +8,10 @@ analyzer:
     - "**/*.mapper.dart"
     - "lib/gen/**"
     # protobuf / gRPC output — regenerated from .proto, never hand-edited
-    - "lib/hiddifycore/generated/**"
+    - "lib/core_bridge/generated/**"
     # vendored copy of the json_editor_flutter package
     - "lib/features/profile/details/json_editor.dart"
-    # vendored, patched packages (see third_party/*/HIDDIFY.md)
+    # vendored, patched packages (see third_party/*/FORK.md)
     - "third_party/**"
     - "build/**"
     - "dist/**"

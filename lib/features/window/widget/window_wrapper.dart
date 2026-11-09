@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/preferences/actions_at_closing.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/core/router/go_router/go_router_notifier.dart';
-import 'package:hiddify/features/window/notifier/window_notifier.dart';
-import 'package:hiddify/utils/custom_loggers.dart';
-import 'package:hiddify/utils/platform_utils.dart';
+import 'package:tropa/core/preferences/actions_at_closing.dart';
+import 'package:tropa/core/preferences/general_preferences.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/core/router/go_router/go_router_notifier.dart';
+import 'package:tropa/features/window/notifier/window_notifier.dart';
+import 'package:tropa/utils/custom_loggers.dart';
+import 'package:tropa/utils/platform_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:window_manager/window_manager.dart';
 

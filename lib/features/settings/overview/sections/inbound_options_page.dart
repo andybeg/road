@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/environment.dart';
-import 'package:hiddify/features/common/qr_code_dialog.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/features/settings/widget/lan_sharing_tile.dart';
-import 'package:hiddify/features/settings/widget/preference_tile.dart';
-import 'package:hiddify/features/settings/widget/proxy_secret_editor.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/model/environment.dart';
+import 'package:tropa/features/common/qr_code_dialog.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/features/settings/widget/lan_sharing_tile.dart';
+import 'package:tropa/features/settings/widget/preference_tile.dart';
+import 'package:tropa/features/settings/widget/proxy_secret_editor.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class InboundOptionsPage extends HookConsumerWidget with AppLogger {

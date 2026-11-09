@@ -1,9 +1,9 @@
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcommon/common.pb.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service_provider.dart';
-import 'package:hiddify/utils/custom_loggers.dart';
+import 'package:tropa/core/preferences/general_preferences.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/core_bridge/generated/v2/hcommon/common.pb.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:tropa/core_bridge/core_service_provider.dart';
+import 'package:tropa/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final _log = appLogger('CrashReport');
@@ -28,7 +28,7 @@ class CrashReportNotifier extends Notifier<CrashReport?> {
     if (!ref.read(Preferences.introCompleted)) return;
     for (var attempt = 0; attempt < 3; attempt++) {
       try {
-        final reports = await ref.read(hiddifyCoreServiceProvider).core.fgClient.listCrashReports(Empty());
+        final reports = await ref.read(coreServiceProvider).core.fgClient.listCrashReports(Empty());
         await _offer(reports.reports);
         return;
       } catch (e) {

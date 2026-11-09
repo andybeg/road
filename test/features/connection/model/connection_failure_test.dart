@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/core/model/failures.dart';
-import 'package:hiddify/features/connection/model/connection_failure.dart';
-import 'package:hiddify/gen/translations.g.dart';
+import 'package:tropa/core/model/failures.dart';
+import 'package:tropa/features/connection/model/connection_failure.dart';
+import 'package:tropa/gen/translations.g.dart';
 
 void main() {
   test('macOS extension approval is an expected permission prompt with readable instructions', () {
-    const message = 'Allow Hiddify in System Settings, then connect again.';
+    const message = 'Allow Tropa in System Settings, then connect again.';
     final failure = ConnectionFailure.fromError(
       PlatformException(code: 'MACOS_VPN_APPROVAL_REQUIRED', message: message),
     );

@@ -1,5 +1,5 @@
-import 'package:hiddify/core/model/environment.dart';
-import 'package:hiddify/features/app_update/model/remote_version_entity.dart';
+import 'package:tropa/core/model/environment.dart';
+import 'package:tropa/features/app_update/model/remote_version_entity.dart';
 
 abstract class GithubReleaseParser {
   /// A release's tag: v5.4.0, optionally with a pre-release (v5.4.0-beta.1, v5.4.0.dev) or a build

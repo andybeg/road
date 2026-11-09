@@ -4,8 +4,8 @@
 <dict>
 	<key>Move</key>
 	<array>
-		<string>${ApplicationSupport}/apple.hiddify.com</string>
-		<string>${Library}/Preferences/apple.hiddify.com.plist</string>
+		<string>${ApplicationSupport}/apple.andybeg.tropa</string>
+		<string>${Library}/Preferences/apple.andybeg.tropa.plist</string>
 	</array>
 </dict>
 </plist>

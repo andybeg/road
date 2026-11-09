@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
-import 'package:hiddify/features/proxy/keep_top/keep_top.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/features/profile/notifier/active_profile_notifier.dart';
+import 'package:tropa/features/proxy/keep_top/keep_top.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// The proxies as dots: the running ones lit, the paused ones dim, and how many more there are.

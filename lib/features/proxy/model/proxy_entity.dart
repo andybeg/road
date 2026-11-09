@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/core/model/constants.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/core/model/constants.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
 
 part 'proxy_entity.freezed.dart';
 

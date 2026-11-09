@@ -1,7 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/utils/link_parsers.dart';
+import 'package:tropa/utils/link_parsers.dart';
 
 void main() {
+  group("LinkParser.deep - tropa scheme", () {
+    test("install-config is accepted", () {
+      final link = LinkParser.deep("tropa://install-config?url=https%3A%2F%2Fsub.com%2Fx#MyProfile");
+      expect(link, isNotNull);
+      expect(link!.url, equals("https://sub.com/x"));
+      expect(link.name, equals("MyProfile"));
+    });
+  });
+
   group("LinkParser.deep - hiddify scheme", () {
     test("path form uses the fragment as the name", () {
       final link = LinkParser.deep("hiddify://import/https://sub.com/x#MyProfile");

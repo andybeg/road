@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/failures.dart';
-import 'package:hiddify/features/settings/model/config_option_failure.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/model/failures.dart';
+import 'package:tropa/features/settings/model/config_option_failure.dart';
 
 part 'connection_failure.freezed.dart';
 

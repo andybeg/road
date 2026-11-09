@@ -1,4 +1,4 @@
-import 'package:hiddify/core/logger/ring/log_ring.dart';
+import 'package:tropa/core/logger/ring/log_ring.dart';
 import 'package:logging/logging.dart';
 
 /// What the logs page is showing, and what it is filtered by.

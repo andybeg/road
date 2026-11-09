@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:hiddify/core/app_info/app_info_provider.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/app_info/app_info_provider.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:launch_at_startup/launch_at_startup.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,7 +20,7 @@ class AutoStartNotifier extends _$AutoStartNotifier with InfraLogger {
       appName: appInfo.name,
       appPath: Platform.resolvedExecutable,
       // Must equal identity_name in windows/packaging/msix/make_config.yaml.
-      packageName: "Hiddify.App.Win",
+      packageName: "Tropa.App.Win",
     );
     final isEnabled = await launchAtStartup.isEnabled();
     loggy.info("auto start is [${isEnabled ? "Enabled" : "Disabled"}]");

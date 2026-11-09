@@ -1,9 +1,9 @@
-import 'package:hiddify/core/model/constants.dart';
-import 'package:hiddify/features/chain/model/chain_enum.dart';
-import 'package:hiddify/features/connection/model/connection_status.dart';
-import 'package:hiddify/features/proxy/model/proxy_entity.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/core/model/constants.dart';
+import 'package:tropa/features/chain/model/chain_enum.dart';
+import 'package:tropa/features/connection/model/connection_status.dart';
+import 'package:tropa/features/proxy/model/proxy_entity.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
 
 /// How far one step of the path has got.
 enum HealthState {

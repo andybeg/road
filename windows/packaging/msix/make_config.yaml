@@ -1,13 +1,13 @@
 # Must equal a name reserved for the product in Partner Center (Product identity).
-display_name: HiddifyExt
-publisher_display_name: Hiddify
-identity_name: Hiddify.App.Win
+display_name: Tropa
+publisher_display_name: Tropa
+identity_name: Tropa.App.Win
 msix_version: 5.5.5.0
 logo_path: windows\runner\resources\app_icon.ico
 capabilities: internetClient, internetClientServer, privateNetworkClientServer
 languages: ar, en-us, es-es, fa-ir, fr-fr, id-id, pt-br, ru-ru, tr-tr, zh-cn, zh-tw
-protocol_activation: hiddify, v2ray, v2rayn, v2rayng, clash, clashmeta, sing-box
-execution_alias: hiddify
+protocol_activation: tropa, hiddify, v2ray, v2rayn, v2rayng, clash, clashmeta, sing-box
+execution_alias: tropa
 # identity_name and publisher must equal Partner Center > Product identity. CI keeps
 # both as they are and signs the MSIX with a certificate whose Subject equals
 # `publisher` (windows/scripts/configure_windows_signing.ps1 checks it).
@@ -20,6 +20,6 @@ startup_task:
   parameters: --autostart
 
 # For testing with a self-signed certificate
-# publisher: CN=Hiddify-Test
+# publisher: CN=Tropa-Test
 # certificate_password: "1234"
 # install_certificate: "true"

@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:hiddify/core/model/environment.dart';
-import 'package:hiddify/core/utils/proxy_secret.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/model/environment.dart';
+import 'package:tropa/core/utils/proxy_secret.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesMigration with InfraLogger {

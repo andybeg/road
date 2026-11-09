@@ -2,15 +2,15 @@
 set -euo pipefail
 
 # Installs the VPN service of builds without a Developer ID: the app's own executable, run as
-# `HiddifyExt --tunnel run` by launchd with administrator rights, which runs the full core. The app
+# `Tropa --tunnel run` by launchd with administrator rights, which runs the full core. The app
 # runs this with administrator authentication; by hand:
-#   sudo "/Applications/HiddifyExt.app/Contents/Resources/TunnelService/install-tunnel-service.sh" \
-#     /Applications/HiddifyExt.app "$USER"
+#   sudo "/Applications/Tropa.app/Contents/Resources/TunnelService/install-tunnel-service.sh" \
+#     /Applications/Tropa.app "$USER"
 
 task_source="${1:-}"
 task_owner="${2:-${SUDO_USER:-}}"
 # Copied app + data live under AdminBgService (matches Go controlDataDir / serviceDataDirectory).
-task_destination="/Library/Application Support/Hiddify/AdminBgService/HiddifyExt.app"
+task_destination="/Library/Application Support/Hiddify/AdminBgService/Tropa.app"
 
 task_macos_exec() {
   local app="$1"
@@ -22,7 +22,7 @@ task_macos_exec() {
     printf '%s\n' "$app/Contents/MacOS/$name"
     return 0
   fi
-  for name in HiddifyExt Hiddify; do
+  for name in Tropa Tropa Tropa; do
     if [[ -x "$app/Contents/MacOS/$name" ]]; then
       printf '%s\n' "$app/Contents/MacOS/$name"
       return 0
@@ -36,7 +36,7 @@ if [[ "$(id -u)" != 0 ]]; then
   exit 1
 fi
 if ! task_macos_exec "$task_source" >/dev/null; then
-  echo 'error: pass the path of HiddifyExt.app.' >&2
+  echo 'error: pass the path of Tropa.app.' >&2
   exit 1
 fi
 
@@ -48,7 +48,8 @@ rm -rf "/Library/Application Support/Hiddify/TunnelHelper"
 
 task_legacy="/Library/Application Support/Hiddify/TunnelService/Hiddify.app"
 task_previous="/Library/Application Support/Hiddify/AdminBgService/Hiddify.app"
-for task_existing in "$task_destination" "$task_previous" "$task_legacy"; do
+task_ext="/Library/Application Support/Hiddify/AdminBgService/HiddifyExt.app"
+for task_existing in "$task_destination" "$task_ext" "$task_previous" "$task_legacy"; do
   if exec_path="$(task_macos_exec "$task_existing")"; then
     "$exec_path" --tunnel uninstall || true
   fi
@@ -64,4 +65,4 @@ chmod -R go-w "$task_destination"
 export HIDDIFY_TUNNEL_OWNER="$task_owner"
 export HIDDIFY_ADMIN_BG_OWNER="$task_owner"
 "$(task_macos_exec "$task_destination")" --tunnel install
-echo 'Hiddify VPN service installed.'
+echo 'Tropa VPN service installed.'

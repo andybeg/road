@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'dart:isolate';
 
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/failures.dart';
-import 'package:hiddify/core/notification/in_app_notification_controller.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/features/profile/data/profile_data_providers.dart';
-import 'package:hiddify/features/profile/data/profile_repository.dart';
-import 'package:hiddify/features/profile/details/profile_details_state.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/features/profile/model/profile_failure.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/model/failures.dart';
+import 'package:tropa/core/notification/in_app_notification_controller.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/features/profile/data/profile_data_providers.dart';
+import 'package:tropa/features/profile/data/profile_repository.dart';
+import 'package:tropa/features/profile/details/profile_details_state.dart';
+import 'package:tropa/features/profile/model/profile_entity.dart';
+import 'package:tropa/features/profile/model/profile_failure.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_details_notifier.g.dart';

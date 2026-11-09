@@ -2,18 +2,18 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:hiddify/core/app_info/app_info_provider.dart';
-import 'package:hiddify/core/directories/directories_provider.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/constants.dart';
-import 'package:hiddify/core/model/failures.dart';
-import 'package:hiddify/core/notification/in_app_notification_controller.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/core/widget/adaptive_icon.dart';
-import 'package:hiddify/features/app_update/notifier/app_update_notifier.dart';
-import 'package:hiddify/features/app_update/notifier/app_update_state.dart';
-import 'package:hiddify/gen/assets.gen.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/app_info/app_info_provider.dart';
+import 'package:tropa/core/directories/directories_provider.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/model/constants.dart';
+import 'package:tropa/core/model/failures.dart';
+import 'package:tropa/core/notification/in_app_notification_controller.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/core/widget/adaptive_icon.dart';
+import 'package:tropa/features/app_update/notifier/app_update_notifier.dart';
+import 'package:tropa/features/app_update/notifier/app_update_state.dart';
+import 'package:tropa/gen/assets.gen.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AboutPage extends HookConsumerWidget {
@@ -116,10 +116,10 @@ class AboutPage extends HookConsumerWidget {
                 },
               ),
               ListTile(
-                title: Text(t.pages.about.telegramChannel),
+                title: Text(t.pages.about.originalProject),
                 trailing: const Icon(FluentIcons.open_24_regular),
                 onTap: () async {
-                  await UriUtils.tryLaunch(Uri.parse(Constants.telegramChannelUrl));
+                  await UriUtils.tryLaunch(Uri.parse(Constants.upstreamUrl));
                 },
               ),
               ListTile(

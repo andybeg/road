@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:hiddify/core/app_info/app_info_provider.dart';
-import 'package:hiddify/core/http_client/http_client_provider.dart';
-import 'package:hiddify/features/app_update/model/install_kind.dart';
-import 'package:hiddify/features/app_update/model/remote_version_entity.dart';
-import 'package:hiddify/features/window/notifier/window_notifier.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/app_info/app_info_provider.dart';
+import 'package:tropa/core/http_client/http_client_provider.dart';
+import 'package:tropa/features/app_update/model/install_kind.dart';
+import 'package:tropa/features/app_update/model/remote_version_entity.dart';
+import 'package:tropa/features/window/notifier/window_notifier.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -54,7 +54,7 @@ class AppUpdaterFailed extends AppUpdaterState {
 /// macOS disk image. Other installs, and a release without the file, open the release page.
 @Riverpod(keepAlive: true)
 class AppUpdater extends _$AppUpdater with AppLogger {
-  static const _platform = MethodChannel('com.hiddify.app/platform');
+  static const _platform = MethodChannel('com.andybeg.tropa/platform');
 
   CancelToken? _cancel;
 

@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/features/profile/data/profile_parser.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/features/proxy/keep_top/keep_top.dart';
-import 'package:hiddify/features/proxy/keep_top/keep_top_widgets.dart';
-import 'package:hiddify/features/proxy/widget/upload_speed.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/features/profile/data/profile_parser.dart';
+import 'package:tropa/features/profile/model/profile_entity.dart';
+import 'package:tropa/features/proxy/keep_top/keep_top.dart';
+import 'package:tropa/features/proxy/keep_top/keep_top_widgets.dart';
+import 'package:tropa/features/proxy/widget/upload_speed.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 Map<String, dynamic> _override({Map<String, dynamic>? headers, UserOverride? userOverride}) =>

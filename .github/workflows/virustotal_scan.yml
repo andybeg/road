@@ -14,7 +14,7 @@ on:
         required: true
         type: string
       asset_pattern:
-        description: 'Scan only assets matching this pattern (default: all Hiddify-* packages)'
+        description: 'Scan only assets matching this pattern (default: all Tropa-* packages)'
         required: false
         type: string
         default: ''
@@ -57,17 +57,17 @@ jobs:
             exit 0
           fi
           gh release download "$TAG_NAME" --dir release_assets \
-            --pattern "Hiddify-*.apk" \
-            --pattern "Hiddify-*.exe" \
-            --pattern "Hiddify-*.Msix" \
-            --pattern "Hiddify-*.msix" \
-            --pattern "Hiddify-*.zip" \
-            --pattern "Hiddify-*.tar.gz" \
-            --pattern "Hiddify-*.dmg" \
-            --pattern "Hiddify-*.pkg" \
-            --pattern "Hiddify-*.AppImage" \
-            --pattern "Hiddify-*.deb" \
-            --pattern "Hiddify-*.rpm"
+            --pattern "Tropa-*.apk" \
+            --pattern "Tropa-*.exe" \
+            --pattern "Tropa-*.Msix" \
+            --pattern "Tropa-*.msix" \
+            --pattern "Tropa-*.zip" \
+            --pattern "Tropa-*.tar.gz" \
+            --pattern "Tropa-*.dmg" \
+            --pattern "Tropa-*.pkg" \
+            --pattern "Tropa-*.AppImage" \
+            --pattern "Tropa-*.deb" \
+            --pattern "Tropa-*.rpm"
           ls -la release_assets
 
       - name: VirusTotal Scan

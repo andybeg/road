@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/features/profile/data/profile_parser.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
+import 'package:tropa/features/profile/data/profile_parser.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
 
 void main() {
   group('ConfigOptionRepository.keepOwnDnsBehindExtraSecurity', () {

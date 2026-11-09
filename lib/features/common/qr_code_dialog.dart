@@ -7,17 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/constants.dart';
-import 'package:hiddify/core/notification/in_app_notification_controller.dart';
-import 'package:hiddify/core/utils/proxy_secret.dart';
-import 'package:hiddify/core/widget/shimmer_skeleton.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/gen/assets.gen.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service_provider.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
-import 'package:hiddify/utils/platform_utils.dart';
-import 'package:hiddify/utils/uri_utils.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/model/constants.dart';
+import 'package:tropa/core/notification/in_app_notification_controller.dart';
+import 'package:tropa/core/utils/proxy_secret.dart';
+import 'package:tropa/core/widget/shimmer_skeleton.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/gen/assets.gen.dart';
+import 'package:tropa/core_bridge/core_service_provider.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/utils/platform_utils.dart';
+import 'package:tropa/utils/uri_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -932,7 +932,7 @@ String _userInfo(String secret) => secret.isEmpty ? '' : 'hiddify:${Uri.encodeCo
 
 /// This device's address on the local network as the core reports it, or null if the core can't say.
 Future<InternetAddress?> _findLanIp(WidgetRef ref) async {
-  final result = await ref.read(hiddifyCoreServiceProvider).getLANIP().run();
+  final result = await ref.read(coreServiceProvider).getLANIP().run();
   return result.fold((_) => null, (r) => InternetAddress.tryParse(r.ip));
 }
 

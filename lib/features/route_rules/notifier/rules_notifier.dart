@@ -5,14 +5,14 @@ import 'package:dartx/dartx_io.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:hiddify/core/directories/directories_provider.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/region.dart';
-import 'package:hiddify/core/notification/in_app_notification_controller.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/hiddifycore/generated/v2/config/route_rule.pb.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/directories/directories_provider.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/model/region.dart';
+import 'package:tropa/core/notification/in_app_notification_controller.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/core_bridge/generated/v2/config/route_rule.pb.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'rules_notifier.g.dart';
@@ -254,7 +254,7 @@ class RulesNotifier extends _$RulesNotifier with AppLogger {
     try {
       final routeRules = RouteRule(rules: state);
       final base64Data = base64.encode(utf8.encode(jsonEncode(routeRules.writeToJson())));
-      await Clipboard.setData(ClipboardData(text: 'hiddify:///settings/routing-options?routeRule=$base64Data'));
+      await Clipboard.setData(ClipboardData(text: 'tropa:///settings/routing-options?routeRule=$base64Data'));
       ref.read(inAppNotificationControllerProvider).showSuccessToast(t.common.msg.export.clipboard.success);
       return true;
     } on PlatformException {

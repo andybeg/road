@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/preferences/preferences_provider.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/features/settings/widget/warp_hop_options.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/preferences/preferences_provider.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/features/settings/widget/warp_hop_options.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

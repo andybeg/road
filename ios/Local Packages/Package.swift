@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-     name: "Hiddify Packages",
+     name: "Tropa Packages",
      platforms: [
         // Minimum platform version
          .iOS(.v13)

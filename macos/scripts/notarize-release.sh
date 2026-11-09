@@ -34,7 +34,7 @@ for task_artifact in "$@"; do
   esac
 done
 
-task_work="$(mktemp -d "${TMPDIR:-/tmp}/hiddify-notarize.XXXXXX")"
+task_work="$(mktemp -d "${TMPDIR:-/tmp}/tropa-notarize.XXXXXX")"
 trap 'rm -rf "$task_work"' EXIT
 task_credentials=(--apple-id "$APPLE_NOTARIZATION_APPLE_ID" --team-id "$APPLE_NOTARIZATION_TEAM_ID" \
   --password "$APPLE_NOTARIZATION_PASSWORD")

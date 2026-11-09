@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/logger/ring/log_ring.dart';
-import 'package:hiddify/core/model/region.dart';
-import 'package:hiddify/core/preferences/actions_at_closing.dart';
-import 'package:hiddify/core/utils/json_converters.dart';
-import 'package:hiddify/core/utils/preferences_utils.dart';
-import 'package:hiddify/features/app_based_routing/model/per_app_proxy_mode.dart';
-import 'package:hiddify/features/profile/model/profile_sort_enum.dart';
-import 'package:hiddify/features/window/notifier/window_notifier.dart';
-import 'package:hiddify/utils/platform_utils.dart';
+import 'package:tropa/core/logger/ring/log_ring.dart';
+import 'package:tropa/core/model/region.dart';
+import 'package:tropa/core/preferences/actions_at_closing.dart';
+import 'package:tropa/core/utils/json_converters.dart';
+import 'package:tropa/core/utils/preferences_utils.dart';
+import 'package:tropa/features/app_based_routing/model/per_app_proxy_mode.dart';
+import 'package:tropa/features/profile/model/profile_sort_enum.dart';
+import 'package:tropa/features/window/notifier/window_notifier.dart';
+import 'package:tropa/utils/platform_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart';
 

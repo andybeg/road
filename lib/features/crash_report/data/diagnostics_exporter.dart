@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:grpc/grpc.dart';
-import 'package:hiddify/core/logger/logger_setup.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service_provider.dart';
-import 'package:hiddify/utils/custom_loggers.dart';
+import 'package:tropa/core/logger/logger_setup.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:tropa/core_bridge/core_service.dart';
+import 'package:tropa/core_bridge/core_service_provider.dart';
+import 'package:tropa/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final _log = appLogger('Diagnostics');
@@ -17,7 +17,7 @@ const _maxExtraFileSize = 1 << 20;
 const _maxBackgroundZipSize = 2 << 20;
 
 final diagnosticsExporterProvider = Provider<DiagnosticsExporter>((ref) {
-  return DiagnosticsExporter(ref.read(hiddifyCoreServiceProvider));
+  return DiagnosticsExporter(ref.read(coreServiceProvider));
 });
 
 /// Builds the zip the user sends after a crash: the app's own core gathers its crash, OOM and
@@ -27,7 +27,7 @@ final diagnosticsExporterProvider = Provider<DiagnosticsExporter>((ref) {
 class DiagnosticsExporter {
   DiagnosticsExporter(this._service);
 
-  final HiddifyCoreService _service;
+  final CoreService _service;
 
   Future<File> export() async {
     final core = _service.core;

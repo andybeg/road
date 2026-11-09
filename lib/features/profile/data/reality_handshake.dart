@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
 
-/// Restores the Hiddify 4.1.1 REALITY ClientHello.
+/// Restores the Tropa 4.1.1 REALITY ClientHello.
 ///
 /// 5.5.5 sends a hybrid X25519MLKEM768 key share (~1.7 KB, two TCP segments).
 /// Older Xray (before 26.9.8) and some DPI paths drop that handshake; 4.1.1 sent

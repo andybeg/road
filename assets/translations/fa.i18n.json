@@ -1,6 +1,6 @@
 {
   "common": {
-    "appTitle": "HiddifyExt",
+    "appTitle": "Tropa",
     "start": "شروع",
     "version": "نسخه",
     "ok": "باشه",
@@ -98,7 +98,7 @@
   "intro": {
     "banner": "هرآنچه برای اینترنت بدون محدودیت نیاز دارید",
     "termsAndPolicyCaution(rich)": "با ادامه، شما با ${tap(@:pages.about.termsAndConditions)} موافقت می‌کنید",
-    "info(rich)": "ساخته شده با ❤️ توسط هیدیفای. ${tap_source(متن‌باز)} و ${tap_license(مجوز)}"
+    "info(rich)": "Tropa فورک ${tap_source(hiddify-app)} است. ${tap_license(مجوز)}"
   },
   "pages": {
     "home": {
@@ -242,7 +242,7 @@
       "updateSubscriptions": "به‌روزرسانی اشتراک‌ها",
       "share": {
         "title": "اشتراک‌گذاری پروفایل",
-        "scanHint": "برای افزودن این پروفایل، آن را با Hiddify در دستگاه دیگری اسکن کنید",
+        "scanHint": "برای افزودن این پروفایل، آن را با Tropa در دستگاه دیگری اسکن کنید",
         "link": "لینک اشتراک",
         "config": "پیکربندی",
         "configHint": "JSON کاملی که این پروفایل با آن اجرا می‌شود، همراه با تنظیمات شما",
@@ -321,6 +321,7 @@
       "checkForUpdate": "بررسی برای به‌روزرسانی",
       "openWorkingDir": "باز کردن پوشه کاری",
       "sourceCode": "کد منبع",
+      "originalProject": "پروژه اصلی (hiddify-app)",
       "telegramChannel": "کانال تلگرام",
       "termsAndConditions": "شرایط و ضوابط",
       "privacyPolicy": "سیاست حفظ حریم خصوصی"
@@ -959,7 +960,7 @@
       "msg": "بیایید شروع کنیم. یک پروفایل اتصال با جزئیات سرور VPN خود اضافه کنید.\n\nهنوز سرور ندارید؟ مشکلی نیست. راهنمای زیر نشان می‌دهد چطور رایگان یکی بسازید.",
       "helpBtn": {
         "label": "راهنمایی کن",
-        "url": "https://hiddify.com/manager/"
+        "url": "https://github.com/hiddify/hiddify-app"
       }
     },
     "unknownDomainsWarning": {
@@ -1070,7 +1071,7 @@
         "تنظیمات پروکسی برنامه را باز کنید",
         "SOCKS5 یا HTTP را انتخاب کنید",
         "مقادیر زیر را وارد کنید · برای کپی بزنید",
-        "Hiddify را متصل نگه دارید"
+        "Tropa را متصل نگه دارید"
       ],
       "hint": "حالت پروکسی · راهنما",
       "setPassword": "گذاشتن رمز",

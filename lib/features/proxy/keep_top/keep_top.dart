@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
-import 'package:hiddify/features/profile/data/profile_data_providers.dart';
-import 'package:hiddify/features/profile/data/profile_parser.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
-import 'package:hiddify/features/proxy/keep_top/keep_top_widgets.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/features/connection/notifier/connection_notifier.dart';
+import 'package:tropa/features/profile/data/profile_data_providers.dart';
+import 'package:tropa/features/profile/data/profile_parser.dart';
+import 'package:tropa/features/profile/model/profile_entity.dart';
+import 'package:tropa/features/profile/notifier/active_profile_notifier.dart';
+import 'package:tropa/features/proxy/keep_top/keep_top_widgets.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

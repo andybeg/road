@@ -1,6 +1,6 @@
 {
   "common": {
-    "appTitle": "HiddifyExt",
+    "appTitle": "Tropa",
     "start": "Commencer",
     "version": "Version",
     "ok": "OK",
@@ -98,7 +98,7 @@
   "intro": {
     "banner": "Tout ce dont vous avez besoin pour un internet sans restrictions",
     "termsAndPolicyCaution(rich)": "En continuant, vous acceptez les ${tap(@:pages.about.termsAndConditions)}",
-    "info(rich)": "Fait avec ❤️ par Hiddify. ${tap_source(Open source)} et ${tap_license(Licence)}"
+    "info(rich)": "Tropa est un fork de ${tap_source(hiddify-app)}. ${tap_license(Licence)}"
   },
   "pages": {
     "home": {
@@ -203,7 +203,7 @@
         "received": "Reçu depuis votre téléphone",
         "from": "Depuis $address",
         "page": {
-          "title": "Envoyer à Hiddify sur votre téléviseur",
+          "title": "Envoyer à Tropa sur votre téléviseur",
           "intro": "Ajoutez un abonnement au téléviseur en quatre étapes, sans le saisir à la télécommande.",
           "steps": {
             "network": {
@@ -312,6 +312,7 @@
       "checkForUpdate": "Vérifier les mises à jour",
       "openWorkingDir": "Ouvrir le répertoire de travail",
       "sourceCode": "Code source",
+      "originalProject": "Projet d’origine (hiddify-app)",
       "telegramChannel": "Canal Telegram",
       "termsAndConditions": "Conditions d'utilisation",
       "privacyPolicy": "Politique de confidentialité"
@@ -799,7 +800,7 @@
       "updateNow": "Mettre à jour",
       "downloading": "Téléchargement…",
       "installing": "Lancement de l'installateur…",
-      "allowInstall": "Autorisez Hiddify à installer des applications dans les réglages ouverts, puis réessayez.",
+      "allowInstall": "Autorisez Tropa à installer des applications dans les réglages ouverts, puis réessayez.",
       "failed": "La mise à jour n'a pas pu être installée.",
       "openPage": "Ouvrir la page de la version",
       "tryAgain": "Réessayer"
@@ -839,7 +840,7 @@
     "adminBgService": {
       "vpnNeedsAdmin": {
         "title": "Autorisation administrateur requise",
-        "msg": "Le mode VPN a besoin d’une autorisation administrateur unique pour installer le service d’arrière-plan de Hiddify. Ensuite, vous pourrez vous connecter sans autre demande.",
+        "msg": "Le mode VPN a besoin d’une autorisation administrateur unique pour installer le service d’arrière-plan de Tropa. Ensuite, vous pourrez vous connecter sans autre demande.",
         "connectWithAdmin": "Se connecter avec l’autorisation administrateur",
         "waitingTitle": "En attente de l’autorisation administrateur",
         "waitingMsg": "Acceptez la demande administrateur pour continuer. Vous pouvez arrêter et réessayer plus tard.",
@@ -868,7 +869,7 @@
       "msg": "Commençons. Ajoutez un profil de connexion avec les détails de votre serveur VPN.\n\nPas encore de serveur ? Pas de problème. Le guide ci-dessous vous montre comment en créer un gratuitement.",
       "helpBtn": {
         "label": "Montrez-moi comment",
-        "url": "https://hiddify.com/manager/"
+        "url": "https://github.com/hiddify/hiddify-app"
       }
     },
     "unknownDomainsWarning": {
@@ -928,7 +929,7 @@
     },
     "keepTop": {
       "title": "Un gros abonnement",
-      "description": "Ce profil contient $count proxys. Les garder tous actifs consomme batterie, données et mémoire. Hiddify peut les tester une fois, garder les $keep plus rapides et mettre les autres en pause.",
+      "description": "Ce profil contient $count proxys. Les garder tous actifs consomme batterie, données et mémoire. Tropa peut les tester une fois, garder les $keep plus rapides et mettre les autres en pause.",
       "hint": "Vous pouvez tous les réactiver à tout moment, en bas de la liste des proxys.",
       "keeping": "Les $keep plus rapides tournent, les autres en pause",
       "all": "Les $count tournent",
@@ -973,7 +974,7 @@
         "Ouvrez les réglages proxy de l'app",
         "Choisissez SOCKS5 ou HTTP",
         "Saisissez les valeurs ci-dessous · touchez pour copier",
-        "Gardez Hiddify connecté"
+        "Gardez Tropa connecté"
       ],
       "hint": "Mode proxy · mode d'emploi",
       "setPassword": "Définir un mot de passe",

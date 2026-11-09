@@ -1,19 +1,19 @@
 import 'dart:io';
 
-import 'package:hiddify/core/haptic/haptic_service.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/features/connection/data/connection_data_providers.dart';
-import 'package:hiddify/features/connection/data/connection_repository.dart';
-import 'package:hiddify/features/connection/model/connection_failure.dart';
-import 'package:hiddify/features/connection/model/connection_status.dart';
-import 'package:hiddify/features/connection/model/startup_connection.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service_provider.dart';
-import 'package:hiddify/singbox/model/core_status.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/haptic/haptic_service.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/preferences/general_preferences.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/features/connection/data/connection_data_providers.dart';
+import 'package:tropa/features/connection/data/connection_repository.dart';
+import 'package:tropa/features/connection/model/connection_failure.dart';
+import 'package:tropa/features/connection/model/connection_status.dart';
+import 'package:tropa/features/connection/model/startup_connection.dart';
+import 'package:tropa/features/profile/model/profile_entity.dart';
+import 'package:tropa/features/profile/notifier/active_profile_notifier.dart';
+import 'package:tropa/core_bridge/core_service_provider.dart';
+import 'package:tropa/singbox/model/core_status.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -88,7 +88,7 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
     final activeProfile = await ref.read(activeProfileProvider.future);
     // macOS can restore a running system VPN during core setup. Reconnecting
     // it here would unnecessarily stop and restart that tunnel.
-    final coreStatus = ref.read(hiddifyCoreServiceProvider).currentState;
+    final coreStatus = ref.read(coreServiceProvider).currentState;
     final shouldRestore = shouldRestoreConnectionOnStartup(
       isDesktop: PlatformUtils.isDesktop,
       startedByUser: startedByUser,

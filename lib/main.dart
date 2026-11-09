@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_driver/driver_extension.dart';
-import 'package:hiddify/bootstrap.dart';
-import 'package:hiddify/core/model/environment.dart';
+import 'package:tropa/bootstrap.dart';
+import 'package:tropa/core/model/environment.dart';
 
 Future<void> main() async {
   // Debug and profile builds that ask for it: lets an external client tap, type

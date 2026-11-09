@@ -1,7 +1,7 @@
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/core/utils/proxy_secret.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/core/utils/proxy_secret.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Edits the password of the user "hiddify" that the local proxy asks for: typed, a new one made,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/features/chain/overview/chain_quick_settings.dart';
-import 'package:hiddify/features/chain/overview/chain_quick_toggles.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/features/settings/widget/lan_sharing_tile.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/features/chain/overview/chain_quick_settings.dart';
+import 'package:tropa/features/chain/overview/chain_quick_toggles.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/features/settings/widget/lan_sharing_tile.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// The chain in the quick settings: true brings back the previous App → Extra security → Main

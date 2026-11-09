@@ -1,9 +1,9 @@
-import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
-import 'package:hiddify/features/stats/data/stats_data_providers.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
-import 'package:hiddify/hiddifycore/init_signal.dart';
-import 'package:hiddify/utils/custom_loggers.dart';
-import 'package:hiddify/utils/riverpod_utils.dart';
+import 'package:tropa/features/connection/notifier/connection_notifier.dart';
+import 'package:tropa/features/stats/data/stats_data_providers.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:tropa/core_bridge/init_signal.dart';
+import 'package:tropa/utils/custom_loggers.dart';
+import 'package:tropa/utils/riverpod_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'stats_notifier.g.dart';

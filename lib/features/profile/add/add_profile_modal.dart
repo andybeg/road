@@ -3,16 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/constants.dart';
-import 'package:hiddify/features/profile/add/phone_import/phone_import_notifier.dart';
-import 'package:hiddify/features/profile/add/phone_import/phone_import_panel.dart';
-import 'package:hiddify/features/profile/add/phone_import/phone_import_server.dart';
-import 'package:hiddify/features/profile/add/widgets/free_btns.dart';
-import 'package:hiddify/features/profile/add/widgets/widgets.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/features/profile/notifier/profile_notifier.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/model/constants.dart';
+import 'package:tropa/features/profile/add/phone_import/phone_import_notifier.dart';
+import 'package:tropa/features/profile/add/phone_import/phone_import_panel.dart';
+import 'package:tropa/features/profile/add/phone_import/phone_import_server.dart';
+import 'package:tropa/features/profile/add/widgets/free_btns.dart';
+import 'package:tropa/features/profile/add/widgets/widgets.dart';
+import 'package:tropa/features/profile/model/profile_entity.dart';
+import 'package:tropa/features/profile/notifier/profile_notifier.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddProfileModal extends HookConsumerWidget {

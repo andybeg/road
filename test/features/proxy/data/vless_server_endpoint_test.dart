@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/features/proxy/data/vless_server_endpoint.dart';
+import 'package:tropa/features/proxy/data/vless_server_endpoint.dart';
 
 void main() {
   group('VlessServerEndpoints.parse', () {

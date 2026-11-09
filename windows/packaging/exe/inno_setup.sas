@@ -32,12 +32,12 @@ AppCopyright=Copyright (C) {{PUBLISHER_NAME}}
 ; (Store policy 10.2.7 rejects a blank or unrelated name or publisher).
 UninstallDisplayName={{DISPLAY_NAME}}
 UninstallDisplayIcon={app}\{{EXECUTABLE_NAME}}
-; CI (windows/scripts/configure_windows_signing.ps1) registers the "hiddifysign"
-; Sign Tool and sets HIDDIFY_INNO_SIGNTOOL, so the compiler signs Setup.exe *and*
+; CI (windows/scripts/configure_windows_signing.ps1) registers the "tropasign"
+; Sign Tool and sets TROPA_INNO_SIGNTOOL, so the compiler signs Setup.exe *and*
 ; unins000.exe. An unsigned uninstaller dropped into Program Files is one of the
 ; VirusTotal sandbox hits ("Sysmon File Executable Creation" Sigma rule).
-#if GetEnv("HIDDIFY_INNO_SIGNTOOL") == "hiddifysign"
-SignTool=hiddifysign
+#if GetEnv("TROPA_INNO_SIGNTOOL") == "tropasign"
+SignTool=tropasign
 SignedUninstaller=yes
 #endif
 
@@ -97,7 +97,7 @@ Root: HKLM; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags
 Filename: "{app}\{{EXECUTABLE_NAME}}"; Description: "{cm:LaunchProgram,{{DISPLAY_NAME}}}"; Flags: {% if PRIVILEGES_REQUIRED == 'admin' %}runascurrentuser{% endif %} shellexec nowait postinstall skipifsilent
 
 [UninstallDelete]
-Type: filesandordirs; Name: "{userappdata}\Hiddify"
+Type: filesandordirs; Name: "{userappdata}\Tropa"
 
 [Code]
 // Stop/remove services via the Service Control Manager API.
@@ -164,6 +164,6 @@ begin
   // Current elevated core service — stop only so binaries can be replaced on upgrade.
   StopServiceByName('HiddifyAdminBG', False);
   // Legacy name from older builds — stop and remove if still present.
-  StopServiceByName('HiddifyTunnelService', True);
+  StopServiceByName('TropaTunnelService', True);
   Result := True;
 end;

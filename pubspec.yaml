@@ -1,5 +1,5 @@
-name: hiddify
-description: Cross Platform Multi Protocol Proxy Frontend.
+name: tropa
+description: Tropa — multi-platform proxy client. Fork of hiddify-app.
 publish_to: "none"
 version: 5.5.5+50505
 
@@ -205,8 +205,8 @@ flutter_native_splash:
 
 ffigen:
   name: "HiddifyCoreNativeLibrary"
-  description: "Bindings to Hiddify Core Library"
-  output: "lib/gen/hiddify_core_generated_bindings.dart"
+  description: "Bindings to the forked core library"
+  output: "lib/gen/core_generated_bindings.dart"
   headers:
     entry-points:
       - "hiddify-core/bin/desktop.h"

@@ -4,32 +4,32 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:hiddify/core/analytics/analytics_controller.dart';
-import 'package:hiddify/core/app_info/app_info_provider.dart';
-import 'package:hiddify/core/directories/directories_provider.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/logger/logger.dart';
-import 'package:hiddify/core/logger/logger_setup.dart';
-import 'package:hiddify/core/model/environment.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/core/preferences/preferences_migration.dart';
-import 'package:hiddify/core/preferences/preferences_provider.dart';
-import 'package:hiddify/features/app/widget/app.dart';
-import 'package:hiddify/features/auto_start/notifier/auto_start_notifier.dart';
-import 'package:hiddify/features/chain/model/chain_enum.dart';
-import 'package:hiddify/features/chain/notifier/chain_profile_notifier.dart';
+import 'package:tropa/core/analytics/analytics_controller.dart';
+import 'package:tropa/core/app_info/app_info_provider.dart';
+import 'package:tropa/core/directories/directories_provider.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/core/logger/logger.dart';
+import 'package:tropa/core/logger/logger_setup.dart';
+import 'package:tropa/core/model/environment.dart';
+import 'package:tropa/core/preferences/general_preferences.dart';
+import 'package:tropa/core/preferences/preferences_migration.dart';
+import 'package:tropa/core/preferences/preferences_provider.dart';
+import 'package:tropa/features/app/widget/app.dart';
+import 'package:tropa/features/auto_start/notifier/auto_start_notifier.dart';
+import 'package:tropa/features/chain/model/chain_enum.dart';
+import 'package:tropa/features/chain/notifier/chain_profile_notifier.dart';
 
-import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
-import 'package:hiddify/features/log/data/log_data_providers.dart';
-import 'package:hiddify/features/profile/data/profile_data_providers.dart';
-import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
-import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/features/system_tray/notifier/system_tray_notifier.dart';
-import 'package:hiddify/features/window/notifier/window_notifier.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service_provider.dart';
-import 'package:hiddify/riverpod_observer.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/features/connection/notifier/connection_notifier.dart';
+import 'package:tropa/features/log/data/log_data_providers.dart';
+import 'package:tropa/features/profile/data/profile_data_providers.dart';
+import 'package:tropa/features/profile/notifier/active_profile_notifier.dart';
+import 'package:tropa/features/proxy/active/active_proxy_notifier.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/features/system_tray/notifier/system_tray_notifier.dart';
+import 'package:tropa/features/window/notifier/window_notifier.dart';
+import 'package:tropa/core_bridge/core_service_provider.dart';
+import 'package:tropa/riverpod_observer.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -113,7 +113,7 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding, Environment env) async
     "chain profile unblocker",
     () => container.read(chainProfileNotifierProvider(ChainType.unblocker).future),
   );
-  await _safeInit("hiddify-core", () => container.read(hiddifyCoreServiceProvider).init());
+  await _safeInit("hiddify-core", () => container.read(coreServiceProvider).init());
 
   // Eagerly listen to activeProxyNotifierProvider to force synchronous evaluation in microtasks,
   // avoiding lazy build-phase flushes and sibling dependency collisions on the Home page.

@@ -1,6 +1,6 @@
 {
   "common": {
-    "appTitle": "HiddifyExt",
+    "appTitle": "Tropa",
     "start": "Başlat",
     "version": "Sürüm",
     "ok": "Tamam",
@@ -98,7 +98,7 @@
   "intro": {
     "banner": "Sınırsız bir internet için ihtiyacınız olan her şey",
     "termsAndPolicyCaution(rich)": "Devam ederek ${tap(@:pages.about.termsAndConditions)} kabul etmiş olursunuz",
-    "info(rich)": "Hiddify tarafından ❤️ ile yapıldı. ${tap_source(Açık kaynak)} ve ${tap_license(Lisans)}"
+    "info(rich)": "Tropa, ${tap_source(hiddify-app)} projesinin bir çatalıdır. ${tap_license(Lisans)}"
   },
   "pages": {
     "home": {
@@ -203,7 +203,7 @@
         "received": "Telefonundan alındı",
         "from": "Gönderen: $address",
         "page": {
-          "title": "TV'deki Hiddify'a gönder",
+          "title": "TV'deki Tropa'a gönder",
           "intro": "Kumandayla yazmadan, dört kısa adımda TV'ye abonelik ekle.",
           "steps": {
             "network": {
@@ -311,6 +311,7 @@
       "checkForUpdate": "Güncellemeleri kontrol et",
       "openWorkingDir": "Çalışma dizinini aç",
       "sourceCode": "Kaynak kodu",
+      "originalProject": "Orijinal proje (hiddify-app)",
       "telegramChannel": "Telegram kanalı",
       "termsAndConditions": "Şartlar ve koşullar",
       "privacyPolicy": "Gizlilik politikası"
@@ -797,7 +798,7 @@
       "updateNow": "Şimdi güncelle",
       "downloading": "İndiriliyor…",
       "installing": "Yükleyici başlatılıyor…",
-      "allowInstall": "Açılan ayarlarda Hiddify'ın uygulama yüklemesine izin verin, sonra tekrar deneyin.",
+      "allowInstall": "Açılan ayarlarda Tropa'ın uygulama yüklemesine izin verin, sonra tekrar deneyin.",
       "failed": "Güncelleme yüklenemedi.",
       "openPage": "Sürüm sayfasını aç",
       "tryAgain": "Tekrar dene"
@@ -837,7 +838,7 @@
     "adminBgService": {
       "vpnNeedsAdmin": {
         "title": "Yönetici izni gerekli",
-        "msg": "VPN modu, Hiddify arka plan hizmetini yüklemek için bir kerelik yönetici izni gerektirir. Bundan sonra başka bir istem olmadan bağlanabilirsiniz.",
+        "msg": "VPN modu, Tropa arka plan hizmetini yüklemek için bir kerelik yönetici izni gerektirir. Bundan sonra başka bir istem olmadan bağlanabilirsiniz.",
         "connectWithAdmin": "Yönetici izniyle bağlan",
         "waitingTitle": "Yönetici izni bekleniyor",
         "waitingMsg": "Devam etmek için yönetici istemini onaylayın. Durdurup daha sonra tekrar deneyebilirsiniz.",
@@ -866,7 +867,7 @@
       "msg": "Başlayalım. VPN sunucu bilgilerinizle bir bağlantı profili ekleyin.\n\nHenüz sunucunuz yok mu? Sorun değil. Aşağıdaki rehber ücretsiz bir tane kurmayı gösteriyor.",
       "helpBtn": {
         "label": "Nasıl yapıldığını göster",
-        "url": "https://hiddify.com/manager/"
+        "url": "https://github.com/hiddify/hiddify-app"
       }
     },
     "unknownDomainsWarning": {
@@ -926,7 +927,7 @@
     },
     "keepTop": {
       "title": "Büyük bir abonelik",
-      "description": "Bu profilde $count proxy var. Hepsini çalıştırmak pil, veri ve bellek harcar. Hiddify onları bir kez test edip en hızlı $keep tanesini çalışır bırakabilir, diğerlerini duraklatabilir.",
+      "description": "Bu profilde $count proxy var. Hepsini çalıştırmak pil, veri ve bellek harcar. Tropa onları bir kez test edip en hızlı $keep tanesini çalışır bırakabilir, diğerlerini duraklatabilir.",
       "hint": "İstediğiniz zaman proxy listesinin sonundan hepsini yeniden çalıştırabilirsiniz.",
       "keeping": "En hızlı $keep çalışır, diğerleri durur",
       "all": "$count tanesinin hepsi çalışır",
@@ -971,7 +972,7 @@
         "Uygulamanın proxy ayarlarını açın",
         "SOCKS5 veya HTTP seçin",
         "Aşağıdaki değerleri girin · kopyalamak için dokunun",
-        "Hiddify'ı bağlı tutun"
+        "Tropa'ı bağlı tutun"
       ],
       "hint": "Proxy modu · nasıl kullanılır",
       "setPassword": "Parola belirle",

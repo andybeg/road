@@ -9,9 +9,9 @@
 #   3. Points windows/packaging/msix/make_config.yaml at the signing certificate. The
 #      MSIX Publisher is the Partner Center one and is never changed: the build fails
 #      when the certificate Subject differs, because the Store rejects the package then.
-#   4. Registers the "hiddifysign" Inno Setup Sign Tool (HKCU, read by ISCC) so
+#   4. Registers the "tropasign" Inno Setup Sign Tool (HKCU, read by ISCC) so
 #      Setup.exe and its embedded uninstaller are signed by the Inno compiler.
-#   5. Exports WINDOWS_SIGN_BACKEND, WINDOWS_SIGN_PFX, HIDDIFY_INNO_SIGNTOOL,
+#   5. Exports WINDOWS_SIGN_BACKEND, WINDOWS_SIGN_PFX, TROPA_INNO_SIGNTOOL,
 #      AZURE_OIDC to $GITHUB_ENV.
 #
 # Inputs (environment): AZURE_SIGNING_ENDPOINT, AZURE_SIGNING_ACCOUNT,
@@ -150,12 +150,12 @@ if (-not $SkipInnoSignTool) {
     if (-not $pwsh) { $pwsh = (Get-Command powershell).Source }
     $script = (Resolve-Path -LiteralPath $SignScript).Path
     # $f is replaced by Inno Setup with the quoted path of the file to sign.
-    $command = "`"$pwsh`" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File `"$script`" -Path `$f -Description Hiddify"
+    $command = "`"$pwsh`" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File `"$script`" -Path `$f -Description Tropa"
     $key = 'HKCU:\Software\Jordan Russell\Inno Setup\SignTools'
     New-Item -Path $key -Force | Out-Null
-    Set-ItemProperty -Path $key -Name 'SignTool0' -Value "hiddifysign=$command"
-    Set-CiEnv 'HIDDIFY_INNO_SIGNTOOL' 'hiddifysign'
-    Write-Host "Inno Setup Sign Tool registered: hiddifysign=$command"
+    Set-ItemProperty -Path $key -Name 'SignTool0' -Value "tropasign=$command"
+    Set-CiEnv 'TROPA_INNO_SIGNTOOL' 'tropasign'
+    Write-Host "Inno Setup Sign Tool registered: tropasign=$command"
 }
 
 # --- Summary ---------------------------------------------------------------------

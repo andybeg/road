@@ -31,28 +31,28 @@ from pathlib import Path
 
 # (OS group, filename, link label) — only rows whose file exists are emitted.
 ASSET_CATALOG: list[tuple[str, str, str]] = [
-    ("Android", "Hiddify-Android-universal.apk", "APK Universal"),
-    ("Android", "Hiddify-Android-arm64.apk", "APK ARMv8"),
-    ("Android", "Hiddify-Android-arm7.apk", "APK ARMv7"),
-    ("Android", "Hiddify-Android-x86_64.apk", "APK x64"),
+    ("Android", "Tropa-Android-universal.apk", "APK Universal"),
+    ("Android", "Tropa-Android-arm64.apk", "APK ARMv8"),
+    ("Android", "Tropa-Android-arm7.apk", "APK ARMv7"),
+    ("Android", "Tropa-Android-x86_64.apk", "APK x64"),
     # Attached by windows-store-sync.yml once the Microsoft Store has signed it.
-    ("Windows", "Hiddify-Windows-Setup-x64.Msix", "MSIX x64"),
-    ("Windows", "Hiddify-Windows-Setup-x64.exe", "Setup x64"),
-    ("Windows", "Hiddify-Windows-Portable-x64.zip", "Portable x64"),
-    ("macOS (v10.15+)", "Hiddify-MacOS.dmg", "DMG Universal"),
-    ("macOS (v10.15+)", "Hiddify-MacOS-Installer.pkg", "PKG Universal"),
-    ("macOS (v10.15+)", "Hiddify-MacOS-AppStore.dmg", "App Store DMG Universal"),
-    ("macOS (v10.15+)", "Hiddify-MacOS-AppStore.pkg", "App Store PKG Universal"),
-    ("iOS", "Hiddify-iOS.ipa", "IPA iOS"),
-    ("Linux", "Hiddify-Linux-x64-AppImage.AppImage", "AppImage x64"),
-    ("Linux", "Hiddify-Linux-x64-AppImage.tar.gz", "AppImage x64 (tar.gz)"),
-    ("Linux", "Hiddify-Debian-x64.deb", "DebPackage x64"),
-    ("Linux", "Hiddify-rpm-x64.rpm", "RpmPackage x64"),
+    ("Windows", "Tropa-Windows-Setup-x64.Msix", "MSIX x64"),
+    ("Windows", "Tropa-Windows-Setup-x64.exe", "Setup x64"),
+    ("Windows", "Tropa-Windows-Portable-x64.zip", "Portable x64"),
+    ("macOS (v10.15+)", "Tropa-MacOS.dmg", "DMG Universal"),
+    ("macOS (v10.15+)", "Tropa-MacOS-Installer.pkg", "PKG Universal"),
+    ("macOS (v10.15+)", "Tropa-MacOS-AppStore.dmg", "App Store DMG Universal"),
+    ("macOS (v10.15+)", "Tropa-MacOS-AppStore.pkg", "App Store PKG Universal"),
+    ("iOS", "Tropa-iOS.ipa", "IPA iOS"),
+    ("Linux", "Tropa-Linux-x64-AppImage.AppImage", "AppImage x64"),
+    ("Linux", "Tropa-Linux-x64-AppImage.tar.gz", "AppImage x64 (tar.gz)"),
+    ("Linux", "Tropa-Debian-x64.deb", "DebPackage x64"),
+    ("Linux", "Tropa-rpm-x64.rpm", "RpmPackage x64"),
 ]
 
 # Not sent to VirusTotal: it rejects the IPA upload (HTTP 409), and an iOS app cannot
 # run outside the App Store or a sideloading tool anyway.
-NO_VT_SCAN = {"Hiddify-iOS.ipa"}
+NO_VT_SCAN = {"Tropa-iOS.ipa"}
 
 ASSET_MARKER = "<!-- ASSET_LINKS -->"
 TABLE_BEGIN = "<!-- ASSETS:BEGIN -->"

@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:hiddify/core/utils/exception_handler.dart';
-import 'package:hiddify/features/proxy/model/ip_info_entity.dart';
-import 'package:hiddify/features/proxy/model/proxy_failure.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart' hide IpInfo;
-import 'package:hiddify/hiddifycore/hiddify_core_service.dart';
-import 'package:hiddify/utils/custom_loggers.dart';
+import 'package:tropa/core/http_client/dio_http_client.dart';
+import 'package:tropa/core/utils/exception_handler.dart';
+import 'package:tropa/features/proxy/model/ip_info_entity.dart';
+import 'package:tropa/features/proxy/model/proxy_failure.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart' hide IpInfo;
+import 'package:tropa/core_bridge/core_service.dart';
+import 'package:tropa/utils/custom_loggers.dart';
 
 abstract interface class ProxyRepository {
   Stream<Either<ProxyFailure, OutboundGroup?>> watchProxies();
@@ -22,7 +22,7 @@ abstract interface class ProxyRepository {
 class ProxyRepositoryImpl with ExceptionHandler, InfraLogger implements ProxyRepository {
   ProxyRepositoryImpl({required this.singbox, required this.client});
 
-  final HiddifyCoreService singbox;
+  final CoreService singbox;
   final DioHttpClient client;
 
   @override

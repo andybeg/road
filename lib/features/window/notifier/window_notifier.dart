@@ -2,10 +2,10 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service_provider.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/preferences/general_preferences.dart';
+import 'package:tropa/features/connection/notifier/connection_notifier.dart';
+import 'package:tropa/core_bridge/core_service_provider.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:screen_retriever/screen_retriever.dart';
 import 'package:tray_manager/tray_manager.dart';
@@ -24,7 +24,7 @@ class WindowNotifier extends _$WindowNotifier with AppLogger {
 
     // if (Platform.isWindows) {
     //   loggy.debug("ensuring single instance");
-    //   await WindowsSingleInstance.ensureSingleInstance([], "Hiddify");
+    //   await WindowsSingleInstance.ensureSingleInstance([], "Tropa");
     // }
 
     await windowManager.ensureInitialized();
@@ -122,7 +122,7 @@ class WindowNotifier extends _$WindowNotifier with AppLogger {
   Future<void> exit() async {
     // A system VPN belongs to macOS and remains connected after the UI quits.
     // The Disconnect action still explicitly stops it and disables on demand.
-    if (!ref.read(hiddifyCoreServiceProvider).core.persistsAfterAppExit) {
+    if (!ref.read(coreServiceProvider).core.persistsAfterAppExit) {
       await ref
           .read(connectionNotifierProvider.notifier)
           .abortConnection()

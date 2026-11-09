@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "HiddifyMtlsSmoke",
+    name: "TropaMtlsSmoke",
     platforms: [.iOS(.v15)],
     products: [],
     targets: [
@@ -11,9 +11,9 @@ let package = Package(
             path: "../../ios/Frameworks/HiddifyCore.xcframework"
         ),
         .testTarget(
-            name: "HiddifyMtlsSmokeTests",
+            name: "TropaMtlsSmokeTests",
             dependencies: ["HiddifyCore"],
-            path: "Tests/HiddifyMtlsSmokeTests",
+            path: "Tests/TropaMtlsSmokeTests",
             resources: [.copy("Fixtures")],
             linkerSettings: [
                 .linkedLibrary("resolv"),

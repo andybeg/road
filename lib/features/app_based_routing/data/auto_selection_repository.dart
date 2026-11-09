@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:hiddify/core/http_client/http_client_provider.dart';
-import 'package:hiddify/core/model/region.dart';
-import 'package:hiddify/features/app_based_routing/model/per_app_proxy_mode.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/http_client/dio_http_client.dart';
+import 'package:tropa/core/http_client/http_client_provider.dart';
+import 'package:tropa/core/model/region.dart';
+import 'package:tropa/features/app_based_routing/model/per_app_proxy_mode.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 enum AutoSelectionResult { success, failure, notFound }

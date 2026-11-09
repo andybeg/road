@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/features/profile/notifier/profiles_update_notifier.dart';
+import 'package:tropa/features/profile/notifier/profiles_update_notifier.dart';
 
 void main() {
   test('a profile failing its updates for 3 days is no longer updated on its own', () {

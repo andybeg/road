@@ -1,7 +1,7 @@
 # Microsoft Store release pipeline
 
-Hiddify ships to the Microsoft Store as an **MSIX** product with the package
-identity `Hiddify.App.Win`. CI signs the MSIX for the submission. The Store then
+Tropa ships to the Microsoft Store as an **MSIX** product with the package
+identity `Tropa.App.Win`. CI signs the MSIX for the submission. The Store then
 re-signs it with Microsoft's certificate after certification. That signature
 removes the SmartScreen problem that blocked the earlier EXE product. It also gives
 users a signed MSIX that installs outside the Store.
@@ -25,7 +25,7 @@ flowchart LR
 2. **CI-signed MSIX in the release.** The draft and the release carry the MSIX as
    CI built it. Windows only installs it on machines that trust the CI certificate,
    until step 5 swaps it.
-3. **Upload by hand.** Take `Hiddify-Windows-Setup-x64.Msix` from the `windows`
+3. **Upload by hand.** Take `Tropa-Windows-Setup-x64.Msix` from the `windows`
    artifact of the Release run and submit it in Partner Center (see
    [Each release](#each-release)). There is no automatic submission: the Store
    submission API requires a Microsoft Entra application.
@@ -35,8 +35,8 @@ flowchart LR
    Store's delivery service whether that exact version is served yet.
 5. **Attach.** Once it is served, the job downloads the Store-signed package. It
    checks the Store's SHA1 digest and the Authenticode signature, then replaces the
-   release asset `Hiddify-Windows-Setup-x64.Msix` with it, labelled
-   `Hiddify-Windows-Setup-x64.Msix (Store-signed)`. The label marks the release done. Finally it rewrites only the download
+   release asset `Tropa-Windows-Setup-x64.Msix` with it, labelled
+   `Tropa-Windows-Setup-x64.Msix (Store-signed)`. The label marks the release done. Finally it rewrites only the download
    table of the release notes and runs VirusTotal on the MSIX alone.
 
 A rejected certification is reported by Partner Center by email; the sync job keeps
@@ -51,15 +51,15 @@ Product identity**, or the Store rejects the upload:
 
 | Partner Center | windows/packaging/msix/make_config.yaml |
 | --- | --- |
-| Package/Identity/Name: `Hiddify.App.Win` | `identity_name` |
+| Package/Identity/Name: `Tropa.App.Win` | `identity_name` |
 | Package/Identity/Publisher | `publisher` (also the Subject of the signing certificate) |
-| Reserved app name: `Hiddify ProxyVPN` | `display_name` (Package/Properties/DisplayName) |
+| Reserved app name: `Tropa ProxyVPN` | `display_name` (Package/Properties/DisplayName) |
 
 The auto-start code in `lib/features/auto_start/notifier/auto_start_notifier.dart`
 uses the same name. Copy the product's **Store ID** (12 characters, starts with
 `9`) into the `MSSTORE_PRODUCT_ID` variable.
 
-The older product `9PDFNL3QV2S5` uses the identity `Hiddify.HiddifyNext` and stays
+The older product `9PDFNL3QV2S5` uses the identity `Tropa.TropaNext` and stays
 on 4.1.1.0. Its users do not move to the new product automatically.
 
 ### 2. GitHub variable
@@ -76,8 +76,8 @@ Without it the sync workflow skips itself. No secrets are needed.
 
 1. Push the prod tag as usual. The release is published with the CI-signed MSIX.
 2. Download the `windows` artifact from that Release run and extract
-   `Hiddify-Windows-Setup-x64.Msix`. It is signed with the CI certificate.
-3. Partner Center > the `Hiddify.App.Win` app > **Start update** > **Packages**:
+   `Tropa-Windows-Setup-x64.Msix`. It is signed with the CI certificate.
+3. Partner Center > the `Tropa.App.Win` app > **Start update** > **Packages**:
    remove the old package, upload the new one, then **Submit for certification**.
 4. Nothing else. Once the Store serves the new version, *Windows Store Sync*
    swaps in the Store-signed MSIX and updates the release notes.
@@ -108,7 +108,7 @@ which attached whatever version the Store served and never ran for prerelease
 releases. It is unofficial and Microsoft could change it. When it
 breaks, the sync job fails visibly, and the MSIX can be attached by hand meanwhile.
 
-## The old EXE product ("HiddifyExe")
+## The old EXE product ("TropaExe")
 
 Its 2024 certification failed two policies:
 
@@ -118,6 +118,6 @@ Its 2024 certification failed two policies:
   Azure Artifact Signing or a CA certificate is configured
   (see [windows-code-signing.md](windows-code-signing.md)).
 - **10.2.7 Add or Remove Programs.** Fixed. The installer now writes the name
-  `Hiddify`, the publisher `Hiddify` and the app icon.
+  `Tropa`, the publisher `Tropa` and the app icon.
 
 The MSIX product avoids the trusted-CA requirement: the Store re-signs MSIX packages.

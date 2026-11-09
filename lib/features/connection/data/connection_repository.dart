@@ -2,27 +2,27 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/model/directories.dart';
-import 'package:hiddify/core/model/environment.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/core/router/dialog/dialog_notifier.dart';
-import 'package:hiddify/core/router/dialog/widgets/admin_bg_service_dialogs.dart';
-import 'package:hiddify/core/utils/exception_handler.dart';
-import 'package:hiddify/features/connection/model/connection_failure.dart';
-import 'package:hiddify/features/connection/model/connection_status.dart';
-import 'package:hiddify/features/profile/data/profile_data_providers.dart';
-import 'package:hiddify/features/profile/data/profile_path_resolver.dart';
-import 'package:hiddify/features/profile/data/reality_handshake.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/hiddifycore/core_interface/core_interface_desktop_tun.dart';
-import 'package:hiddify/hiddifycore/core_interface/core_interface_macos.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pbenum.dart' as hcore;
-import 'package:hiddify/hiddifycore/hiddify_core_service.dart';
-import 'package:hiddify/singbox/model/core_status.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
-import 'package:hiddify/singbox/model/singbox_config_option.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:tropa/core/model/directories.dart';
+import 'package:tropa/core/model/environment.dart';
+import 'package:tropa/core/preferences/general_preferences.dart';
+import 'package:tropa/core/router/dialog/dialog_notifier.dart';
+import 'package:tropa/core/router/dialog/widgets/admin_bg_service_dialogs.dart';
+import 'package:tropa/core/utils/exception_handler.dart';
+import 'package:tropa/features/connection/model/connection_failure.dart';
+import 'package:tropa/features/connection/model/connection_status.dart';
+import 'package:tropa/features/profile/data/profile_data_providers.dart';
+import 'package:tropa/features/profile/data/profile_path_resolver.dart';
+import 'package:tropa/features/profile/data/reality_handshake.dart';
+import 'package:tropa/features/profile/model/profile_entity.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/core_bridge/core_interface/core_interface_desktop_tun.dart';
+import 'package:tropa/core_bridge/core_interface/core_interface_macos.dart';
+import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pbenum.dart' as hcore;
+import 'package:tropa/core_bridge/core_service.dart';
+import 'package:tropa/singbox/model/core_status.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/singbox/model/singbox_config_option.dart';
+import 'package:tropa/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meta/meta.dart';
 
@@ -51,7 +51,7 @@ class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements Con
   final Ref ref;
 
   final Directories directories;
-  final HiddifyCoreService singbox;
+  final CoreService singbox;
 
   final ConfigOptionRepository configOptionRepository;
   final ProfilePathResolver profilePathResolver;

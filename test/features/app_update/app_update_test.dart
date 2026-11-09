@@ -1,20 +1,20 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/core/model/environment.dart';
-import 'package:hiddify/features/app_update/data/github_release_parser.dart';
-import 'package:hiddify/features/app_update/model/install_kind.dart';
+import 'package:tropa/core/model/environment.dart';
+import 'package:tropa/features/app_update/data/github_release_parser.dart';
+import 'package:tropa/features/app_update/model/install_kind.dart';
 
 Map<String, dynamic> _release(String tag, {bool draft = false, List<String> assets = const []}) => {
   'tag_name': tag,
   'draft': draft,
   // the release workflow marks every release a pre-release on GitHub
   'prerelease': true,
-  'html_url': 'https://github.com/hiddify/hiddify-app/releases/tag/$tag',
+  'html_url': 'https://github.com/andybeg/tropa/releases/tag/$tag',
   'published_at': '2026-11-01T22:42:47Z',
   'assets': [
     for (final name in assets)
       {
         'name': name,
-        'browser_download_url': 'https://github.com/hiddify/hiddify-app/releases/download/$tag/$name',
+        'browser_download_url': 'https://github.com/andybeg/tropa/releases/download/$tag/$name',
         'size': 42,
       },
   ],
@@ -23,11 +23,11 @@ Map<String, dynamic> _release(String tag, {bool draft = false, List<String> asse
 void main() {
   group('a release tag', () {
     test('names its version; the GitHub pre-release flag does not make it one', () {
-      final release = GithubReleaseParser.parse(_release('v5.4.0', assets: ['Hiddify-MacOS.dmg']))!;
+      final release = GithubReleaseParser.parse(_release('v5.4.0', assets: ['Tropa-MacOS.dmg']))!;
       expect(release.version, '5.4.0');
       expect(release.preRelease, isFalse);
       expect(release.flavor, Environment.prod);
-      expect(release.asset('Hiddify-MacOS.dmg')!.size, 42);
+      expect(release.asset('Tropa-MacOS.dmg')!.size, 42);
     });
 
     test('with a suffix is a pre-release, .dev a dev build', () {
@@ -49,35 +49,35 @@ void main() {
       _release(
         'v5.4.0',
         assets: [
-          'Hiddify-Android-arm64.apk',
-          'Hiddify-Android-arm7.apk',
-          'Hiddify-Android-x86_64.apk',
-          'Hiddify-Android-universal.apk',
-          'Hiddify-Windows-Setup-x64.exe',
-          'Hiddify-Windows-Setup-x64.Msix',
-          'Hiddify-Windows-Portable-x64.zip',
-          'Hiddify-Linux-x64-AppImage.AppImage',
-          'Hiddify-Debian-x64.deb',
-          'Hiddify-MacOS.dmg',
-          'Hiddify-MacOS-AppStore.dmg',
+          'Tropa-Android-arm64.apk',
+          'Tropa-Android-arm7.apk',
+          'Tropa-Android-x86_64.apk',
+          'Tropa-Android-universal.apk',
+          'Tropa-Windows-Setup-x64.exe',
+          'Tropa-Windows-Setup-x64.Msix',
+          'Tropa-Windows-Portable-x64.zip',
+          'Tropa-Linux-x64-AppImage.AppImage',
+          'Tropa-Debian-x64.deb',
+          'Tropa-MacOS.dmg',
+          'Tropa-MacOS-AppStore.dmg',
         ],
       ),
     )!;
     String? asset(InstallKind kind, {List<String> abis = const []}) => kind.assetIn(release, abis: abis)?.name;
 
     test('an APK is the one of the device ABI, else the universal one', () {
-      expect(asset(InstallKind.androidApk, abis: ['arm64-v8a', 'armeabi-v7a']), 'Hiddify-Android-arm64.apk');
-      expect(asset(InstallKind.androidApk, abis: ['armeabi-v7a']), 'Hiddify-Android-arm7.apk');
-      expect(asset(InstallKind.androidApk, abis: ['x86_64']), 'Hiddify-Android-x86_64.apk');
-      expect(asset(InstallKind.androidApk, abis: ['riscv64']), 'Hiddify-Android-universal.apk');
-      expect(asset(InstallKind.androidApk), 'Hiddify-Android-universal.apk');
+      expect(asset(InstallKind.androidApk, abis: ['arm64-v8a', 'armeabi-v7a']), 'Tropa-Android-arm64.apk');
+      expect(asset(InstallKind.androidApk, abis: ['armeabi-v7a']), 'Tropa-Android-arm7.apk');
+      expect(asset(InstallKind.androidApk, abis: ['x86_64']), 'Tropa-Android-x86_64.apk');
+      expect(asset(InstallKind.androidApk, abis: ['riscv64']), 'Tropa-Android-universal.apk');
+      expect(asset(InstallKind.androidApk), 'Tropa-Android-universal.apk');
     });
 
     test('each desktop install takes its own format, never a store build', () {
-      expect(asset(InstallKind.windowsSetup), 'Hiddify-Windows-Setup-x64.exe');
-      expect(asset(InstallKind.linuxAppImage), 'Hiddify-Linux-x64-AppImage.AppImage');
-      expect(asset(InstallKind.linuxDeb), 'Hiddify-Debian-x64.deb');
-      expect(asset(InstallKind.macOS), 'Hiddify-MacOS.dmg');
+      expect(asset(InstallKind.windowsSetup), 'Tropa-Windows-Setup-x64.exe');
+      expect(asset(InstallKind.linuxAppImage), 'Tropa-Linux-x64-AppImage.AppImage');
+      expect(asset(InstallKind.linuxDeb), 'Tropa-Debian-x64.deb');
+      expect(asset(InstallKind.macOS), 'Tropa-MacOS.dmg');
     });
 
     test('a store install, the portable zip and other Linux installs download nothing', () {
@@ -102,7 +102,7 @@ void main() {
   });
 
   test('an MSIX package runs from WindowsApps', () {
-    expect(Release.isMsix(r'C:\Program Files\WindowsApps\Hiddify_5.4.0.0_x64__abc\hiddify.exe'), isTrue);
-    expect(Release.isMsix(r'C:\Program Files\Hiddify\Hiddify.exe'), isFalse);
+    expect(Release.isMsix(r'C:\Program Files\WindowsApps\Tropa_5.4.0.0_x64__abc\hiddify.exe'), isTrue);
+    expect(Release.isMsix(r'C:\Program Files\Tropa\Tropa.exe'), isFalse);
   });
 }

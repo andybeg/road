@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hiddify/features/proxy/widget/proxy_type_label.dart';
+import 'package:tropa/features/proxy/widget/proxy_type_label.dart';
 
 void main() {
   Future<void> pump(WidgetTester tester, String type) =>

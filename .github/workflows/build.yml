@@ -19,21 +19,21 @@ env:
   NDK_VERSION: r28c
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
-  TARGET_NAME_gz: "Hiddify-Linux-x64-AppImage.tar"
-  TARGET_NAME_AppImage: "Hiddify-Linux-x64-AppImage"
-  TARGET_NAME_deb: "Hiddify-Debian-x64"
-  # TARGET_NAME_rpm: "Hiddify-rpm-x64"
-  TARGET_NAME_apk: "Hiddify-Android"
-  TARGET_NAME_aab: "Hiddify-Android"
-  TARGET_NAME_exe: "Hiddify-Windows-Setup-x64"
+  TARGET_NAME_gz: "Tropa-Linux-x64-AppImage.tar"
+  TARGET_NAME_AppImage: "Tropa-Linux-x64-AppImage"
+  TARGET_NAME_deb: "Tropa-Debian-x64"
+  # TARGET_NAME_rpm: "Tropa-rpm-x64"
+  TARGET_NAME_apk: "Tropa-Android"
+  TARGET_NAME_aab: "Tropa-Android"
+  TARGET_NAME_exe: "Tropa-Windows-Setup-x64"
   # Must match prepare_release_notes.py / README asset names (Setup-x64.Msix).
-  TARGET_NAME_msix: "Hiddify-Windows-Setup-x64"
-  TARGET_NAME_zip: "Hiddify-Windows-Portable-x64"
-  TARGET_NAME_dmg: "Hiddify-MacOS"
-  TARGET_NAME_pkg: "Hiddify-MacOS-Installer"
-  TARGET_NAME_macos_appstore_pkg: "Hiddify-MacOS-AppStore"
-  TARGET_NAME_macos_appstore_dmg: "Hiddify-MacOS-AppStore"
-  TARGET_NAME_ipa: "Hiddify-iOS"
+  TARGET_NAME_msix: "Tropa-Windows-Setup-x64"
+  TARGET_NAME_zip: "Tropa-Windows-Portable-x64"
+  TARGET_NAME_dmg: "Tropa-MacOS"
+  TARGET_NAME_pkg: "Tropa-MacOS-Installer"
+  TARGET_NAME_macos_appstore_pkg: "Tropa-MacOS-AppStore"
+  TARGET_NAME_macos_appstore_dmg: "Tropa-MacOS-AppStore"
+  TARGET_NAME_ipa: "Tropa-iOS"
   
 
 jobs:
@@ -93,7 +93,7 @@ jobs:
           # - { platform: linux-arm64-musl, os: ubuntu-24.04-arm, aarch: arm64,   targets: "deb,gz" }
           - { platform: macos,            os: macos-26,       aarch: universal, targets: "dmg,pkg" }
           - { platform: macos-appstore,   os: macos-26,       aarch: universal, targets: "pkg,dmg" }
-          - { platform: ios,              os: macos-26,       aarch: universal, filename: hiddify-ios, targets: ipa }
+          - { platform: ios,              os: macos-26,       aarch: universal, filename: tropa-ios, targets: ipa }
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
@@ -109,12 +109,12 @@ jobs:
         with:
           p12-file-base64: ${{ secrets.APPLE_CERTIFICATE_P12 }}
           p12-password: ${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}
-          keychain-password: hiddify-${{ github.run_id }}-${{ github.run_attempt }}
+          keychain-password: tropa-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Import Apple Mobile Provisioning Profile
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         env:
-          KEYCHAIN_PASSWORD: hiddify-${{ github.run_id }}-${{ github.run_attempt }}
+          KEYCHAIN_PASSWORD: tropa-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           set -euo pipefail
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
@@ -159,7 +159,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          signing_config="$RUNNER_TEMP/hiddify-macos-signing.xcconfig"
+          signing_config="$RUNNER_TEMP/tropa-macos-signing.xcconfig"
           # With a Developer ID the VPN runs in the packet tunnel system extension. Without one, the
           # build is signed ad hoc and its VPN runs in the root helper the user installs.
           if [[ "$SIGN_RELEASE" == 'true' && -n "$MACOS_SIGNING_XCCONFIG" ]]; then
@@ -338,7 +338,7 @@ jobs:
         # unsigned plugin DLLs; the Makefile passes a fastforge pre-package hook
         # (WINDOWS_PACKAGE_HOOK) that signs the Release tree right before Inno/MSIX
         # read it. The Inno compiler then signs Setup.exe and the uninstaller through
-        # the "hiddifysign" Sign Tool (HIDDIFY_INNO_SIGNTOOL). Both need this env.
+        # the "tropasign" Sign Tool (TROPA_INNO_SIGNTOOL). Both need this env.
         env:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           WINDOWS_SIGNING_PASSWORD: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}
@@ -411,7 +411,7 @@ jobs:
               continue
             }
             foreach ($file in $files) {
-              # Preserve catalog casing for msix (Hiddify-Windows-Setup-x64.Msix).
+              # Preserve catalog casing for msix (Tropa-Windows-Setup-x64.Msix).
               $outExt = if ($ext -eq 'msix') { 'Msix' } else { $ext }
               $destination = Join-Path -Path "out" -ChildPath "$targetName.$outExt"
               Write-Host "Moving $($file.FullName) -> $destination"
@@ -460,13 +460,13 @@ jobs:
         run: |
           mkdir out
           ls -R ./build/app/outputs
-          cp ./build/app/outputs/bundle/release/app-release.aab out/hiddify-android-market.aab || echo "no aab"
+          cp ./build/app/outputs/bundle/release/app-release.aab out/tropa-android-market.aab || echo "no aab"
 
       - name: Check the macOS app icon
         if: startsWith(matrix.platform, 'macos') && inputs.upload-artifact
         # AppIcon.icon (Icon Composer) needs Xcode 26; older Xcode builds the app without any icon.
         run: |
-          app=build/macos/Build/Products/Release/HiddifyExt.app
+          app=build/macos/Build/Products/Release/Tropa.app
           xcodebuild -version
           for f in Assets.car AppIcon.icns; do
             [[ -s "$app/Contents/Resources/$f" ]] || { echo "::error::$app has no Contents/Resources/$f (app icon)"; exit 1; }
@@ -537,7 +537,7 @@ jobs:
           bash macos/scripts/notarize-release.sh "out/${TARGET_NAME_dmg}.dmg" "out/${TARGET_NAME_pkg}.pkg"
       - name: Verify signed iOS IPA
         if: ${{ inputs.upload-artifact && matrix.platform == 'ios' }}
-        run: python3 .github/scripts/verify_signed_ipa.py out/Hiddify-iOS.ipa
+        run: python3 .github/scripts/verify_signed_ipa.py out/Tropa-iOS.ipa
 
       - name: Upload Artifact
         if: env.UPLOAD_ARTIFACT == 'true'
@@ -644,7 +644,7 @@ jobs:
           ls -R ./out
           ls -R ./.github/
           ls -R ./.git/
-          mv out/hiddify-android-market.aab  hiddify-android-market.aab
+          mv out/tropa-android-market.aab  tropa-android-market.aab
           # The MSIX ships CI-signed; windows-store-sync.yml replaces it with the
           # Store-signed copy once the version uploaded in Partner Center is live.
 
@@ -676,9 +676,9 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
-          packageName: app.hiddify.com
+          packageName: com.andybeg.tropa
           releaseName: ${{ env.TAG_NAME }}
-          releaseFiles: ./hiddify-android-market.aab
+          releaseFiles: ./tropa-android-market.aab
           track: 'beta'
 
   virustotal-release:
@@ -695,7 +695,7 @@ jobs:
   # are set:
   #  - APPLE_UPLOAD_APPLE_ID + APPLE_UPLOAD_APP_PASSWORD: a dedicated Apple ID with an
   #    app-specific password (.github/scripts/upload_testflight.sh). That user can be
-  #    limited to the Hiddify apps. Preferred when both are configured.
+  #    limited to the Tropa apps. Preferred when both are configured.
   #  - APPSTORE_ISSUER_ID + APPSTORE_API_KEY_ID + APPSTORE_API_PRIVATE_KEY: an App
   #    Store Connect Team API key, which reaches every app of the team.
   upload-to-testflight:
@@ -738,9 +738,9 @@ jobs:
       - name: Check iOS IPA
         id: ios
         run: |
-          if [[ -f out/Hiddify-iOS.ipa ]]; then
+          if [[ -f out/Tropa-iOS.ipa ]]; then
             echo "present=true" >> "$GITHUB_OUTPUT"
-            ls -la out/Hiddify-iOS.ipa
+            ls -la out/Tropa-iOS.ipa
           else
             echo "present=false" >> "$GITHUB_OUTPUT"
             echo "No iOS IPA artifact; skipping TestFlight upload."
@@ -748,13 +748,13 @@ jobs:
 
       - name: Upload iOS IPA to TestFlight (Apple ID)
         if: steps.ios.outputs.present == 'true' && env.UPLOAD_AUTH == 'apple-id'
-        run: bash .github/scripts/upload_testflight.sh ios out/Hiddify-iOS.ipa
+        run: bash .github/scripts/upload_testflight.sh ios out/Tropa-iOS.ipa
 
       - name: Upload iOS IPA to TestFlight (API key)
         if: steps.ios.outputs.present == 'true' && env.UPLOAD_AUTH == 'api-key'
         uses: Apple-Actions/upload-testflight-build@v5
         with:
-          app-path: out/Hiddify-iOS.ipa
+          app-path: out/Tropa-iOS.ipa
           app-type: ios
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
@@ -771,9 +771,9 @@ jobs:
       - name: Check macOS App Store pkg
         id: macos
         run: |
-          if [[ -f out/Hiddify-MacOS-AppStore.pkg ]]; then
+          if [[ -f out/Tropa-MacOS-AppStore.pkg ]]; then
             echo "present=true" >> "$GITHUB_OUTPUT"
-            ls -la out/Hiddify-MacOS-AppStore.pkg
+            ls -la out/Tropa-MacOS-AppStore.pkg
           else
             echo "present=false" >> "$GITHUB_OUTPUT"
             echo "No macOS App Store pkg artifact; skipping TestFlight upload."
@@ -781,13 +781,13 @@ jobs:
 
       - name: Upload macOS App Store pkg to TestFlight (Apple ID)
         if: steps.macos.outputs.present == 'true' && env.UPLOAD_AUTH == 'apple-id'
-        run: bash .github/scripts/upload_testflight.sh macos out/Hiddify-MacOS-AppStore.pkg
+        run: bash .github/scripts/upload_testflight.sh macos out/Tropa-MacOS-AppStore.pkg
 
       - name: Upload macOS App Store pkg to TestFlight (API key)
         if: steps.macos.outputs.present == 'true' && env.UPLOAD_AUTH == 'api-key'
         uses: Apple-Actions/upload-testflight-build@v5
         with:
-          app-path: out/Hiddify-MacOS-AppStore.pkg
+          app-path: out/Tropa-MacOS-AppStore.pkg
           app-type: macos
           backend: altool
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}

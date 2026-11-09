@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/features/proxy/overview/proxies_overview_notifier.dart';
-import 'package:hiddify/features/proxy/widget/upload_speed.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
+import 'package:tropa/core/localization/translations.dart';
+import 'package:tropa/features/proxy/overview/proxies_overview_notifier.dart';
+import 'package:tropa/features/proxy/widget/upload_speed.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/singbox/model/singbox_config_enum.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Which proxies a speed test from the proxy picker runs on.

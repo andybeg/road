@@ -4,17 +4,17 @@ import 'package:dio/dio.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/db/db.dart';
-import 'package:hiddify/features/profile/data/profile_data_mapper.dart';
-import 'package:hiddify/features/profile/data/profile_data_source.dart';
-import 'package:hiddify/features/profile/data/profile_parser.dart';
-import 'package:hiddify/features/profile/data/profile_path_resolver.dart';
-import 'package:hiddify/features/profile/data/profile_repository.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/features/profile/model/profile_failure.dart';
-import 'package:hiddify/features/profile/model/profile_sort_enum.dart';
-import 'package:hiddify/features/settings/data/config_option_repository.dart';
-import 'package:hiddify/hiddifycore/hiddify_core_service.dart';
+import 'package:tropa/core/db/db.dart';
+import 'package:tropa/features/profile/data/profile_data_mapper.dart';
+import 'package:tropa/features/profile/data/profile_data_source.dart';
+import 'package:tropa/features/profile/data/profile_parser.dart';
+import 'package:tropa/features/profile/data/profile_path_resolver.dart';
+import 'package:tropa/features/profile/data/profile_repository.dart';
+import 'package:tropa/features/profile/model/profile_entity.dart';
+import 'package:tropa/features/profile/model/profile_failure.dart';
+import 'package:tropa/features/profile/model/profile_sort_enum.dart';
+import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:tropa/core_bridge/core_service.dart';
 
 /// Writes the temp file inside the task, like the real download does.
 class _FakeParser implements ProfileParser {
@@ -75,7 +75,7 @@ class _FakeDataSource implements ProfileDataSource {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-class _UnusedCore implements HiddifyCoreService {
+class _UnusedCore implements CoreService {
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

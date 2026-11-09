@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_driver/driver_extension.dart';
-import 'package:hiddify/bootstrap.dart';
-import 'package:hiddify/core/model/environment.dart';
+import 'package:tropa/bootstrap.dart';
+import 'package:tropa/core/model/environment.dart';
 
 Future<void> main() async {
   // Behind --dart-define=driver=true — see the note in lib/main.dart.

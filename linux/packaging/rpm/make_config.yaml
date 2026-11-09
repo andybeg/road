@@ -8,17 +8,17 @@
 # - Successful builds do not guarantee runtime stability on Red Hat-based systems.
 
 
-# display_name: Hiddify
-# url: https://github.com/hiddify/hiddify-app
+# display_name: Tropa
+# url: https://github.com/andybeg/tropa
 # license: Other
 
-# packager: hiddify
-# packagerEmail: linux@hiddify.com
+# packager: tropa
+# packagerEmail: andybeg
 
 # icon: assets/images/source/ic_launcher_border.png
 
 # keywords:
-#   - Hiddify
+#   - Tropa
 #   - Proxy
 #   - VPN
 #   - V2ray
@@ -27,7 +27,7 @@
 #   - Psiphon
 #   - OpenVPN
 
-# generic_name: Hiddify
+# generic_name: Tropa
 
 # requires:
 #   - libayatana-appindicator-gtk3
