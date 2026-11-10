@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tropa/core/analytics/analytics_controller.dart';
-import 'package:tropa/core/localization/locale_extensions.dart';
-import 'package:tropa/core/localization/locale_preferences.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/preferences/general_preferences.dart';
-import 'package:tropa/core/router/dialog/dialog_notifier.dart';
-import 'package:tropa/core/theme/app_theme_mode.dart';
-import 'package:tropa/core/theme/theme_preferences.dart';
-import 'package:tropa/features/proxy/active/ip_widget.dart';
+import 'package:road/core/analytics/analytics_controller.dart';
+import 'package:road/core/localization/locale_extensions.dart';
+import 'package:road/core/localization/locale_preferences.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/preferences/general_preferences.dart';
+import 'package:road/core/router/dialog/dialog_notifier.dart';
+import 'package:road/core/theme/app_theme_mode.dart';
+import 'package:road/core/theme/theme_preferences.dart';
+import 'package:road/features/proxy/active/ip_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LocalePrefTile extends ConsumerWidget {

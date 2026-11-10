@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:tropa/core/logger/ring/log_ring.dart';
-import 'package:tropa/core/model/region.dart';
-import 'package:tropa/core/preferences/actions_at_closing.dart';
-import 'package:tropa/core/utils/json_converters.dart';
-import 'package:tropa/core/utils/preferences_utils.dart';
-import 'package:tropa/features/app_based_routing/model/per_app_proxy_mode.dart';
-import 'package:tropa/features/profile/model/profile_sort_enum.dart';
-import 'package:tropa/features/window/notifier/window_notifier.dart';
-import 'package:tropa/utils/platform_utils.dart';
+import 'package:road/core/logger/ring/log_ring.dart';
+import 'package:road/core/model/region.dart';
+import 'package:road/core/preferences/actions_at_closing.dart';
+import 'package:road/core/utils/json_converters.dart';
+import 'package:road/core/utils/preferences_utils.dart';
+import 'package:road/features/app_based_routing/model/per_app_proxy_mode.dart';
+import 'package:road/features/profile/model/profile_sort_enum.dart';
+import 'package:road/features/window/notifier/window_notifier.dart';
+import 'package:road/utils/platform_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart';
 
@@ -115,9 +115,10 @@ abstract class Preferences {
   static final autoCheckIp = PreferencesNotifier.create<bool, bool>("auto_check_ip", true);
 
   /// TCP ping of the VLESS node's own host:port, independent of the tunnel URL-test.
-  static final vlessServerPingEnabled = PreferencesNotifier.create<bool, bool>("vless_server_ping_enabled", true);
+  /// Off until the user turns it on; the choice is kept in SharedPreferences.
+  static final vlessServerPingEnabled = PreferencesNotifier.create<bool, bool>("vless_server_ping_enabled", false);
 
-  /// Home-screen pill with the last VLESS server ping.
+  /// Home-screen pill with the last VLESS server ping. Used only while ping is on.
   static final vlessServerPingShowResult = PreferencesNotifier.create<bool, bool>(
     "vless_server_ping_show_result",
     true,

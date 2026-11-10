@@ -1,5 +1,5 @@
-name: tropa
-description: Tropa — multi-platform proxy client. Fork of hiddify-app.
+name: road
+description: Road — multi-platform proxy client. Fork of hiddify-app.
 publish_to: "none"
 version: 5.5.5+50505
 
@@ -196,11 +196,11 @@ flutter_gen:
     flutter_svg: true
 
 flutter_native_splash:
-  color: "#ffffff"
-  image: assets/images/source/ic_launcher_splash.png
+  color: "#F0F3FA"
+  image: assets/images/source/ic_launcher_foreground.png
   android_gravity: center
   android_12:
-    color: "#ffffff"
+    color: "#F0F3FA"
     image: assets/images/source/ic_launcher_foreground.png
 
 ffigen:

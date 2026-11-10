@@ -2,14 +2,14 @@
 DEVELOPMENT_TEAM = YOURTEAMID
 
 // Debug (flutter run -d macos) runs the VPN like a build without a Developer ID: in hiddify-core's
-// tunnel service, `Tropa --tunnel run` as root, installed from the app with an administrator
+// tunnel service, `Road --tunnel run` as root, installed from the app with an administrator
 // password. To debug the packet tunnel system extension instead, uncomment these lines and run the
 // app from /Applications (make macos-run-dev).
-// TROPA_CODE_SIGN_IDENTITY[config=Debug] = Apple Development
-// TROPA_NETWORK_EXTENSION_ENABLED[config=Debug] = YES
-// TROPA_HOST_ENTITLEMENTS[config=Debug] = Runner/DebugProfile.entitlements
-// TROPA_EXTENSION_CODE_SIGN_ALLOWED[config=Debug] = YES
+// ROAD_CODE_SIGN_IDENTITY[config=Debug] = Apple Development
+// ROAD_NETWORK_EXTENSION_ENABLED[config=Debug] = YES
+// ROAD_HOST_ENTITLEMENTS[config=Debug] = Runner/DebugProfile.entitlements
+// ROAD_EXTENSION_CODE_SIGN_ALLOWED[config=Debug] = YES
 
 // For `make macos-dist-developer-id`: the Developer ID profiles for the app and its packet tunnel.
-// TROPA_HOST_PROVISIONING_PROFILE = Tropa macOS Developer ID
-// TROPA_TUNNEL_PROVISIONING_PROFILE = Tropa macOS Tunnel Developer ID
+// ROAD_HOST_PROVISIONING_PROFILE = Road macOS Developer ID
+// ROAD_TUNNEL_PROVISIONING_PROFILE = Road macOS Tunnel Developer ID

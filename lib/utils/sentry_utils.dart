@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:tropa/core/model/failures.dart';
-import 'package:tropa/features/proxy/model/proxy_failure.dart';
+import 'package:road/core/model/failures.dart';
+import 'package:road/features/proxy/model/proxy_failure.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 

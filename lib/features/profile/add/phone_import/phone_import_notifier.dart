@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/features/profile/add/phone_import/phone_import_server.dart';
-import 'package:tropa/core_bridge/core_service_provider.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/features/profile/add/phone_import/phone_import_server.dart';
+import 'package:road/core_bridge/core_service_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -15,7 +15,7 @@ part 'phone_import_notifier.g.dart';
 Future<bool> isAndroidTv(Ref ref) async {
   if (!Platform.isAndroid) return false;
   try {
-    return await const MethodChannel('com.andybeg.tropa/platform').invokeMethod<bool>('is_television') ?? false;
+    return await const MethodChannel('com.andybeg.road/platform').invokeMethod<bool>('is_television') ?? false;
   } on PlatformException {
     return false;
   }

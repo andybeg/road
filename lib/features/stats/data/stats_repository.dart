@@ -1,9 +1,9 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:tropa/core/utils/exception_handler.dart';
-import 'package:tropa/features/stats/model/stats_failure.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/core_service.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/utils/exception_handler.dart';
+import 'package:road/features/stats/model/stats_failure.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/core_service.dart';
+import 'package:road/utils/custom_loggers.dart';
 
 abstract interface class StatsRepository {
   Stream<Either<StatsFailure, SystemInfo>> watchStats();

@@ -1,8 +1,8 @@
-import 'package:tropa/core/model/directories.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
-import 'package:tropa/singbox/model/core_status.dart';
-import 'package:tropa/singbox/model/singbox_config_option.dart';
+import 'package:road/core/model/directories.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
+import 'package:road/singbox/model/core_status.dart';
+import 'package:road/singbox/model/singbox_config_option.dart';
 
 /// Starts the core through [client] once it has stopped. A stop sent just before may still be under
 /// way, as the core answers a stop at once and stops in the background, and it refuses a start

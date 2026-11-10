@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/model/environment.dart';
-import 'package:tropa/utils/platform_utils.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/model/environment.dart';
+import 'package:road/utils/platform_utils.dart';
 
 @JsonEnum(valueField: 'key')
 enum ServiceMode {
@@ -379,7 +379,7 @@ enum PsiphonRegion {
 
 enum MuxProtocol { h2mux, smux, yamux }
 
-/// REALITY ClientHello key share. Classical matches Tropa 4.1.1 (~500 B);
+/// REALITY ClientHello key share. Classical matches Road 4.1.1 (~500 B);
 /// hybrid is the 5.5.5 Chrome post-quantum hello (~1.7 KB).
 enum RealityKeyShare {
   classical('classical'),

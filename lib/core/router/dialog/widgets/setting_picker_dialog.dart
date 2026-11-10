@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/widget/arrow_keys_move_focus.dart';
-import 'package:tropa/features/settings/widget/preference_tile.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/widget/arrow_keys_move_focus.dart';
+import 'package:road/features/settings/widget/preference_tile.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SettingPickerDialog<T> extends HookConsumerWidget with PresLogger {

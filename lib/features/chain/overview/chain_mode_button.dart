@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/features/chain/model/chain_enum.dart';
-import 'package:tropa/features/chain/overview/chain_mode_icon.dart';
-import 'package:tropa/features/chain/overview/chain_mode_menu.dart';
-import 'package:tropa/features/common/custom_text_scroll.dart';
-import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/features/chain/model/chain_enum.dart';
+import 'package:road/features/chain/overview/chain_mode_icon.dart';
+import 'package:road/features/chain/overview/chain_mode_menu.dart';
+import 'package:road/features/common/custom_text_scroll.dart';
+import 'package:road/features/settings/data/config_option_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ChainModeButton extends HookConsumerWidget {

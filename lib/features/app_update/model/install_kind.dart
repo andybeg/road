@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:tropa/core/model/environment.dart';
-import 'package:tropa/features/app_update/model/remote_version_entity.dart';
+import 'package:road/core/model/environment.dart';
+import 'package:road/features/app_update/model/remote_version_entity.dart';
 
 /// How this copy of the app was installed, which says how it updates itself.
 enum InstallKind {
@@ -39,7 +39,7 @@ enum InstallKind {
     if (Platform.isLinux) {
       if ((appImage ?? Platform.environment['APPIMAGE'] ?? '').isNotEmpty) return linuxAppImage;
       // the package's file list, which dpkg keeps for each package it installed
-      if (debianPackage ?? File('/var/lib/dpkg/info/tropa.list').existsSync()) return linuxDeb;
+      if (debianPackage ?? File('/var/lib/dpkg/info/road.list').existsSync()) return linuxDeb;
       return linuxOther;
     }
     return store;
@@ -56,16 +56,16 @@ enum InstallKind {
   ReleaseAsset? assetIn(RemoteVersionEntity release, {List<String> abis = const []}) => switch (this) {
     androidApk =>
       release.asset(switch (abis.firstOrNull) {
-            'arm64-v8a' => 'Tropa-Android-arm64.apk',
-            'armeabi-v7a' => 'Tropa-Android-arm7.apk',
-            'x86_64' => 'Tropa-Android-x86_64.apk',
-            _ => 'Tropa-Android-universal.apk',
+            'arm64-v8a' => 'Road-Android-arm64.apk',
+            'armeabi-v7a' => 'Road-Android-arm7.apk',
+            'x86_64' => 'Road-Android-x86_64.apk',
+            _ => 'Road-Android-universal.apk',
           }) ??
-          release.asset('Tropa-Android-universal.apk'),
-    windowsSetup => release.asset('Tropa-Windows-Setup-x64.exe'),
-    linuxAppImage => release.asset('Tropa-Linux-x64-AppImage.AppImage'),
-    linuxDeb => release.asset('Tropa-Debian-x64.deb'),
-    macOS => release.asset('Tropa-MacOS.dmg'),
+          release.asset('Road-Android-universal.apk'),
+    windowsSetup => release.asset('Road-Windows-Setup-x64.exe'),
+    linuxAppImage => release.asset('Road-Linux-x64-AppImage.AppImage'),
+    linuxDeb => release.asset('Road-Debian-x64.deb'),
+    macOS => release.asset('Road-MacOS.dmg'),
     store || windowsPortable || linuxOther => null,
   };
 }

@@ -4,17 +4,17 @@ import 'package:dio/dio.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:tropa/core/db/db.dart';
-import 'package:tropa/features/profile/data/profile_data_mapper.dart';
-import 'package:tropa/features/profile/data/profile_data_source.dart';
-import 'package:tropa/features/profile/data/profile_parser.dart';
-import 'package:tropa/features/profile/data/profile_path_resolver.dart';
-import 'package:tropa/features/profile/data/profile_repository.dart';
-import 'package:tropa/features/profile/model/profile_entity.dart';
-import 'package:tropa/features/profile/model/profile_failure.dart';
-import 'package:tropa/features/profile/model/profile_sort_enum.dart';
-import 'package:tropa/features/settings/data/config_option_repository.dart';
-import 'package:tropa/core_bridge/core_service.dart';
+import 'package:road/core/db/db.dart';
+import 'package:road/features/profile/data/profile_data_mapper.dart';
+import 'package:road/features/profile/data/profile_data_source.dart';
+import 'package:road/features/profile/data/profile_parser.dart';
+import 'package:road/features/profile/data/profile_path_resolver.dart';
+import 'package:road/features/profile/data/profile_repository.dart';
+import 'package:road/features/profile/model/profile_entity.dart';
+import 'package:road/features/profile/model/profile_failure.dart';
+import 'package:road/features/profile/model/profile_sort_enum.dart';
+import 'package:road/features/settings/data/config_option_repository.dart';
+import 'package:road/core_bridge/core_service.dart';
 
 /// Writes the temp file inside the task, like the real download does.
 class _FakeParser implements ProfileParser {

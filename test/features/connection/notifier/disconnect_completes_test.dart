@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/features/connection/model/connection_status.dart';
+import 'package:road/features/connection/model/connection_status.dart';
 
 void main() {
   test('a core that is up is running whether or not a ping works yet', () {

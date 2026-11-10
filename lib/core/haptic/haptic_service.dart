@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:tropa/core/preferences/preferences_provider.dart';
+import 'package:road/core/preferences/preferences_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

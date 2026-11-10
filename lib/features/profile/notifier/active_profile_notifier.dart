@@ -1,7 +1,7 @@
-import 'package:tropa/features/profile/data/profile_data_mapper.dart';
-import 'package:tropa/features/profile/data/profile_data_providers.dart';
-import 'package:tropa/features/profile/model/profile_entity.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/features/profile/data/profile_data_mapper.dart';
+import 'package:road/features/profile/data/profile_data_providers.dart';
+import 'package:road/features/profile/model/profile_entity.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

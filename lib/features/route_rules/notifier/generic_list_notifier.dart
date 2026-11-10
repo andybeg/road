@@ -1,5 +1,5 @@
-import 'package:tropa/core/notification/in_app_notification_controller.dart';
-import 'package:tropa/features/route_rules/notifier/rule_notifier.dart';
+import 'package:road/core/notification/in_app_notification_controller.dart';
+import 'package:road/features/route_rules/notifier/rule_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'generic_list_notifier.g.dart';

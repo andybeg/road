@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:tropa/core/model/environment.dart';
-import 'package:tropa/core/utils/proxy_secret.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/model/environment.dart';
+import 'package:road/core/utils/proxy_secret.dart';
+import 'package:road/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesMigration with InfraLogger {

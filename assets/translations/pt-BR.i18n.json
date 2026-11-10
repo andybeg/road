@@ -1,6 +1,6 @@
 {
   "common": {
-    "appTitle": "Tropa",
+    "appTitle": "Road",
     "start": "Começar",
     "version": "Versão",
     "ok": "OK",
@@ -98,7 +98,7 @@
   "intro": {
     "banner": "Tudo o que você precisa para uma internet sem restrições",
     "termsAndPolicyCaution(rich)": "Ao continuar, você concorda com os ${tap(@:pages.about.termsAndConditions)}",
-    "info(rich)": "Tropa é um fork de ${tap_source(hiddify-app)}. ${tap_license(Licença)}"
+    "info(rich)": "Road é um fork de ${tap_source(hiddify-app)}. ${tap_license(Licença)}"
   },
   "pages": {
     "home": {
@@ -203,7 +203,7 @@
         "received": "Recebido do seu celular",
         "from": "De $address",
         "page": {
-          "title": "Enviar para o Tropa na TV",
+          "title": "Enviar para o Road na TV",
           "intro": "Adicione uma assinatura à TV em quatro passos rápidos, sem digitar com o controle.",
           "steps": {
             "network": {
@@ -800,7 +800,7 @@
       "updateNow": "Atualizar agora",
       "downloading": "Baixando…",
       "installing": "Iniciando o instalador…",
-      "allowInstall": "Permita que o Tropa instale apps nas configurações que abriram e tente de novo.",
+      "allowInstall": "Permita que o Road instale apps nas configurações que abriram e tente de novo.",
       "failed": "Não foi possível instalar a atualização.",
       "openPage": "Abrir a página da versão",
       "tryAgain": "Tentar de novo"
@@ -840,7 +840,7 @@
     "adminBgService": {
       "vpnNeedsAdmin": {
         "title": "Permissão de administrador necessária",
-        "msg": "O modo VPN precisa de uma permissão de administrador única para instalar o serviço em segundo plano do Tropa. Depois disso, você pode se conectar sem outra solicitação.",
+        "msg": "O modo VPN precisa de uma permissão de administrador única para instalar o serviço em segundo plano do Road. Depois disso, você pode se conectar sem outra solicitação.",
         "connectWithAdmin": "Conectar com permissão de administrador",
         "waitingTitle": "Aguardando permissão de administrador",
         "waitingMsg": "Aceite a solicitação de administrador para continuar. Você pode parar e tentar de novo mais tarde.",
@@ -929,7 +929,7 @@
     },
     "keepTop": {
       "title": "Uma assinatura grande",
-      "description": "Este perfil tem $count proxies. Manter todos ativos gasta bateria, dados e memória. O Tropa pode testá-los uma vez, manter os $keep mais rápidos ativos e pausar os demais.",
+      "description": "Este perfil tem $count proxies. Manter todos ativos gasta bateria, dados e memória. O Road pode testá-los uma vez, manter os $keep mais rápidos ativos e pausar os demais.",
       "hint": "Você pode ativar todos de novo a qualquer momento, no fim da lista de proxies.",
       "keeping": "Os $keep mais rápidos rodam, os demais pausam",
       "all": "Todos os $count rodam",
@@ -974,7 +974,7 @@
         "Abra as configurações de proxy do app",
         "Escolha SOCKS5 ou HTTP",
         "Insira os valores abaixo · toque para copiar",
-        "Mantenha o Tropa conectado"
+        "Mantenha o Road conectado"
       ],
       "hint": "Modo proxy · como usar",
       "setPassword": "Definir senha",

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/region.dart';
-import 'package:tropa/features/settings/widget/preference_tile.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/region.dart';
+import 'package:road/features/settings/widget/preference_tile.dart';
 
 void main() {
   group('Region labels across locales', () {

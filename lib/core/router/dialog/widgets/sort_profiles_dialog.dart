@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/features/profile/model/profile_sort_enum.dart';
-import 'package:tropa/features/profile/overview/profiles_notifier.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/features/profile/model/profile_sort_enum.dart';
+import 'package:road/features/profile/overview/profiles_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SortProfilesDialog extends HookConsumerWidget {

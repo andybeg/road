@@ -1,9 +1,9 @@
-import 'package:tropa/features/connection/notifier/connection_notifier.dart';
-import 'package:tropa/features/stats/data/stats_data_providers.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/init_signal.dart';
-import 'package:tropa/utils/custom_loggers.dart';
-import 'package:tropa/utils/riverpod_utils.dart';
+import 'package:road/features/connection/notifier/connection_notifier.dart';
+import 'package:road/features/stats/data/stats_data_providers.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/init_signal.dart';
+import 'package:road/utils/custom_loggers.dart';
+import 'package:road/utils/riverpod_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'stats_notifier.g.dart';

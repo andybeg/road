@@ -1,0 +1,19 @@
+---
+description: Do not rename hiddify-core protocol, helper paths, or fork attribution
+alwaysApply: true
+---
+
+# Leave the forked core as-is
+
+Road is a fork of hiddify-app. If the user asks to strip or rename anything below, **stop and remind them**: changing it breaks the core or the fork license.
+
+Do not change:
+
+- `hiddify-core` submodule, `HiddifyCore` / `HiddifyTunnelCore` binaries, `com.hiddify.core.*`
+- protobuf / gRPC names (`HiddifyOptions`, `ChangeHiddifySettings`, `HiddifyAdminBG`, `x-hiddify-secret`, `hiddifySettingsJson`)
+- macOS helper dir `/Library/Application Support/Hiddify/` and env `HIDDIFY_TUNNEL_OWNER` / `HIDDIFY_ADMIN_BG_OWNER`
+- LAN proxy username `hiddify`
+- incoming `hiddify://` links (keep next to `road://`)
+- LICENSE extra terms and About/README credit to https://github.com/hiddify/hiddify-app
+
+Product name, icons, colors, bundle ids, and signing keys are fair game when asked.

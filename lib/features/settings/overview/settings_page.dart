@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/router/dialog/dialog_notifier.dart';
-import 'package:tropa/core/router/go_router/helper/active_breakpoint_notifier.dart';
-import 'package:tropa/features/profile/notifier/active_profile_notifier.dart';
-import 'package:tropa/features/settings/notifier/config_option/config_option_notifier.dart';
-import 'package:tropa/features/settings/notifier/reset_tunnel/reset_tunnel_notifier.dart';
-import 'package:tropa/core_bridge/core_service_provider.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/router/dialog/dialog_notifier.dart';
+import 'package:road/core/router/go_router/helper/active_breakpoint_notifier.dart';
+import 'package:road/features/profile/notifier/active_profile_notifier.dart';
+import 'package:road/features/settings/notifier/config_option/config_option_notifier.dart';
+import 'package:road/features/settings/notifier/reset_tunnel/reset_tunnel_notifier.dart';
+import 'package:road/core_bridge/core_service_provider.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 enum ConfigOptionSection {

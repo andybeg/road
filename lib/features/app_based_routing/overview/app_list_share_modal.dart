@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/preferences/general_preferences.dart';
-import 'package:tropa/features/app_based_routing/model/app_package_info.dart';
-import 'package:tropa/features/app_based_routing/overview/app_list_notifier.dart';
-import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/preferences/general_preferences.dart';
+import 'package:road/features/app_based_routing/model/app_package_info.dart';
+import 'package:road/features/app_based_routing/overview/app_list_notifier.dart';
+import 'package:road/features/settings/data/config_option_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Shows exactly what Share sends and where, before anything leaves the app.

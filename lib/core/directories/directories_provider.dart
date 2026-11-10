@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart';
-import 'package:tropa/core/model/directories.dart';
-import 'package:tropa/core/model/environment.dart';
-import 'package:tropa/utils/custom_loggers.dart';
-import 'package:tropa/utils/platform_utils.dart';
+import 'package:road/core/model/directories.dart';
+import 'package:road/core/model/environment.dart';
+import 'package:road/utils/custom_loggers.dart';
+import 'package:road/utils/platform_utils.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,7 +14,7 @@ part 'directories_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class AppDirectories extends _$AppDirectories with InfraLogger {
-  final _methodChannel = const MethodChannel("com.andybeg.tropa/platform");
+  final _methodChannel = const MethodChannel("com.andybeg.road/platform");
 
   @override
   Future<Directories> build() async {

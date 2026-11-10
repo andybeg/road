@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/widget/arrow_keys_move_focus.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/widget/arrow_keys_move_focus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SettingRadioDialog<T> extends ConsumerWidget {

@@ -1,5 +1,5 @@
-import 'package:tropa/core_bridge/core_service_provider.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core_bridge/core_service_provider.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'reset_tunnel_notifier.g.dart';

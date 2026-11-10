@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/router/bottom_sheets/bottom_sheets_notifier.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/router/bottom_sheets/bottom_sheets_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EmptyProfilesHomeBody extends HookConsumerWidget {

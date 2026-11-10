@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/features/route_rules/notifier/rule_notifier.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/features/route_rules/notifier/rule_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:protobuf/protobuf.dart';
 

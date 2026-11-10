@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tropa/core/localization/locale_preferences.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/router/dialog/dialog_notifier.dart';
-import 'package:tropa/features/profile/add/widgets/free_btn.dart';
-import 'package:tropa/features/profile/model/profile_entity.dart';
-import 'package:tropa/features/profile/notifier/profile_notifier.dart';
-import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:road/core/localization/locale_preferences.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/router/dialog/dialog_notifier.dart';
+import 'package:road/features/profile/add/widgets/free_btn.dart';
+import 'package:road/features/profile/model/profile_entity.dart';
+import 'package:road/features/profile/notifier/profile_notifier.dart';
+import 'package:road/features/settings/data/config_option_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FreeBtns extends ConsumerWidget {

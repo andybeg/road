@@ -1,16 +1,16 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/theme/theme_extensions.dart';
-import 'package:tropa/core/widget/shimmer_skeleton.dart';
-import 'package:tropa/core/widget/unique_keys_layout.dart';
-import 'package:tropa/features/connection/model/connection_status.dart';
-import 'package:tropa/features/connection/notifier/connection_notifier.dart';
-import 'package:tropa/features/proxy/active/active_proxy_notifier.dart';
-import 'package:tropa/features/proxy/model/proxy_entity.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/theme/theme_extensions.dart';
+import 'package:road/core/widget/shimmer_skeleton.dart';
+import 'package:road/core/widget/unique_keys_layout.dart';
+import 'package:road/features/connection/model/connection_status.dart';
+import 'package:road/features/connection/notifier/connection_notifier.dart';
+import 'package:road/features/proxy/active/active_proxy_notifier.dart';
+import 'package:road/features/proxy/model/proxy_entity.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ActiveProxyDelayIndicator extends HookConsumerWidget with InfraLogger {

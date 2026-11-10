@@ -1,6 +1,6 @@
 {
   "common": {
-    "appTitle": "Tropa",
+    "appTitle": "Road",
     "start": "Start",
     "version": "Version",
     "ok": "OK",
@@ -98,7 +98,7 @@
   "intro": {
     "banner": "All you need for an unrestricted internet",
     "termsAndPolicyCaution(rich)": "By continuing you agree to ${tap(@:pages.about.termsAndConditions)}",
-    "info(rich)": "Tropa is a fork of ${tap_source(hiddify-app)}. ${tap_license(License)}"
+    "info(rich)": "Road is a fork of ${tap_source(hiddify-app)}. ${tap_license(License)}"
   },
   "pages": {
     "home": {
@@ -203,7 +203,7 @@
         "received": "Received from your phone",
         "from": "From $address",
         "page": {
-          "title": "Send to Tropa on your TV",
+          "title": "Send to Road on your TV",
           "intro": "Add a subscription to your TV in four quick steps, without typing it with the remote.",
           "steps": {
             "network": {
@@ -242,7 +242,7 @@
       "updateSubscriptions": "Update subscriptions",
       "share": {
         "title": "Share profile",
-        "scanHint": "Scan it with Tropa on another device to add this profile",
+        "scanHint": "Scan it with Road on another device to add this profile",
         "link": "Subscription link",
         "config": "Configuration",
         "configHint": "The full JSON this profile runs with, your settings included",
@@ -891,7 +891,7 @@
       "updateNow": "Update now",
       "downloading": "Downloading…",
       "installing": "Starting the installer…",
-      "allowInstall": "Allow Tropa to install apps in the settings that opened, then try again.",
+      "allowInstall": "Allow Road to install apps in the settings that opened, then try again.",
       "failed": "The update could not be installed.",
       "openPage": "Open the release page",
       "tryAgain": "Try again"
@@ -931,7 +931,7 @@
     "adminBgService": {
       "vpnNeedsAdmin": {
         "title": "Administrator permission needed",
-        "msg": "VPN mode needs a one-time administrator permission to install the Tropa background service. After that, you can connect without another prompt.",
+        "msg": "VPN mode needs a one-time administrator permission to install the Road background service. After that, you can connect without another prompt.",
         "connectWithAdmin": "Connect with administrator permission",
         "waitingTitle": "Waiting for administrator permission",
         "waitingMsg": "To continue, allow the administrator prompt. You can stop and try again later.",
@@ -1020,13 +1020,13 @@
       "notFound": "No QR code found in this image"
     },
     "crashReport": {
-      "title": "Tropa crashed last time",
+      "title": "Road crashed last time",
       "msg": "Send a report to the developers so this gets fixed? It holds the crash details, the logs and your configuration with servers, keys and passwords removed, as one zip file you can look at before sending.",
       "send": "Send report"
     },
     "keepTop": {
       "title": "A big subscription",
-      "description": "This profile has $count proxies. Running all of them costs battery, data and memory. Tropa can test them once, keep the $keep fastest running and pause the others.",
+      "description": "This profile has $count proxies. Running all of them costs battery, data and memory. Road can test them once, keep the $keep fastest running and pause the others.",
       "hint": "You can run all of them again any time, from the end of the proxy list.",
       "keeping": "The $keep fastest run, the others pause",
       "all": "All $count run",
@@ -1071,7 +1071,7 @@
         "Open the app's proxy settings",
         "Choose SOCKS5 or HTTP",
         "Enter the values below · tap to copy",
-        "Keep Tropa connected"
+        "Keep Road connected"
       ],
       "hint": "Proxy mode · how to use",
       "setPassword": "Set password",

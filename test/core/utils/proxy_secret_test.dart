@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core/utils/proxy_secret.dart';
+import 'package:road/core/utils/proxy_secret.dart';
 
 void main() {
   test('a generated secret is in parts of four joined by dashes', () {

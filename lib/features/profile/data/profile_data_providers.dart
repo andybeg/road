@@ -1,12 +1,12 @@
-import 'package:tropa/core/db/provider/db_providers.dart';
-import 'package:tropa/core/directories/directories_provider.dart';
-import 'package:tropa/core/http_client/http_client_provider.dart';
-import 'package:tropa/features/profile/data/profile_data_source.dart';
-import 'package:tropa/features/profile/data/profile_parser.dart';
-import 'package:tropa/features/profile/data/profile_path_resolver.dart';
-import 'package:tropa/features/profile/data/profile_repository.dart';
-import 'package:tropa/features/settings/data/config_option_data_providers.dart';
-import 'package:tropa/core_bridge/core_service_provider.dart';
+import 'package:road/core/db/provider/db_providers.dart';
+import 'package:road/core/directories/directories_provider.dart';
+import 'package:road/core/http_client/http_client_provider.dart';
+import 'package:road/features/profile/data/profile_data_source.dart';
+import 'package:road/features/profile/data/profile_parser.dart';
+import 'package:road/features/profile/data/profile_path_resolver.dart';
+import 'package:road/features/profile/data/profile_repository.dart';
+import 'package:road/features/settings/data/config_option_data_providers.dart';
+import 'package:road/core_bridge/core_service_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

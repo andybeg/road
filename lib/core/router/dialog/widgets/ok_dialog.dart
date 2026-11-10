@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
+import 'package:road/core/localization/translations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OkDialog extends HookConsumerWidget {

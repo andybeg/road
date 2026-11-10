@@ -5,24 +5,24 @@ import 'package:fixnum/fixnum.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:grpc/grpc.dart';
-import 'package:tropa/core/directories/directories_provider.dart';
-import 'package:tropa/core/logger/core_logger.dart';
-import 'package:tropa/core/notification/in_app_notification_controller.dart';
-import 'package:tropa/features/connection/model/connection_failure.dart';
-import 'package:tropa/features/log/model/log_level.dart' as config_log_level;
-import 'package:tropa/features/settings/data/config_option_repository.dart';
-import 'package:tropa/core_bridge/core_interface/core_interface_wrapper_stub.dart'
-    if (dart.library.io) 'package:tropa/core_bridge/core_interface/core_interface_wrapper.dart';
-import 'package:tropa/core_bridge/generated/v2/hcommon/common.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
-import 'package:tropa/core_bridge/grpc_errors.dart';
-import 'package:tropa/core_bridge/grpc_stream_cancel.dart';
-import 'package:tropa/core_bridge/init_signal.dart';
-import 'package:tropa/singbox/model/core_status.dart';
-import 'package:tropa/singbox/model/singbox_config_option.dart';
-import 'package:tropa/utils/custom_loggers.dart';
-import 'package:tropa/utils/platform_utils.dart';
+import 'package:road/core/directories/directories_provider.dart';
+import 'package:road/core/logger/core_logger.dart';
+import 'package:road/core/notification/in_app_notification_controller.dart';
+import 'package:road/features/connection/model/connection_failure.dart';
+import 'package:road/features/log/model/log_level.dart' as config_log_level;
+import 'package:road/features/settings/data/config_option_repository.dart';
+import 'package:road/core_bridge/core_interface/core_interface_wrapper_stub.dart'
+    if (dart.library.io) 'package:road/core_bridge/core_interface/core_interface_wrapper.dart';
+import 'package:road/core_bridge/generated/v2/hcommon/common.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
+import 'package:road/core_bridge/grpc_errors.dart';
+import 'package:road/core_bridge/grpc_stream_cancel.dart';
+import 'package:road/core_bridge/init_signal.dart';
+import 'package:road/singbox/model/core_status.dart';
+import 'package:road/singbox/model/singbox_config_option.dart';
+import 'package:road/utils/custom_loggers.dart';
+import 'package:road/utils/platform_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart' as logging;
 import 'package:rxdart/rxdart.dart';
@@ -56,7 +56,7 @@ class CoreService with InfraLogger {
           ref.read(inAppNotificationControllerProvider).showErrorToast(e);
         })
         .map((_) {
-          loggy.info("Tropa-core setup done");
+          loggy.info("Road-core setup done");
           ref.read(coreRestartSignalProvider.notifier).restart();
         })
         .run();

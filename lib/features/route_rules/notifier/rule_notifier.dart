@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/features/route_rules/notifier/rules_notifier.dart';
-import 'package:tropa/core_bridge/generated/v2/config/route_rule.pb.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/features/route_rules/notifier/rules_notifier.dart';
+import 'package:road/core_bridge/generated/v2/config/route_rule.pb.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:protobuf/protobuf.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

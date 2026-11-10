@@ -7,27 +7,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tropa/core/app_info/app_info_provider.dart';
-import 'package:tropa/core/localization/locale_extensions.dart';
-import 'package:tropa/core/localization/locale_preferences.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/notification/in_app_notification_controller.dart';
-import 'package:tropa/core/router/dialog/dialog_notifier.dart';
-import 'package:tropa/core/router/go_router/go_router_notifier.dart';
-import 'package:tropa/core/router/go_router/helper/active_breakpoint_notifier.dart';
-import 'package:tropa/core/theme/app_theme.dart';
-import 'package:tropa/core/theme/theme_preferences.dart';
-import 'package:tropa/features/app_based_routing/overview/app_based_routing_notifier.dart';
-import 'package:tropa/features/app_update/notifier/app_update_notifier.dart';
-import 'package:tropa/features/connection/widget/connection_wrapper.dart';
-import 'package:tropa/features/crash_report/notifier/crash_report_notifier.dart';
-import 'package:tropa/features/profile/notifier/profiles_update_notifier.dart';
-import 'package:tropa/features/shortcut/shortcut_wrapper.dart';
-import 'package:tropa/features/system_tray/notifier/system_tray_notifier.dart';
-import 'package:tropa/features/window/widget/window_wrapper.dart';
-import 'package:tropa/core_bridge/core_service_provider.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/app_info/app_info_provider.dart';
+import 'package:road/core/localization/locale_extensions.dart';
+import 'package:road/core/localization/locale_preferences.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/notification/in_app_notification_controller.dart';
+import 'package:road/core/router/dialog/dialog_notifier.dart';
+import 'package:road/core/router/go_router/go_router_notifier.dart';
+import 'package:road/core/router/go_router/helper/active_breakpoint_notifier.dart';
+import 'package:road/core/theme/app_theme.dart';
+import 'package:road/core/theme/theme_preferences.dart';
+import 'package:road/features/app_based_routing/overview/app_based_routing_notifier.dart';
+import 'package:road/features/app_update/notifier/app_update_notifier.dart';
+import 'package:road/features/connection/widget/connection_wrapper.dart';
+import 'package:road/features/crash_report/notifier/crash_report_notifier.dart';
+import 'package:road/features/profile/notifier/profiles_update_notifier.dart';
+import 'package:road/features/shortcut/shortcut_wrapper.dart';
+import 'package:road/features/system_tray/notifier/system_tray_notifier.dart';
+import 'package:road/features/window/widget/window_wrapper.dart';
+import 'package:road/core_bridge/core_service_provider.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:upgrader/upgrader.dart';
 
@@ -72,8 +72,8 @@ class App extends HookConsumerWidget with WidgetsBindingObserver, PresLogger {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ref.read(crashReportNotifierProvider.notifier).checkOnStart();
       });
-      // outside a store, a new release is offered once a day, a while after the start
-      final updateCheck = Timer(const Duration(seconds: 20), () async {
+      // outside a store, a new release is offered once the first screen is up
+      final updateCheck = Timer(const Duration(seconds: 2), () async {
         final release = await ref.read(appUpdateNotifierProvider.notifier).checkOnStart();
         if (release == null) return;
         await ref

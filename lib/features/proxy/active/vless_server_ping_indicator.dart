@@ -1,10 +1,10 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/theme/theme_extensions.dart';
-import 'package:tropa/core/widget/shimmer_skeleton.dart';
-import 'package:tropa/features/proxy/active/vless_server_ping_notifier.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/theme/theme_extensions.dart';
+import 'package:road/core/widget/shimmer_skeleton.dart';
+import 'package:road/features/proxy/active/vless_server_ping_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// TCP reachability of the VLESS node's own IP:port, independent of the tunnel URL-test.

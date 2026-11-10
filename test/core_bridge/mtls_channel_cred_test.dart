@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core_bridge/core_interface/mtls_channel_cred.dart';
+import 'package:road/core_bridge/core_interface/mtls_channel_cred.dart';
 
 String _selfSignedServerCert() {
   final pair = CryptoUtils.generateRSAKeyPair();

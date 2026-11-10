@@ -7,7 +7,7 @@
         android:shortcutShortLabel="@string/quick_toggle">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="com.andybeg.tropa.ShortcutActivity"
-            android:targetPackage="com.andybeg.tropa" />
+            android:targetClass="com.andybeg.road.ShortcutActivity"
+            android:targetPackage="com.andybeg.road" />
     </shortcut>
 </shortcuts>

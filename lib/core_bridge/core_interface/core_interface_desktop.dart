@@ -8,16 +8,16 @@ import 'dart:typed_data';
 
 import 'package:ffi/ffi.dart';
 import 'package:grpc/grpc.dart';
-import 'package:tropa/core/model/directories.dart';
-import 'package:tropa/gen/core_generated_bindings.dart';
-import 'package:tropa/core_bridge/core_interface/core_interface.dart';
-import 'package:tropa/core_bridge/core_interface/grpc_client_identity.dart';
-import 'package:tropa/core_bridge/core_interface/mtls_channel_cred.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
-import 'package:tropa/core_bridge/generated/v2/hello/hello.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hello/hello_service.pbgrpc.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/model/directories.dart';
+import 'package:road/gen/core_generated_bindings.dart';
+import 'package:road/core_bridge/core_interface/core_interface.dart';
+import 'package:road/core_bridge/core_interface/grpc_client_identity.dart';
+import 'package:road/core_bridge/core_interface/mtls_channel_cred.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
+import 'package:road/core_bridge/generated/v2/hello/hello.pb.dart';
+import 'package:road/core_bridge/generated/v2/hello/hello_service.pbgrpc.dart';
+import 'package:road/utils/custom_loggers.dart';
 
 import 'package:path/path.dart' as p;
 
@@ -109,7 +109,7 @@ class CoreInterfaceDesktop extends CoreInterface with InfraLogger {
   // Made once per launch, in an isolate: RSA key generation is too slow for the UI isolate.
   static GrpcClientIdentity? _clientIdentity;
 
-  // Whether this process started its core. Another Tropa instance can answer on the same port, and
+  // Whether this process started its core. Another Road instance can answer on the same port, and
   // using its core leaves every call refused once that instance quits.
   static bool _coreStarted = false;
 

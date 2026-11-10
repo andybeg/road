@@ -1,4 +1,4 @@
-import 'package:tropa/gen/translations.g.dart';
+import 'package:road/gen/translations.g.dart';
 
 enum ActionsAtClosing {
   ask,

@@ -1,5 +1,5 @@
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart' as pb;
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart' as pb;
+import 'package:road/utils/custom_loggers.dart';
 import 'package:logging/logging.dart';
 
 /// Engine logs, split by the `type` field every LogMessage already carries.

@@ -1,11 +1,11 @@
 {
-    "name": "Tropa",
-    "short_name": "Tropa",
+    "name": "Road",
+    "short_name": "Road",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Tropa",
+    "description": "Road",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

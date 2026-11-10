@@ -1,23 +1,23 @@
 // The Mac App Store build. Pass it as XCODE_XCCONFIG_FILE (macos/scripts/dist.sh app-store does).
 // The App Store accepts a sandboxed app whose packet tunnel is an app extension, not the system
 // extension the Developer ID build carries.
-TROPA_TUNNEL_KIND = app-extension
-TROPA_NETWORK_EXTENSION_ENABLED = YES
-TROPA_NETWORK_EXTENSION_ENTITLEMENT = packet-tunnel-provider
-TROPA_HOST_ENTITLEMENTS = Runner/AppStore.entitlements
-TROPA_EXTENSION_CODE_SIGN_ALLOWED = NO
-TROPA_APPEX_CODE_SIGN_ALLOWED = YES
+ROAD_TUNNEL_KIND = app-extension
+ROAD_NETWORK_EXTENSION_ENABLED = YES
+ROAD_NETWORK_EXTENSION_ENTITLEMENT = packet-tunnel-provider
+ROAD_HOST_ENTITLEMENTS = Runner/AppStore.entitlements
+ROAD_EXTENSION_CODE_SIGN_ALLOWED = NO
+ROAD_APPEX_CODE_SIGN_ALLOWED = YES
 // Leaves out of the build all that asks for root: the administrator prompt that installs the VPN
 // service, and the command line modes the root service runs the app in.
-SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) TROPA_APP_STORE
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) ROAD_APP_STORE
 DEVELOPMENT_TEAM = M7Q8ASP66Z
-TROPA_CODE_SIGN_STYLE = Manual
-TROPA_CODE_SIGN_IDENTITY = Apple Distribution
-TROPA_HOST_PROVISIONING_PROFILE = Tropa macOS App Store
-TROPA_TUNNEL_PROVISIONING_PROFILE = Tropa macOS Tunnel App Store
+ROAD_CODE_SIGN_STYLE = Manual
+ROAD_CODE_SIGN_IDENTITY = Apple Distribution
+ROAD_HOST_PROVISIONING_PROFILE = Road macOS App Store
+ROAD_TUNNEL_PROVISIONING_PROFILE = Road macOS Tunnel App Store
 
 // Debug runs the same sandboxed app, signed for development.
-TROPA_CODE_SIGN_STYLE[config=Debug] = Automatic
-TROPA_CODE_SIGN_IDENTITY[config=Debug] = Apple Development
-TROPA_HOST_PROVISIONING_PROFILE[config=Debug] =
-TROPA_TUNNEL_PROVISIONING_PROFILE[config=Debug] =
+ROAD_CODE_SIGN_STYLE[config=Debug] = Automatic
+ROAD_CODE_SIGN_IDENTITY[config=Debug] = Apple Development
+ROAD_HOST_PROVISIONING_PROFILE[config=Debug] =
+ROAD_TUNNEL_PROVISIONING_PROFILE[config=Debug] =

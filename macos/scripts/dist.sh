@@ -33,7 +33,7 @@ load_env() {
 
 task_version="$(grep '^version:' pubspec.yaml | sed -E 's/version: *//')"
 task_out="$task_root/dist/$task_version"
-task_app="build/macos/Build/Products/Release/Tropa.app"
+task_app="build/macos/Build/Products/Release/Road.app"
 
 bash macos/scripts/build-admin-bgservice-core.sh
 case "$task_mode" in
@@ -56,8 +56,8 @@ case "$task_mode" in
     fi
     "${FLUTTER:-flutter}" build macos --release --dart-define release=app-store --dart-define "sentry_dsn=${SENTRY_DSN:-}"
     mkdir -p "$task_out"
-    task_pkg="$task_out/tropa-$task_version-macos-appstore.pkg"
-    task_dmg="$task_out/tropa-$task_version-macos-appstore.dmg"
+    task_pkg="$task_out/road-$task_version-macos-appstore.pkg"
+    task_dmg="$task_out/road-$task_version-macos-appstore.dmg"
     # App Store Connect rejects files non-root users cannot read (ITMS-90255) and
     # AppleDouble ._ files; catch both here instead of after a long upload.
     task_unreadable="$(find "$task_app" ! -perm -o=r -print)"
@@ -70,9 +70,9 @@ case "$task_mode" in
     productbuild --component "$task_app" /Applications --sign "$task_identity" "$task_pkg"
     task_stage="$(mktemp -d)"
     trap 'rm -rf "$task_stage"' EXIT
-    ditto "$task_app" "$task_stage/Tropa.app"
+    ditto "$task_app" "$task_stage/Road.app"
     ln -s /Applications "$task_stage/Applications"
-    hdiutil create -volname Tropa -srcfolder "$task_stage" -format UDZO -ov "$task_dmg" >/dev/null
+    hdiutil create -volname Road -srcfolder "$task_stage" -format UDZO -ov "$task_dmg" >/dev/null
     rm -rf "$task_stage"
     trap - EXIT
     echo "Built $task_pkg"
@@ -91,7 +91,7 @@ esac
 rm -rf "$task_out"/*macos*.dmg "$task_out"/*macos*.pkg "$task_out"/*macos_dmg "$task_out"/*macos_pkg
 fastforge package --platform macos --targets pkg "$@"
 task_pkg="$(ls "$task_out"/*macos.pkg)"
-task_wanted_pkg="$task_out/tropa-$task_version-macos.pkg"
+task_wanted_pkg="$task_out/road-$task_version-macos.pkg"
 if [[ "$task_pkg" != "$task_wanted_pkg" ]]; then
   mv "$task_pkg" "$task_wanted_pkg"
   task_pkg="$task_wanted_pkg"
@@ -100,9 +100,9 @@ fi
 task_dmg="${task_pkg%.pkg}.dmg"
 task_stage="$(mktemp -d)"
 trap 'rm -rf "$task_stage"' EXIT
-ditto "$task_app" "$task_stage/Tropa.app"
+ditto "$task_app" "$task_stage/Road.app"
 ln -s /Applications "$task_stage/Applications"
-hdiutil create -volname Tropa -srcfolder "$task_stage" -format UDZO -ov "$task_dmg" >/dev/null
+hdiutil create -volname Road -srcfolder "$task_stage" -format UDZO -ov "$task_dmg" >/dev/null
 if [[ "$task_mode" == developer-id ]]; then
   bash macos/scripts/notarize-release.sh "$task_dmg" "$task_pkg"
 fi

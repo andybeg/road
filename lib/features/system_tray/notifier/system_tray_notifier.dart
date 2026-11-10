@@ -1,17 +1,17 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/features/connection/model/connection_status.dart';
-import 'package:tropa/features/connection/notifier/connection_notifier.dart';
-import 'package:tropa/features/proxy/active/active_proxy_notifier.dart';
-import 'package:tropa/features/settings/data/config_option_repository.dart';
-import 'package:tropa/features/system_tray/desktop_status_badge.dart';
-import 'package:tropa/features/window/notifier/window_notifier.dart';
-import 'package:tropa/gen/assets.gen.dart';
-import 'package:tropa/singbox/model/singbox_config_enum.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/features/connection/model/connection_status.dart';
+import 'package:road/features/connection/notifier/connection_notifier.dart';
+import 'package:road/features/proxy/active/active_proxy_notifier.dart';
+import 'package:road/features/settings/data/config_option_repository.dart';
+import 'package:road/features/system_tray/desktop_status_badge.dart';
+import 'package:road/features/window/notifier/window_notifier.dart';
+import 'package:road/gen/assets.gen.dart';
+import 'package:road/singbox/model/singbox_config_enum.dart';
+import 'package:road/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
@@ -100,7 +100,7 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with TrayListener, AppLogg
 
   /// Status-bar / system-tray icon for all desktops (macOS, Windows, Linux).
   ///
-  /// Green Hi when [badge] is ok; red Hi when error (connected, no ping);
+  /// Green road when [badge] is ok; red road when error (connected, no ping);
   /// idle theme icon when disconnected; red transitional while switching.
   String _trayIconPath(ConnectionStatus status, {required DesktopBadgeStatus badge}) {
     final isDarkMode = WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;

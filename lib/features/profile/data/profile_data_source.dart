@@ -1,8 +1,8 @@
 import 'package:drift/drift.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:tropa/core/db/db.dart';
-import 'package:tropa/features/profile/model/profile_sort_enum.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/db/db.dart';
+import 'package:road/features/profile/model/profile_sort_enum.dart';
+import 'package:road/utils/utils.dart';
 
 part 'profile_data_source.g.dart';
 

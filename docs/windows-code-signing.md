@@ -1,13 +1,13 @@
 # Windows code signing and VirusTotal false positives
 
-Audience: Tropa maintainers who run the release pipeline and own the GitHub
+Audience: Road maintainers who run the release pipeline and own the GitHub
 secrets. Nothing in this document changes the app logic; it is about how the
 Windows binaries are built, signed and attested.
 
 ## Why the Windows builds were flagged
 
-The draft release assets (`Tropa-Windows-Setup-x64.exe`,
-`Tropa-Windows-Portable-x64.zip`, `Tropa-Windows-Setup-x64.Msix`) picked up
+The draft release assets (`Road-Windows-Setup-x64.exe`,
+`Road-Windows-Portable-x64.zip`, `Road-Windows-Setup-x64.Msix`) picked up
 generic verdicts on VirusTotal: Bkav Pro `W32.Malware.*`, Webroot
 `W32.Trojan.Gen`, DeepInstinct `MALICIOUS`, plus a sandbox "Sysmon File
 Executable Creation" Sigma hit on the installer. These engines are
@@ -20,7 +20,7 @@ app does:
 |---|---|---|
 | Authenticode signature | **Self-signed certificate** (issuer = subject `CN=8CB43675-…`). Zero reputation for AV and SmartScreen; self-signing is itself a malware trait. | Signed with a publicly trusted certificate once the secrets below are set. The pipeline warns on every run that still uses a self-signed PFX. |
 | Go PE files (`hiddify-core.dll`, `HiddifyCli.exe`) | Fully stripped (`-s -w`), no VERSIONINFO, no manifest: looks like a packed dropper. | Symbol table kept (`-w` only, DWARF still dropped), VERSIONINFO (CompanyName, ProductName, FileDescription, versions) and manifest embedded with go-winres. |
-| Inno Setup uninstaller | `unins000.exe` written unsigned into Program Files (the Sigma hit). | Inno compiler signs `Setup.exe` and the uninstaller itself through the registered `tropasign` Sign Tool. Setup VERSIONINFO added. |
+| Inno Setup uninstaller | `unins000.exe` written unsigned into Program Files (the Sigma hit). | Inno compiler signs `Setup.exe` and the uninstaller itself through the registered `roadsign` Sign Tool. Setup VERSIONINFO added. |
 | MSIX | Signed with the PFX; published on GitHub and uploaded to the Store, then replaced on GitHub by the Store-signed copy ([microsoft-store.md](microsoft-store.md)). | Same. The certificate Subject must equal the Partner Center publisher, or the build stops. |
 | Provenance | None. | SLSA build provenance attestation for the Windows assets (`gh attestation verify <file> --repo hiddify/hiddify-app`). |
 | Monitoring | Badge in the release notes only. | The VirusTotal workflow writes a per-file detection table to the job summary and annotates flagged assets. |
@@ -51,7 +51,7 @@ PE files inside the portable zip). Files that already chain to a trusted root
 
 fastforge runs `flutter build windows` itself before it packs anything, and
 that rebuild re-copies fresh, unsigned plugin DLLs over the signed tree (only
-`Tropa.exe` survives because it is linked in place). The Makefile therefore
+`Road.exe` survives because it is linked in place). The Makefile therefore
 passes `--hook-pre=windows/scripts/sign_release_tree.sh` to every Windows
 fastforge target when `WINDOWS_SIGN_BACKEND` is set; fastforge runs that hook
 after its build and right before Inno Setup / msix read the tree. Without it
@@ -76,7 +76,7 @@ short-lived and issued by Microsoft's public root, so SmartScreen and the
 AV vendors trust them immediately and reputation builds on the identity, not on
 a key file that can leak. Identity validation is currently available to
 organizations in the US, Canada, the EU and the UK, and to individuals in the
-US and Canada. If Tropa cannot pass that validation, use option B.
+US and Canada. If Road cannot pass that validation, use option B.
 
 Steps in the Azure portal:
 
@@ -85,7 +85,7 @@ Steps in the Azure portal:
 2. Complete **Identity validation** → *Public Trust* (organization or
    individual; this is the step with the documents).
 3. Create a **Certificate profile** of type *Public Trust*. Note the generated
-   Subject, for example `CN=Tropa, O=Tropa, L=City, S=State, C=US`.
+   Subject, for example `CN=Road, O=Road, L=City, S=State, C=US`.
 4. Create an **App registration** (service principal). Assign it the role
    **Artifact Signing Certificate Profile Signer** on the account.
    - Preferred: add a **Federated credential** for GitHub Actions
@@ -148,7 +148,7 @@ so it extracts it and launches *every* file itself: `.exe` files directly and
 everything that looks like a library with `rundll32 "<file>",#1`, including
 Microsoft's own `vcruntime140.dll` (which crashes into WerFault). The rundll32
 processes are children of Explorer started from the sandbox user's Desktop;
-nothing in Tropa calls rundll32. Zenbox, which opens the archive the normal
+nothing in Road calls rundll32. Zenbox, which opens the archive the normal
 way, rates the zip CLEAN.
 
 - Flutter's ICU table used to ship as `data/icudtl.dat`. The sandbox fed it to
@@ -169,9 +169,9 @@ way, rates the zip CLEAN.
 **"Sysmon File Executable Creation Detected" (medium) is every installer.** The
 rule is `EventID: 29` with no other condition: it matches each PE file that any
 process writes to disk. The events VirusTotal lists for `Setup.exe` are Inno
-Setup unpacking itself (`%TEMP%\is-*.tmp\Tropa-Windows-Setup-x64.tmp`,
-`_isetup\_setup64.tmp`) and then writing `Tropa.exe` and the DLLs into
-`C:\Program Files\Tropa`. An installer that does not write executables is
+Setup unpacking itself (`%TEMP%\is-*.tmp\Road-Windows-Setup-x64.tmp`,
+`_isetup\_setup64.tmp`) and then writing `Road.exe` and the DLLs into
+`C:\Program Files\Road`. An installer that does not write executables is
 not an installer, so the only way to lose this line is to stop shipping
 `Setup.exe`. The rule's own `falsepositives` text says hits from legitimate
 software mean the Sysmon configuration is too broad, not that the file is
@@ -180,7 +180,7 @@ project, publicly trusted signature), analysed by the same CAPE sandbox three
 days before our build, shows the same rule plus two more mediums ("New Root or
 CA Certificate to Store", "Suspicious CMD Shell Output Redirect"). MSI does not help either: the Node.js 26.13 MSI and Microsoft's own
 PowerShell 7.6.9 MSI, both analysed by CAPE the same week, show the same rule
-(msiexec writes the PE files instead of Inno Setup). Tropa's installer shows
+(msiexec writes the PE files instead of Inno Setup). Road's installer shows
 that one rule and nothing else; the MSIX and the zip show none, because the
 sandbox never installs an MSIX and extraction of a zip is done by the sandbox
 agent before Sysmon logging starts.
@@ -207,15 +207,15 @@ call, same behaviour, same UAC prompt:
 
 The elevated process is now `HiddifyAdmin.exe` (`hiddify-core/cmd/adminlauncher`),
 a ~150 KB C program with a `requireAdministrator` manifest, the app icon and a
-"Tropa" VERSIONINFO. It forwards its arguments to the same `parseCli()` in the
+"Road" VERSIONINFO. It forwards its arguments to the same `parseCli()` in the
 DLL that `HiddifyCli.exe` uses, is GUI-subsystem (no console flashes while
 elevated) and returns a non-zero exit code when the command fails, which the core
-reports. It is the only Tropa binary that ever asks for administrator rights,
-so the UAC dialog shows "Tropa" with the app icon, and antivirus sandboxes see
+reports. It is the only Road binary that ever asks for administrator rights,
+so the UAC dialog shows "Road" with the app icon, and antivirus sandboxes see
 a manifest-declared elevation instead of `runas` on a console tool. The core
 falls back to `HiddifyCli.exe` when the file is missing. It ships in the core
 tarball (`HiddifyAdmin.exe` in the CI zip step) and is installed by
-`windows/CMakeLists.txt` next to `Tropa.exe`.
+`windows/CMakeLists.txt` next to `Road.exe`.
 
 A GUI application spawning `powershell.exe` matches Sigma "Non Interactive
 PowerShell Process Spawned" and is a strong feature for ML engines; a
@@ -248,7 +248,7 @@ summary lists the flagged assets and the SHA-256 hashes to paste.
 | Sophos | https://support.sophos.com/support/s/filesubmission |
 | Trend Micro | https://www.trendmicro.com/en_us/about/legal/detection-reevaluation.html |
 
-Mention in every dispute: public source (https://github.com/andybeg/tropa),
+Mention in every dispute: public source (https://github.com/andybeg/road),
 built on GitHub-hosted runners, Authenticode-signed by `<publisher>`, provenance
 verifiable with `gh attestation verify`.
 
@@ -266,12 +266,12 @@ VirusTotal results of that build (2026-10-29, still self-signed):
 
 | File | Detections | Engines |
 |---|---|---|
-| `Tropa-Windows-Setup-x64.exe` | 0 / 70 | – |
-| `Tropa-Windows-Setup-x64.exe` built *before* the `publisher_name` fix (empty CompanyName / AppPublisher) | 2 / 63 | Webroot `W32.Trojan.Gen`, Elastic |
+| `Road-Windows-Setup-x64.exe` | 0 / 70 | – |
+| `Road-Windows-Setup-x64.exe` built *before* the `publisher_name` fix (empty CompanyName / AppPublisher) | 2 / 63 | Webroot `W32.Trojan.Gen`, Elastic |
 | same Setup.exe with the signature stripped | 2 / 68 | Microsoft `Trojan:Win32/Wacatac.C!ml`, CrowdStrike |
 | `hiddify-core.dll` (signed) | 0 / 67 | – |
 | `hiddify-core.dll` (unsigned) | 1 / 58 + Sigma | Trapmine `suspicious.low.ml.score` |
-| `Tropa.exe` (signed) | 0 / 70 | – |
+| `Road.exe` (signed) | 0 / 70 | – |
 | `HiddifyCli.exe` as a Go stub (signed or unsigned, any link flags) | 1 / 68 | Bkav `W32.Malware.*` |
 | `HiddifyCli.exe` as the C launcher (`cmd/clilauncher`, unsigned) | **0 / 70** | – |
 | Portable zip / MSIX with the Go stub | 1 | Bkav (it is the `HiddifyCli.exe` inside) |
@@ -297,10 +297,10 @@ Take-aways:
 ## Verifying a build locally
 
 ```powershell
-signtool verify /pa /v Tropa-Windows-Setup-x64.exe
-Get-AuthenticodeSignature .\Tropa\hiddify-core.dll | Format-List
-(Get-Item .\Tropa\HiddifyCli.exe).VersionInfo
-gh attestation verify Tropa-Windows-Setup-x64.exe --repo hiddify/hiddify-app
+signtool verify /pa /v Road-Windows-Setup-x64.exe
+Get-AuthenticodeSignature .\Road\hiddify-core.dll | Format-List
+(Get-Item .\Road\HiddifyCli.exe).VersionInfo
+gh attestation verify Road-Windows-Setup-x64.exe --repo hiddify/hiddify-app
 ```
 
 `Get-AuthenticodeSignature` must say `Valid`; a self-signed PFX shows
@@ -312,9 +312,9 @@ gh attestation verify Tropa-Windows-Setup-x64.exe --repo hiddify/hiddify-app
   certificate Subject*: the `publisher` in `windows/packaging/msix/make_config.yaml`
   is the Partner Center identity and is never changed. Sign with a certificate
   whose Subject is exactly that value.
-- ISCC fails with *Sign Tool "tropasign" not found*: the configure script
+- ISCC fails with *Sign Tool "roadsign" not found*: the configure script
   could not write `HKCU\Software\Jordan Russell\Inno Setup\SignTools`. The
-  template only enables signing when `TROPA_INNO_SIGNTOOL=tropasign`.
+  template only enables signing when `ROAD_INNO_SIGNTOOL=roadsign`.
 - `Invoke-ArtifactSigning` authentication errors: the app registration needs
   the *Artifact Signing Certificate Profile Signer* role on the account, and
   the federated credential subject must match the workflow ref.

@@ -14,7 +14,7 @@ struct _MyApplication
 };
 
 G_DEFINE_TYPE(MyApplication, my_application, GTK_TYPE_APPLICATION)
-#define ICON_PATH "./tropa.png"
+#define ICON_PATH "./road.png"
 
 // Implements GApplication::activate.
 static void my_application_activate(GApplication *application)
@@ -55,13 +55,13 @@ static void my_application_activate(GApplication *application)
   {
     GtkHeaderBar *header_bar = GTK_HEADER_BAR(gtk_header_bar_new());
     gtk_widget_show(GTK_WIDGET(header_bar));
-    gtk_header_bar_set_title(header_bar, "Tropa");
+    gtk_header_bar_set_title(header_bar, "Road");
     gtk_header_bar_set_show_close_button(header_bar, TRUE);
     gtk_window_set_titlebar(window, GTK_WIDGET(header_bar));
   }
   else
   {
-    gtk_window_set_title(window, "Tropa");
+    gtk_window_set_title(window, "Road");
   }
 
   gtk_window_set_default_size(window, 1280, 720);

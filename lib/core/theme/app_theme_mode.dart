@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tropa/core/localization/translations.dart';
+import 'package:road/core/localization/translations.dart';
 
 enum AppThemeMode {
   system,

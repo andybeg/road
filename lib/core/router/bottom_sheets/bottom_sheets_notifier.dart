@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/router/bottom_sheets/widgets/quick_settings_modal.dart';
-import 'package:tropa/core/router/dialog/dialog_notifier.dart';
-import 'package:tropa/core/router/go_router/go_router_notifier.dart';
-import 'package:tropa/features/app_based_routing/model/app_package_info.dart';
-import 'package:tropa/features/app_based_routing/overview/app_list_share_modal.dart';
-import 'package:tropa/features/connection/widget/connection_health_sheet.dart';
-import 'package:tropa/features/log/overview/logs_modals.dart';
-import 'package:tropa/features/profile/add/add_profile_modal.dart';
-import 'package:tropa/features/profile/overview/profiles_modal.dart';
-import 'package:tropa/utils/link_parsers.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/router/bottom_sheets/widgets/quick_settings_modal.dart';
+import 'package:road/core/router/dialog/dialog_notifier.dart';
+import 'package:road/core/router/go_router/go_router_notifier.dart';
+import 'package:road/features/app_based_routing/model/app_package_info.dart';
+import 'package:road/features/app_based_routing/overview/app_list_share_modal.dart';
+import 'package:road/features/connection/widget/connection_health_sheet.dart';
+import 'package:road/features/log/overview/logs_modals.dart';
+import 'package:road/features/profile/add/add_profile_modal.dart';
+import 'package:road/features/profile/overview/profiles_modal.dart';
+import 'package:road/utils/link_parsers.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

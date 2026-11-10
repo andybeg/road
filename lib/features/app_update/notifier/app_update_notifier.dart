@@ -1,13 +1,13 @@
-import 'package:tropa/core/app_info/app_info_provider.dart';
-import 'package:tropa/core/localization/locale_preferences.dart';
-import 'package:tropa/core/model/environment.dart';
-import 'package:tropa/core/preferences/preferences_provider.dart';
-import 'package:tropa/core/utils/preferences_utils.dart';
-import 'package:tropa/features/app_update/data/app_update_data_providers.dart';
-import 'package:tropa/features/app_update/model/app_update_failure.dart';
-import 'package:tropa/features/app_update/model/remote_version_entity.dart';
-import 'package:tropa/features/app_update/notifier/app_update_state.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/app_info/app_info_provider.dart';
+import 'package:road/core/localization/locale_preferences.dart';
+import 'package:road/core/model/environment.dart';
+import 'package:road/core/preferences/preferences_provider.dart';
+import 'package:road/core/utils/preferences_utils.dart';
+import 'package:road/features/app_update/data/app_update_data_providers.dart';
+import 'package:road/features/app_update/model/app_update_failure.dart';
+import 'package:road/features/app_update/model/remote_version_entity.dart';
+import 'package:road/features/app_update/notifier/app_update_state.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:upgrader/upgrader.dart';
@@ -84,19 +84,10 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
         .run();
   }
 
-  PreferencesEntry<int, dynamic> get _lastCheckPref => PreferencesEntry(
-    preferences: ref.read(sharedPreferencesProvider).requireValue,
-    key: 'last_update_check',
-    defaultValue: 0,
-  );
-
-  /// Outside a store, at most once a day: the release this copy can update to, when there is one
-  /// the user did not ignore.
+  /// Outside a store, on each start: the release this copy can update to, when there is one the
+  /// user did not ignore.
   Future<RemoteVersionEntity?> checkOnStart() async {
     if (!ref.read(appInfoProvider).requireValue.release.allowCustomUpdateChecker) return null;
-    final now = DateTime.now().millisecondsSinceEpoch;
-    if (now - _lastCheckPref.read() < const Duration(days: 1).inMilliseconds) return null;
-    await _lastCheckPref.write(now);
     return switch (await check()) {
       AppUpdateStateAvailable(:final versionInfo) => versionInfo,
       _ => null,

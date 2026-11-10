@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-bundle_id="apple.andybeg.tropa"
+bundle_id="apple.andybeg.road"
 app_bundle="build/ios/iphonesimulator/Runner.app"
 
 make ios-simulator-validate

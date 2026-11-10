@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/router/adaptive_layout/shell_route_action.dart';
-import 'package:tropa/core/router/go_router/helper/active_breakpoint_notifier.dart';
-import 'package:tropa/core/router/go_router/routing_config_notifier.dart';
-import 'package:tropa/features/stats/widget/side_bar_stats_overview.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/router/adaptive_layout/shell_route_action.dart';
+import 'package:road/core/router/go_router/helper/active_breakpoint_notifier.dart';
+import 'package:road/core/router/go_router/routing_config_notifier.dart';
+import 'package:road/features/stats/widget/side_bar_stats_overview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MyAdaptiveLayout extends HookConsumerWidget {
@@ -139,7 +139,7 @@ class MyAdaptiveLayout extends HookConsumerWidget {
   }
 
   List<ShellRouteAction> _actions(Translations t, bool showProfilesAction, bool isMobileBreakpoint) => [
-    ShellRouteAction(Icons.power_settings_new_rounded, t.pages.home.title),
+    ShellRouteAction(Icons.home_rounded, t.pages.home.title),
     if (showProfilesAction && !isMobileBreakpoint) ShellRouteAction(Icons.view_list_rounded, t.pages.profiles.title),
     ShellRouteAction(Icons.settings_rounded, t.pages.settings.title),
     if (!isMobileBreakpoint) ShellRouteAction(Icons.description_rounded, t.pages.logs.title),

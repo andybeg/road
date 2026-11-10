@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/router/dialog/widgets/proxy_info_dialog.dart';
-import 'package:tropa/features/proxy/active/active_proxy_notifier.dart';
-import 'package:tropa/features/proxy/overview/proxies_overview_notifier.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/router/dialog/widgets/proxy_info_dialog.dart';
+import 'package:road/features/proxy/active/active_proxy_notifier.dart';
+import 'package:road/features/proxy/overview/proxies_overview_notifier.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class _NoProxies extends ProxiesOverviewNotifier {

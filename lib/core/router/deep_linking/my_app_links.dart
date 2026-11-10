@@ -1,6 +1,6 @@
 import 'package:app_links/app_links.dart';
-import 'package:tropa/core/router/deep_linking/url_protocol/api.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/router/deep_linking/url_protocol/api.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

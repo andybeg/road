@@ -112,7 +112,7 @@ bool FlutterWindow::OnCreate() {
 
 void FlutterWindow::RegisterDesktopStatusChannel() {
   auto channel = std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-      flutter_controller_->engine()->messenger(), "com.andybeg.tropa/desktop_status",
+      flutter_controller_->engine()->messenger(), "com.andybeg.road/desktop_status",
       &flutter::StandardMethodCodec::GetInstance());
 
   channel->SetMethodCallHandler(

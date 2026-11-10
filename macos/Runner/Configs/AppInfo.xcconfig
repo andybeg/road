@@ -5,12 +5,12 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = Tropa
+PRODUCT_NAME = Road
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = $(TROPA_APP_BUNDLE_IDENTIFIER)
+PRODUCT_BUNDLE_IDENTIFIER = $(ROAD_APP_BUNDLE_IDENTIFIER)
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2026 Tropa. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2026 Road. All rights reserved.
 
 #include "NetworkExtension.xcconfig"

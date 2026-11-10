@@ -47,7 +47,7 @@ def main() -> None:
     if export_options.get("teamID") != team_id:
         fail("exportOptions.plist Team ID does not match ios/Base.xcconfig")
 
-    expected_profiles = {bundle_id, f"{bundle_id}.TropaPacketTunnel"}
+    expected_profiles = {bundle_id, f"{bundle_id}.RoadPacketTunnel"}
     actual_profiles = set(export_options.get("provisioningProfiles", {}))
     if actual_profiles != expected_profiles:
         fail(
@@ -57,11 +57,11 @@ def main() -> None:
 
     for relative_path in (
         "ios/Runner/Runner.entitlements",
-        "ios/TropaPacketTunnel/TropaPacketTunnel.entitlements",
+        "ios/RoadPacketTunnel/RoadPacketTunnel.entitlements",
         "ios/Runner/Info.plist",
-        "ios/TropaPacketTunnel/Info.plist",
+        "ios/RoadPacketTunnel/Info.plist",
         "ios/Runner/PrivacyInfo.xcprivacy",
-        "ios/TropaPacketTunnel/PrivacyInfo.xcprivacy",
+        "ios/RoadPacketTunnel/PrivacyInfo.xcprivacy",
     ):
         with (ROOT / relative_path).open("rb") as handle:
             plistlib.load(handle)
@@ -69,7 +69,7 @@ def main() -> None:
     # Must be in Copy Bundle Resources or the IPA ships without the privacy manifest.
     if project.count("PrivacyInfo.xcprivacy in Resources") < 2:
         fail(
-            "PrivacyInfo.xcprivacy must be in the Runner and TropaPacketTunnel "
+            "PrivacyInfo.xcprivacy must be in the Runner and RoadPacketTunnel "
             "Resources build phases"
         )
 

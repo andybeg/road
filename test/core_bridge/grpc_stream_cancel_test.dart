@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grpc/grpc.dart';
-import 'package:tropa/core_bridge/generated/v2/hcommon/common.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
-import 'package:tropa/core_bridge/grpc_stream_cancel.dart';
+import 'package:road/core_bridge/generated/v2/hcommon/common.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
+import 'package:road/core_bridge/grpc_stream_cancel.dart';
 
 /// A core whose log stream never ends and keeps sending, like the real one at trace level.
 class _ChattyCore extends CoreServiceBase {

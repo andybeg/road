@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/preferences/preferences_provider.dart';
-import 'package:tropa/features/settings/data/config_option_repository.dart';
-import 'package:tropa/features/settings/widget/warp_hop_options.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/preferences/preferences_provider.dart';
+import 'package:road/features/settings/data/config_option_repository.dart';
+import 'package:road/features/settings/widget/warp_hop_options.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

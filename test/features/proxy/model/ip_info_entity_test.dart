@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/features/proxy/model/ip_info_entity.dart';
+import 'package:road/features/proxy/model/ip_info_entity.dart';
 
 void main() {
   group('IpInfo.fromIpApiJson', () {

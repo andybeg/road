@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grpc/grpc.dart';
-import 'package:tropa/core_bridge/grpc_errors.dart';
+import 'package:road/core_bridge/grpc_errors.dart';
 import 'package:http2/transport.dart';
 
 void main() {

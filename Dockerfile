@@ -18,17 +18,15 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     echo "root ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN wget -O /usr/local/bin/appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" && \
+ARG TARGETARCH
+RUN ARCH="$TARGETARCH"; \
+    [ "$ARCH" = "amd64" ] && ARCH=x86_64; \
+    [ "$ARCH" = "arm64" ] && ARCH=aarch64; \
+    wget -O /usr/local/bin/appimagetool \
+      "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-${ARCH}.AppImage" && \
     chmod +x /usr/local/bin/appimagetool
 
-RUN mkdir -p /root/develop && \
-    git clone https://github.com/flutter/flutter.git -b stable /root/develop/flutter
-
+# Flutter lives in the linux-flutter-sdk-cache volume (see Makefile / ~/development/linux/env.sh).
 ENV PATH="/root/develop/flutter/bin:/root/.pub-cache/bin:${PATH}"
-
-RUN git config --global --add safe.directory /root/develop/flutter && \
-    flutter config --no-analytics && \
-    dart pub global activate fastforge
-
 ENV APPIMAGE_EXTRACT_AND_RUN=1
 WORKDIR /app

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:tropa/utils/validators.dart';
+import 'package:road/utils/validators.dart';
 
 typedef ProfileLink = ({String url, String name});
 
@@ -14,7 +14,7 @@ abstract class LinkParser {
   }
 
   // protocols schemas
-  static const protocols = ['tropa', 'hiddify', 'v2ray', 'v2rayn', 'v2rayng', 'clash', 'clashmeta', 'sing-box'];
+  static const protocols = ['road', 'tropa', 'hiddify', 'v2ray', 'v2rayn', 'v2rayng', 'clash', 'clashmeta', 'sing-box'];
 
   static ProfileLink? parse(String link) {
     return simple(link) ?? deep(link);
@@ -31,10 +31,11 @@ abstract class LinkParser {
     if (uri == null || !uri.hasScheme || !uri.hasAuthority) return null;
     final queryParams = uri.queryParameters;
     switch (uri.scheme) {
+      case 'road':
       case 'tropa':
       case 'hiddify':
         if (queryParams.containsKey('url')) {
-          // tropa://install-config?url=<uri>#<name> (hiddify:// still accepted)
+          // road://install-config?url=<uri>#<name> (tropa:// and hiddify:// still accepted)
           final name = (queryParams['name']?.isNotEmpty ?? false) ? queryParams['name']! : uri.fragment;
           return (url: queryParams['url']!, name: name);
         } else {

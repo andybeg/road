@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/gen/translations.g.dart';
-import 'package:tropa/singbox/model/singbox_config_enum.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/gen/translations.g.dart';
+import 'package:road/singbox/model/singbox_config_enum.dart';
 
 // UI helper
 enum ChainType {

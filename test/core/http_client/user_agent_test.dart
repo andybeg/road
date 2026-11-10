@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core/http_client/dio_http_client.dart';
+import 'package:road/core/http_client/dio_http_client.dart';
 
-const _appAgent = 'Tropa/9.9.9 (android) like ClashMeta v2ray sing-box';
+const _appAgent = 'Road/9.9.9 (android) like ClashMeta v2ray sing-box';
 
 void main() {
   late HttpServer server;
@@ -41,9 +41,9 @@ void main() {
   });
 
   test('a user agent given for the request is the one sent', () async {
-    await client().get('$base/plain', userAgent: 'TropaNextX/9.9.9');
+    await client().get('$base/plain', userAgent: 'RoadNextX/9.9.9');
 
-    expect(seen, ['TropaNextX/9.9.9']);
+    expect(seen, ['RoadNextX/9.9.9']);
   });
 
   test('a redirect is followed with the same user agent', () async {

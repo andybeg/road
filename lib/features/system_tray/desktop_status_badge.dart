@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:tropa/utils/platform_utils.dart';
+import 'package:road/utils/platform_utils.dart';
 
 /// Dock / taskbar status mark for desktop.
 ///
@@ -15,7 +15,7 @@ enum DesktopBadgeStatus { none, error, ok }
 class DesktopStatusBadge {
   DesktopStatusBadge._();
 
-  static const _channel = MethodChannel('com.andybeg.tropa/desktop_status');
+  static const _channel = MethodChannel('com.andybeg.road/desktop_status');
 
   static Future<void> setStatus(DesktopBadgeStatus status) async {
     if (!PlatformUtils.isDesktop || Platform.isLinux) return;

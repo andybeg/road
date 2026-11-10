@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/singbox/model/singbox_config_enum.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/singbox/model/singbox_config_enum.dart';
 
 part 'proxy_entity.freezed.dart';
 

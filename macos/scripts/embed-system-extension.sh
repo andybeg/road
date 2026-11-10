@@ -8,8 +8,8 @@ set -euo pipefail
 
 task_root="$(cd "$(dirname "$0")/../.." && pwd)"
 task_resources="$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
-task_system_extension="$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH/Library/SystemExtensions/${TROPA_TUNNEL_BUNDLE_IDENTIFIER}.systemextension"
-task_app_extension="$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH/PlugIns/TropaPacketTunnel.appex"
+task_system_extension="$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH/Library/SystemExtensions/${ROAD_TUNNEL_BUNDLE_IDENTIFIER}.systemextension"
+task_app_extension="$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH/PlugIns/RoadPacketTunnel.appex"
 task_service_destination="$task_resources/TunnelService"
 task_migration="$task_resources/container-migration.plist"
 
@@ -34,11 +34,11 @@ if [[ -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" && -d "$task_login_helper" ]]; then
   fi
 fi
 
-if [[ "${TROPA_NETWORK_EXTENSION_ENABLED:-NO}" != YES ]]; then
+if [[ "${ROAD_NETWORK_EXTENSION_ENABLED:-NO}" != YES ]]; then
   rm -rf "$task_system_extension" "$task_app_extension" "$task_migration" "$task_resources/TunnelHelper"
   rmdir "$(dirname "$task_system_extension")" "$(dirname "$task_app_extension")" 2>/dev/null || true
   # Without a Network Extension the VPN runs in hiddify-core's tunnel service: the app's executable
-  # as `Tropa --tunnel run`, installed as root from the app with administrator authentication.
+  # as `Road --tunnel run`, installed as root from the app with administrator authentication.
   mkdir -p "$task_service_destination"
   # Bundle under Resources/TunnelService so existing installs and method-channel paths stay stable.
   install -m 755 "$task_root/macos/AdminBgService/install-admin-bgservice.sh" \
@@ -51,10 +51,10 @@ fi
 # Signed builds have a Network Extension instead of the tunnel service.
 rm -rf "$task_service_destination"
 
-if [[ "${TROPA_TUNNEL_KIND:-system-extension}" == app-extension ]]; then
+if [[ "${ROAD_TUNNEL_KIND:-system-extension}" == app-extension ]]; then
   rm -rf "$task_system_extension"
   rmdir "$(dirname "$task_system_extension")" 2>/dev/null || true
-  task_source="$BUILT_PRODUCTS_DIR/TropaPacketTunnel.appex"
+  task_source="$BUILT_PRODUCTS_DIR/RoadPacketTunnel.appex"
   if [[ ! -d "$task_source" ]]; then
     echo "error: Packet tunnel app extension was not built: $task_source" >&2
     exit 1
@@ -68,7 +68,7 @@ fi
 
 rm -rf "$task_app_extension" "$task_migration"
 rmdir "$(dirname "$task_app_extension")" 2>/dev/null || true
-task_source="$BUILT_PRODUCTS_DIR/${TROPA_TUNNEL_BUNDLE_IDENTIFIER}.systemextension"
+task_source="$BUILT_PRODUCTS_DIR/${ROAD_TUNNEL_BUNDLE_IDENTIFIER}.systemextension"
 if [[ ! -d "$task_source" ]]; then
   echo "error: Packet tunnel extension was not built: $task_source" >&2
   exit 1

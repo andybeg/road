@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/notification/in_app_notification_controller.dart';
-import 'package:tropa/features/route_rules/widget/setting_detail_chips.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/notification/in_app_notification_controller.dart';
+import 'package:road/features/route_rules/widget/setting_detail_chips.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SettingGenericList<T extends Object> extends ConsumerWidget {

@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.networking.networkextension</key>
 	<array>
-		<string>$(TROPA_NETWORK_EXTENSION_ENTITLEMENT)</string>
+		<string>$(ROAD_NETWORK_EXTENSION_ENTITLEMENT)</string>
 		<string>packet-tunnel-provider</string>
 		<string>app-proxy-provider</string>
 	</array>
@@ -14,7 +14,7 @@
 	<false/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>$(TROPA_VPN_APP_GROUP)</string>
+		<string>$(ROAD_VPN_APP_GROUP)</string>
 	</array>
 	<key>com.apple.security.cs.allow-jit</key>
 	<true/>

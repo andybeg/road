@@ -3,15 +3,15 @@ import 'dart:math';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/router/dialog/dialog_notifier.dart';
-import 'package:tropa/core/widget/adaptive_icon.dart';
-import 'package:tropa/features/connection/notifier/connection_notifier.dart';
-import 'package:tropa/features/proxy/keep_top/keep_top_widgets.dart';
-import 'package:tropa/features/proxy/model/proxy_entity.dart';
-import 'package:tropa/features/proxy/overview/proxies_overview_notifier.dart';
-import 'package:tropa/features/proxy/widget/proxy_tile.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/router/dialog/dialog_notifier.dart';
+import 'package:road/core/widget/adaptive_icon.dart';
+import 'package:road/features/connection/notifier/connection_notifier.dart';
+import 'package:road/features/proxy/keep_top/keep_top_widgets.dart';
+import 'package:road/features/proxy/model/proxy_entity.dart';
+import 'package:road/features/proxy/overview/proxies_overview_notifier.dart';
+import 'package:road/features/proxy/widget/proxy_tile.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProxiesOverviewPage extends HookConsumerWidget with PresLogger {

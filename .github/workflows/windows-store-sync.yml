@@ -31,8 +31,8 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # a secret, so the job cannot test it in `if:`; the first step does
       MSSTORE_PRODUCT_ID: ${{ secrets.MSSTORE_PRODUCT_ID }}
-      MSIX_NAME: Tropa-Windows-Setup-x64.Msix
-      MSIX_LABEL: Tropa-Windows-Setup-x64.Msix (Store-signed)
+      MSIX_NAME: Road-Windows-Setup-x64.Msix
+      MSIX_LABEL: Road-Windows-Setup-x64.Msix (Store-signed)
     steps:
       - uses: actions/checkout@v6
         with:
@@ -106,4 +106,4 @@ jobs:
       contents: write
     with:
       release_tag: ${{ needs.sync.outputs.tag }}
-      asset_pattern: 'Tropa-*.Msix'
+      asset_pattern: 'Road-*.Msix'

@@ -5,7 +5,7 @@ import LocalAuthentication
 import Security
 
 // Builds without a Developer ID cannot use a Network Extension. Their VPN runs the full core in
-// hiddify-core's tunnel service: the app's own executable, run as `Tropa --tunnel run` by launchd
+// hiddify-core's tunnel service: the app's own executable, run as `Road --tunnel run` by launchd
 // with administrator rights. This controller mirrors MacOSVPNController's method-channel contract
 // (initialize/start/stop returning available, port, secret, status) so Dart can reuse the useTunnel path.
 final class TunnelServiceController {
@@ -15,7 +15,7 @@ final class TunnelServiceController {
         "/Library/Application Support/Hiddify/AdminBgService/data/control.secret"
     private static let buildStampPath =
         "/Library/Application Support/Hiddify/AdminBgService/data/build.id"
-    private let queue = DispatchQueue(label: "apple.andybeg.tropa.tunnel-service")
+    private let queue = DispatchQueue(label: "apple.andybeg.road.tunnel-service")
     private let processLock = NSLock()
     private var activeProcess: Process?
     private var connected = false
@@ -106,11 +106,11 @@ final class TunnelServiceController {
             lastMessage = nil
             onStateChanged?()
             // Dart already stopped the engine over AdminBg gRPC — only clear flags
-            // (spawning `Tropa --tunnel disconnect` again is what made stop take forever).
+            // (spawning `Road --tunnel disconnect` again is what made stop take forever).
             let args = call.arguments as? [String: Any]
             let engineAlreadyStopped = args?["engineStopped"] as? Bool == true
             if engineAlreadyStopped && call.method == "stop" {
-                NSLog("tropa tunnel-service: stop skipped child (engine already stopped via gRPC)")
+                NSLog("road tunnel-service: stop skipped child (engine already stopped via gRPC)")
                 disconnecting = false
                 onStateChanged?()
                 result(state())
@@ -123,7 +123,7 @@ final class TunnelServiceController {
             queue.async {
                 let error = self.stopTunnel()
                 let elapsed = Date().timeIntervalSince(stopStarted)
-                NSLog("tropa tunnel-service: stop child finished in %.2fs error=%@", elapsed, error ?? "nil")
+                NSLog("road tunnel-service: stop child finished in %.2fs error=%@", elapsed, error ?? "nil")
                 DispatchQueue.main.async {
                     self.connected = false
                     self.disconnecting = false
@@ -160,14 +160,14 @@ final class TunnelServiceController {
         }
         let request: [String: Any] = [
             "configContent": configContent,
-            "configName": arguments["configName"] as? String ?? "Tropa",
+            "configName": arguments["configName"] as? String ?? "Road",
             "settingsJSON": settingsJSON,
             "resources": resources,
             "disableMemoryLimit": arguments["disableMemoryLimit"] as? Bool ?? false,
             "ownerPid": ProcessInfo.processInfo.processIdentifier,
         ]
         let requestURL = FileManager.default.temporaryDirectory
-            .appendingPathComponent("tropa-tunnel-\(UUID().uuidString).json")
+            .appendingPathComponent("road-tunnel-\(UUID().uuidString).json")
         defer { try? FileManager.default.removeItem(at: requestURL) }
         do {
             let data = try JSONSerialization.data(withJSONObject: request)
@@ -207,7 +207,7 @@ final class TunnelServiceController {
         let command = arguments.first ?? "?"
         let timeoutSeconds: Double = command == "connect" ? 45 : 5
         let childStarted = Date()
-        NSLog("tropa tunnel-service: spawning --tunnel %@", arguments.joined(separator: " "))
+        NSLog("road tunnel-service: spawning --tunnel %@", arguments.joined(separator: " "))
         let done = DispatchGroup()
         done.enter()
         process.terminationHandler = { _ in done.leave() }
@@ -217,13 +217,13 @@ final class TunnelServiceController {
             return "Couldn't talk to the VPN service."
         }
         if done.wait(timeout: .now() + timeoutSeconds) == .timedOut {
-            NSLog("tropa tunnel-service: --tunnel %@ timed out after %.2fs", command, Date().timeIntervalSince(childStarted))
+            NSLog("road tunnel-service: --tunnel %@ timed out after %.2fs", command, Date().timeIntervalSince(childStarted))
             process.terminate()
             _ = done.wait(timeout: .now() + 2)
             if command == "disconnect" { return nil }
             return "The VPN service timed out."
         }
-        NSLog("tropa tunnel-service: --tunnel %@ finished in %.2fs status=%d",
+        NSLog("road tunnel-service: --tunnel %@ finished in %.2fs status=%d",
               command, Date().timeIntervalSince(childStarted), process.terminationStatus)
         // Interrupted by stop/reset. Disconnect may be cancelled safely; a cancelled connect
         // must not report success (that left the UI as Connected then silently Disconnected).
@@ -259,7 +259,7 @@ final class TunnelServiceController {
             if !Self.serviceListening() {
                 return "The VPN service was installed but did not start."
             }
-            return "The VPN service is still running a different Tropa core. Try connecting again."
+            return "The VPN service is still running a different Road core. Try connecting again."
         }
         return nil
     }
@@ -271,7 +271,7 @@ final class TunnelServiceController {
         return bundled == stamped
     }
 
-    // Prints the build id embedded in this app's hiddify-core (via Tropa --tunnel build-id).
+    // Prints the build id embedded in this app's hiddify-core (via Road --tunnel build-id).
     private func bundledCoreBuildId() -> String? {
         guard let executable = Bundle.main.executableURL?.path else { return nil }
         let process = Process()
@@ -318,14 +318,14 @@ final class TunnelServiceController {
     }
 
     private func install() -> String? {
-        #if TROPA_APP_STORE
+        #if ROAD_APP_STORE
         // the App Store build's tunnel is a sandboxed app extension: it never asks for root
         return "The VPN service is not part of the App Store build."
         #else
         guard let script = installScript?.path else { return "The VPN service is missing from this build." }
         let bundlePath = Bundle.main.bundlePath
         let owner = NSUserName()
-        NSLog("tropa tunnel-service: install euid=%d script=%@", geteuid(), script)
+        NSLog("road tunnel-service: install euid=%d script=%@", geteuid(), script)
         if geteuid() == 0 {
             return runInstallScript(script: script, bundlePath: bundlePath, owner: owner)
         }
@@ -361,19 +361,19 @@ final class TunnelServiceController {
         let context = LAContext()
         var error: NSError?
         guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
-            NSLog("tropa tunnel-service: Touch ID unavailable (%@)", error?.localizedDescription ?? "none")
+            NSLog("road tunnel-service: Touch ID unavailable (%@)", error?.localizedDescription ?? "none")
             return nil
         }
         var result: String?
         let done = DispatchSemaphore(value: 0)
-        let reason = "Tropa needs administrator permission to run the VPN."
+        let reason = "Road needs administrator permission to run the VPN."
         context.localizedFallbackTitle = "Use Password"
         DispatchQueue.main.async {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, err in
                 if success {
-                    NSLog("tropa tunnel-service: Touch ID succeeded")
+                    NSLog("road tunnel-service: Touch ID succeeded")
                 } else if let laError = err as? LAError {
-                    NSLog("tropa tunnel-service: Touch ID error %d", laError.code.rawValue)
+                    NSLog("road tunnel-service: Touch ID error %d", laError.code.rawValue)
                     switch laError.code {
                     case .userCancel, .appCancel, .systemCancel:
                         result = "Installing the VPN service was cancelled."
@@ -417,7 +417,7 @@ final class TunnelServiceController {
         var auth: AuthorizationRef?
         var status = AuthorizationCreate(nil, nil, [], &auth)
         guard status == errAuthorizationSuccess, let auth else { return "Couldn't create an authorization session." }
-        let prompt = "VPN mode sends all of this Mac's traffic through Tropa, which needs administrator permission. Use Touch ID, then the password if Touch ID is unavailable."
+        let prompt = "VPN mode sends all of this Mac's traffic through Road, which needs administrator permission. Use Touch ID, then the password if Touch ID is unavailable."
         status = kAuthorizationEnvironmentPrompt.withCString { promptName in
             prompt.withCString { promptCString in
                 var promptItem = AuthorizationItem(
@@ -444,7 +444,7 @@ final class TunnelServiceController {
                 }
             }
         }
-        NSLog("tropa tunnel-service: AuthorizationCopyRights status=%d", status)
+        NSLog("road tunnel-service: AuthorizationCopyRights status=%d", status)
         if status == errAuthorizationCanceled {
             AuthorizationFree(auth, [.destroyRights])
             return "Installing the VPN service was cancelled."
@@ -476,7 +476,7 @@ final class TunnelServiceController {
         let status = argv.withUnsafeMutableBufferPointer { buffer in
             "/bin/bash".withCString { path in execute(auth, path, [], buffer.baseAddress!, &pipe) }
         }
-        NSLog("tropa tunnel-service: AEWP status=%d", status)
+        NSLog("road tunnel-service: AEWP status=%d", status)
         var output = ""
         if let pipe {
             let fd = fileno(pipe)
@@ -491,7 +491,7 @@ final class TunnelServiceController {
         if status != errAuthorizationSuccess {
             return "Couldn't install the VPN service."
         }
-        if output.contains("Tropa VPN service installed") { return nil }
+        if output.contains("Road VPN service installed") { return nil }
         return "privileged install produced no confirmation"
     }
 
@@ -500,7 +500,7 @@ final class TunnelServiceController {
         let quote = { (text: String) in
             "\"" + text.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "\"", with: "\\\"") + "\""
         }
-        let prompt = "VPN mode sends all of this Mac's traffic through Tropa, which needs administrator permission. Tropa asks for it once."
+        let prompt = "VPN mode sends all of this Mac's traffic through Road, which needs administrator permission. Road asks for it once."
         let source = "do shell script \"/bin/bash \" & quoted form of \(quote(script)) & \" \" & quoted form of "
             + "\(quote(bundlePath)) & \" \" & quoted form of \(quote(owner)) with prompt "
             + "\(quote(prompt)) with administrator privileges"
@@ -518,7 +518,7 @@ final class TunnelServiceController {
         process.waitUntilExit()
         let message = String(data: stderr.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)?
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        NSLog("tropa tunnel-service: osascript status=%d stderr=%@", process.terminationStatus, message)
+        NSLog("road tunnel-service: osascript status=%d stderr=%@", process.terminationStatus, message)
         if process.terminationStatus == 0 { return nil }
         if message.contains("User canceled") || message.contains("-128") {
             return "Installing the VPN service was cancelled."

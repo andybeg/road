@@ -31,28 +31,28 @@ from pathlib import Path
 
 # (OS group, filename, link label) — only rows whose file exists are emitted.
 ASSET_CATALOG: list[tuple[str, str, str]] = [
-    ("Android", "Tropa-Android-universal.apk", "APK Universal"),
-    ("Android", "Tropa-Android-arm64.apk", "APK ARMv8"),
-    ("Android", "Tropa-Android-arm7.apk", "APK ARMv7"),
-    ("Android", "Tropa-Android-x86_64.apk", "APK x64"),
+    ("Android", "Road-Android-universal.apk", "APK Universal"),
+    ("Android", "Road-Android-arm64.apk", "APK ARMv8"),
+    ("Android", "Road-Android-arm7.apk", "APK ARMv7"),
+    ("Android", "Road-Android-x86_64.apk", "APK x64"),
     # Attached by windows-store-sync.yml once the Microsoft Store has signed it.
-    ("Windows", "Tropa-Windows-Setup-x64.Msix", "MSIX x64"),
-    ("Windows", "Tropa-Windows-Setup-x64.exe", "Setup x64"),
-    ("Windows", "Tropa-Windows-Portable-x64.zip", "Portable x64"),
-    ("macOS (v10.15+)", "Tropa-MacOS.dmg", "DMG Universal"),
-    ("macOS (v10.15+)", "Tropa-MacOS-Installer.pkg", "PKG Universal"),
-    ("macOS (v10.15+)", "Tropa-MacOS-AppStore.dmg", "App Store DMG Universal"),
-    ("macOS (v10.15+)", "Tropa-MacOS-AppStore.pkg", "App Store PKG Universal"),
-    ("iOS", "Tropa-iOS.ipa", "IPA iOS"),
-    ("Linux", "Tropa-Linux-x64-AppImage.AppImage", "AppImage x64"),
-    ("Linux", "Tropa-Linux-x64-AppImage.tar.gz", "AppImage x64 (tar.gz)"),
-    ("Linux", "Tropa-Debian-x64.deb", "DebPackage x64"),
-    ("Linux", "Tropa-rpm-x64.rpm", "RpmPackage x64"),
+    ("Windows", "Road-Windows-Setup-x64.Msix", "MSIX x64"),
+    ("Windows", "Road-Windows-Setup-x64.exe", "Setup x64"),
+    ("Windows", "Road-Windows-Portable-x64.zip", "Portable x64"),
+    ("macOS (v10.15+)", "Road-MacOS.dmg", "DMG Universal"),
+    ("macOS (v10.15+)", "Road-MacOS-Installer.pkg", "PKG Universal"),
+    ("macOS (v10.15+)", "Road-MacOS-AppStore.dmg", "App Store DMG Universal"),
+    ("macOS (v10.15+)", "Road-MacOS-AppStore.pkg", "App Store PKG Universal"),
+    ("iOS", "Road-iOS.ipa", "IPA iOS"),
+    ("Linux", "Road-Linux-x64-AppImage.AppImage", "AppImage x64"),
+    ("Linux", "Road-Linux-x64-AppImage.tar.gz", "AppImage x64 (tar.gz)"),
+    ("Linux", "Road-Debian-x64.deb", "DebPackage x64"),
+    ("Linux", "Road-rpm-x64.rpm", "RpmPackage x64"),
 ]
 
 # Not sent to VirusTotal: it rejects the IPA upload (HTTP 409), and an iOS app cannot
 # run outside the App Store or a sideloading tool anyway.
-NO_VT_SCAN = {"Tropa-iOS.ipa"}
+NO_VT_SCAN = {"Road-iOS.ipa"}
 
 ASSET_MARKER = "<!-- ASSET_LINKS -->"
 TABLE_BEGIN = "<!-- ASSETS:BEGIN -->"

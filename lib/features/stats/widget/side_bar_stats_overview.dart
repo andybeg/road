@@ -1,14 +1,14 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/utils/preferences_utils.dart';
-import 'package:tropa/core/widget/animated_text.dart';
-import 'package:tropa/features/stats/notifier/stats_notifier.dart';
-import 'package:tropa/features/stats/widget/stats_card.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/utils/number_formatters.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/utils/preferences_utils.dart';
+import 'package:road/core/widget/animated_text.dart';
+import 'package:road/features/stats/notifier/stats_notifier.dart';
+import 'package:road/features/stats/widget/stats_card.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/utils/number_formatters.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final showAllSidebarStatsProvider = PreferencesNotifier.createAutoDispose("show_all_sidebar_stats", false);

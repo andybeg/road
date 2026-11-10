@@ -6,4 +6,4 @@
 // CI / App Store: manual signing (no Apple ID on the runner).
 CODE_SIGN_STYLE=Manual
 CODE_SIGN_IDENTITY=Apple Distribution
-PROVISIONING_PROFILE_SPECIFIER=dist.apple.apple.andybeg.tropa
+PROVISIONING_PROFILE_SPECIFIER=dist.apple.apple.andybeg.road

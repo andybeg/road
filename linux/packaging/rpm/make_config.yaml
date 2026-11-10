@@ -8,17 +8,17 @@
 # - Successful builds do not guarantee runtime stability on Red Hat-based systems.
 
 
-# display_name: Tropa
-# url: https://github.com/andybeg/tropa
+# display_name: Road
+# url: https://github.com/andybeg/road
 # license: Other
 
-# packager: tropa
+# packager: road
 # packagerEmail: andybeg
 
 # icon: assets/images/source/ic_launcher_border.png
 
 # keywords:
-#   - Tropa
+#   - Road
 #   - Proxy
 #   - VPN
 #   - V2ray
@@ -27,7 +27,7 @@
 #   - Psiphon
 #   - OpenVPN
 
-# generic_name: Tropa
+# generic_name: Road
 
 # requires:
 #   - libayatana-appindicator-gtk3

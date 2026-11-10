@@ -1,6 +1,6 @@
-# Tropa
+# Road
 
-Tropa is a fork of [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app).
+Road is a fork of [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app).
 The original additional conditions below still apply.
 
 ---

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/utils/utils.dart';
 
 abstract class Constants {
-  static const appName = "Tropa";
-  static const githubUrl = "https://github.com/andybeg/tropa";
+  static const appName = "Road";
+  static const githubUrl = "https://github.com/andybeg/road";
   static const upstreamUrl = "https://github.com/hiddify/hiddify-app";
-  static const licenseUrl = "https://github.com/andybeg/tropa/blob/main/LICENSE.md";
-  static const githubReleasesApiUrl = "https://api.github.com/repos/andybeg/tropa/releases";
-  static const githubLatestReleaseUrl = "https://github.com/andybeg/tropa/releases/latest";
-  static const privacyPolicyUrl = "https://github.com/andybeg/tropa/blob/main/LICENSE.md";
-  static const termsAndConditionsUrl = "https://github.com/andybeg/tropa/blob/main/LICENSE.md";
+  static const licenseUrl = "https://github.com/andybeg/road/blob/main/LICENSE.md";
+  static const githubReleasesApiUrl = "https://api.github.com/repos/andybeg/road/releases";
+  static const githubLatestReleaseUrl = "https://github.com/andybeg/road/releases/latest";
+  static const privacyPolicyUrl = "https://github.com/andybeg/road/blob/main/LICENSE.md";
+  static const termsAndConditionsUrl = "https://github.com/andybeg/road/blob/main/LICENSE.md";
   static const cfWarpPrivacyPolicy = "https://www.cloudflare.com/application/privacypolicy/";
   static const cfWarpTermsOfService = "https://www.cloudflare.com/application/terms/";
 }

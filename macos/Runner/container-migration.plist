@@ -4,8 +4,8 @@
 <dict>
 	<key>Move</key>
 	<array>
-		<string>${ApplicationSupport}/apple.andybeg.tropa</string>
-		<string>${Library}/Preferences/apple.andybeg.tropa.plist</string>
+		<string>${ApplicationSupport}/apple.andybeg.road</string>
+		<string>${Library}/Preferences/apple.andybeg.road.plist</string>
 	</array>
 </dict>
 </plist>

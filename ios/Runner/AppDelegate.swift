@@ -25,7 +25,7 @@ import Sentry
         // the background, for one): skip the handlers instead of crashing the launch.
         func register(_ name: String, _ register: (FlutterPluginRegistrar) -> Void) {
             guard let registrar = self.registrar(forPlugin: name) else {
-                NSLog("tropa: no Flutter registrar for \(name), handler not registered")
+                NSLog("road: no Flutter registrar for \(name), handler not registered")
                 return
             }
             register(registrar)

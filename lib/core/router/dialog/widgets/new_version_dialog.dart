@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/failures.dart';
-import 'package:tropa/features/app_update/model/remote_version_entity.dart';
-import 'package:tropa/features/app_update/notifier/app_update_notifier.dart';
-import 'package:tropa/features/app_update/notifier/app_updater.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/failures.dart';
+import 'package:road/features/app_update/model/remote_version_entity.dart';
+import 'package:road/features/app_update/notifier/app_update_notifier.dart';
+import 'package:road/features/app_update/notifier/app_updater.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// A new release: "update now" downloads it and starts its installer where this install can

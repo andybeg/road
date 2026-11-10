@@ -1,20 +1,20 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core/model/environment.dart';
-import 'package:tropa/features/app_update/data/github_release_parser.dart';
-import 'package:tropa/features/app_update/model/install_kind.dart';
+import 'package:road/core/model/environment.dart';
+import 'package:road/features/app_update/data/github_release_parser.dart';
+import 'package:road/features/app_update/model/install_kind.dart';
 
 Map<String, dynamic> _release(String tag, {bool draft = false, List<String> assets = const []}) => {
   'tag_name': tag,
   'draft': draft,
   // the release workflow marks every release a pre-release on GitHub
   'prerelease': true,
-  'html_url': 'https://github.com/andybeg/tropa/releases/tag/$tag',
+  'html_url': 'https://github.com/andybeg/road/releases/tag/$tag',
   'published_at': '2026-11-01T22:42:47Z',
   'assets': [
     for (final name in assets)
       {
         'name': name,
-        'browser_download_url': 'https://github.com/andybeg/tropa/releases/download/$tag/$name',
+        'browser_download_url': 'https://github.com/andybeg/road/releases/download/$tag/$name',
         'size': 42,
       },
   ],
@@ -23,11 +23,11 @@ Map<String, dynamic> _release(String tag, {bool draft = false, List<String> asse
 void main() {
   group('a release tag', () {
     test('names its version; the GitHub pre-release flag does not make it one', () {
-      final release = GithubReleaseParser.parse(_release('v5.4.0', assets: ['Tropa-MacOS.dmg']))!;
+      final release = GithubReleaseParser.parse(_release('v5.4.0', assets: ['Road-MacOS.dmg']))!;
       expect(release.version, '5.4.0');
       expect(release.preRelease, isFalse);
       expect(release.flavor, Environment.prod);
-      expect(release.asset('Tropa-MacOS.dmg')!.size, 42);
+      expect(release.asset('Road-MacOS.dmg')!.size, 42);
     });
 
     test('with a suffix is a pre-release, .dev a dev build', () {
@@ -36,6 +36,15 @@ void main() {
       expect(dev.flavor, Environment.dev);
       expect(dev.version, '5.5.0');
       expect(GithubReleaseParser.parse(_release('v5.4.0+540'))!.buildNumber, '540');
+    });
+
+    test('a Road product suffix is a stable release, not a pre-release', () {
+      final road = GithubReleaseParser.parse(_release('v5.5.5-road'))!;
+      expect(road.version, '5.5.5');
+      expect(road.preRelease, isFalse);
+      expect(road.flavor, Environment.prod);
+      expect(GithubReleaseParser.parse(_release('v5.5.5-tropa'))!.preRelease, isFalse);
+      expect(GithubReleaseParser.parse(_release('v5.5.5-ext'))!.preRelease, isFalse);
     });
 
     test('that is no version, or a draft, is no release', () {
@@ -49,35 +58,35 @@ void main() {
       _release(
         'v5.4.0',
         assets: [
-          'Tropa-Android-arm64.apk',
-          'Tropa-Android-arm7.apk',
-          'Tropa-Android-x86_64.apk',
-          'Tropa-Android-universal.apk',
-          'Tropa-Windows-Setup-x64.exe',
-          'Tropa-Windows-Setup-x64.Msix',
-          'Tropa-Windows-Portable-x64.zip',
-          'Tropa-Linux-x64-AppImage.AppImage',
-          'Tropa-Debian-x64.deb',
-          'Tropa-MacOS.dmg',
-          'Tropa-MacOS-AppStore.dmg',
+          'Road-Android-arm64.apk',
+          'Road-Android-arm7.apk',
+          'Road-Android-x86_64.apk',
+          'Road-Android-universal.apk',
+          'Road-Windows-Setup-x64.exe',
+          'Road-Windows-Setup-x64.Msix',
+          'Road-Windows-Portable-x64.zip',
+          'Road-Linux-x64-AppImage.AppImage',
+          'Road-Debian-x64.deb',
+          'Road-MacOS.dmg',
+          'Road-MacOS-AppStore.dmg',
         ],
       ),
     )!;
     String? asset(InstallKind kind, {List<String> abis = const []}) => kind.assetIn(release, abis: abis)?.name;
 
     test('an APK is the one of the device ABI, else the universal one', () {
-      expect(asset(InstallKind.androidApk, abis: ['arm64-v8a', 'armeabi-v7a']), 'Tropa-Android-arm64.apk');
-      expect(asset(InstallKind.androidApk, abis: ['armeabi-v7a']), 'Tropa-Android-arm7.apk');
-      expect(asset(InstallKind.androidApk, abis: ['x86_64']), 'Tropa-Android-x86_64.apk');
-      expect(asset(InstallKind.androidApk, abis: ['riscv64']), 'Tropa-Android-universal.apk');
-      expect(asset(InstallKind.androidApk), 'Tropa-Android-universal.apk');
+      expect(asset(InstallKind.androidApk, abis: ['arm64-v8a', 'armeabi-v7a']), 'Road-Android-arm64.apk');
+      expect(asset(InstallKind.androidApk, abis: ['armeabi-v7a']), 'Road-Android-arm7.apk');
+      expect(asset(InstallKind.androidApk, abis: ['x86_64']), 'Road-Android-x86_64.apk');
+      expect(asset(InstallKind.androidApk, abis: ['riscv64']), 'Road-Android-universal.apk');
+      expect(asset(InstallKind.androidApk), 'Road-Android-universal.apk');
     });
 
     test('each desktop install takes its own format, never a store build', () {
-      expect(asset(InstallKind.windowsSetup), 'Tropa-Windows-Setup-x64.exe');
-      expect(asset(InstallKind.linuxAppImage), 'Tropa-Linux-x64-AppImage.AppImage');
-      expect(asset(InstallKind.linuxDeb), 'Tropa-Debian-x64.deb');
-      expect(asset(InstallKind.macOS), 'Tropa-MacOS.dmg');
+      expect(asset(InstallKind.windowsSetup), 'Road-Windows-Setup-x64.exe');
+      expect(asset(InstallKind.linuxAppImage), 'Road-Linux-x64-AppImage.AppImage');
+      expect(asset(InstallKind.linuxDeb), 'Road-Debian-x64.deb');
+      expect(asset(InstallKind.macOS), 'Road-MacOS.dmg');
     });
 
     test('a store install, the portable zip and other Linux installs download nothing', () {
@@ -102,7 +111,7 @@ void main() {
   });
 
   test('an MSIX package runs from WindowsApps', () {
-    expect(Release.isMsix(r'C:\Program Files\WindowsApps\Tropa_5.4.0.0_x64__abc\hiddify.exe'), isTrue);
-    expect(Release.isMsix(r'C:\Program Files\Tropa\Tropa.exe'), isFalse);
+    expect(Release.isMsix(r'C:\Program Files\WindowsApps\Road_5.4.0.0_x64__abc\hiddify.exe'), isTrue);
+    expect(Release.isMsix(r'C:\Program Files\Road\Road.exe'), isFalse);
   });
 }

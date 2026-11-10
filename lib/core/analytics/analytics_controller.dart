@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:tropa/core/analytics/analytics_filter.dart';
-import 'package:tropa/core/logger/sinks/sentry_sink.dart';
+import 'package:road/core/analytics/analytics_filter.dart';
+import 'package:road/core/logger/sinks/sentry_sink.dart';
 
-import 'package:tropa/core/model/environment.dart';
-import 'package:tropa/core/preferences/preferences_provider.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/model/environment.dart';
+import 'package:road/core/preferences/preferences_provider.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';

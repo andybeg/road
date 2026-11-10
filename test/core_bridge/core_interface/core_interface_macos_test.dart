@@ -4,16 +4,16 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grpc/grpc.dart';
-import 'package:tropa/core_bridge/core_interface/core_interface_macos.dart';
-import 'package:tropa/core_bridge/generated/v2/hcommon/common.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
-import 'package:tropa/singbox/model/core_status.dart';
+import 'package:road/core_bridge/core_interface/core_interface_macos.dart';
+import 'package:road/core_bridge/generated/v2/hcommon/common.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
+import 'package:road/singbox/model/core_status.dart';
 import 'package:path/path.dart' as p;
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  const methods = MethodChannel('com.andybeg.tropa/macos-vpn');
+  const methods = MethodChannel('com.andybeg.road/macos-vpn');
   final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
   late List<String> operations;
   late Server server;

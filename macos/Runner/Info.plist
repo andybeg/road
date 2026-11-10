@@ -2,20 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>TropaNetworkExtensionEnabled</key>
-	<string>$(TROPA_NETWORK_EXTENSION_ENABLED)</string>
-	<key>TropaTunnelBundleIdentifier</key>
-	<string>$(TROPA_TUNNEL_BUNDLE_IDENTIFIER)</string>
-	<key>TropaTunnelKind</key>
-	<string>$(TROPA_TUNNEL_KIND)</string>
+	<key>RoadNetworkExtensionEnabled</key>
+	<string>$(ROAD_NETWORK_EXTENSION_ENABLED)</string>
+	<key>RoadTunnelBundleIdentifier</key>
+	<string>$(ROAD_TUNNEL_BUNDLE_IDENTIFIER)</string>
+	<key>RoadTunnelKind</key>
+	<string>$(ROAD_TUNNEL_KIND)</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>NSSystemExtensionUsageDescription</key>
-	<string>Tropa uses a packet tunnel extension to provide VPN connectivity while the app is closed.</string>
+	<string>Road uses a packet tunnel extension to provide VPN connectivity while the app is closed.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Tropa uses Touch ID to confirm administrator permission for the VPN.</string>
+	<string>Road uses Touch ID to confirm administrator permission for the VPN.</string>
 	<key>CFBundleDisplayName</key>
-	<string>Tropa</string>
+	<string>Road</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -49,6 +49,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>road</string>
 				<string>tropa</string>
 				<string>hiddify</string>
 				<string>v2ray</string>

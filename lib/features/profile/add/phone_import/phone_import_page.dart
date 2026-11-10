@@ -22,7 +22,7 @@ typedef PhoneImportPageText = ({
   String footer,
 });
 
-/// The page a phone opens: the Tropa mark, then a guide of four steps, the third holding the
+/// The page a phone opens: the Road mark, then a guide of four steps, the third holding the
 /// form that posts to [action]. Once a text was [sent], the first three are checked and the last,
 /// confirming on the TV, stands out. One self-contained document: no script, nothing loaded.
 String phoneImportPage(
@@ -61,7 +61,7 @@ String phoneImportPage(
     '<meta name="theme-color" content="#455FE9">',
     '<meta name="referrer" content="no-referrer">',
     '<title>${e(t.title)}</title><style>$_css</style></head><body><main class="wrap">',
-    '<header class="brand"><span class="logo">$_logo</span><span class="word">Tropa</span></header>',
+    '<header class="brand"><span class="logo">$_logo</span><span class="word">Road</span></header>',
     '<h1>${e(t.title)}</h1><p class="intro">${e(t.intro)}</p>',
     notice,
     '<ol class="steps">',
@@ -75,7 +75,7 @@ String phoneImportPage(
   ].join();
 }
 
-/// The Tropa mark (assets/images/logo.svg), in white for its tile.
+/// The Road mark (assets/images/logo.svg), in white for its tile.
 final _logo = [
   '<svg viewBox="0 0 64 64" aria-hidden="true"><g fill="#fff">',
   '<path d="M47.1582 14.4283C47.1582 13.8368 47.4684 13.2886 47.9757 12.9842L61.4494 4.89891C62.5721 4.22529 64.0003 5.03389 64.0003 6.34306V20.2103C64.0003 21.1405 63.2461 21.8945 62.3161 21.8945H48.8424C47.9124 21.8945 47.1582 21.1405 47.1582 20.2103V14.4283Z"/>',

@@ -92,7 +92,16 @@ ios-prepare: common-prepare ios-libs
 	cd ios; pod repo update; pod install;echo "done ios prepare"
 	
 macos-prepare: common-prepare macos-libs
-linux-prepare: common-prepare linux-amd64-libs
+
+LINUX_CORE_ARCH := amd64
+ifeq ($(shell uname -m),aarch64)
+LINUX_CORE_ARCH := arm64
+endif
+ifeq ($(shell uname -m),arm64)
+LINUX_CORE_ARCH := arm64
+endif
+
+linux-prepare: common-prepare linux-$(LINUX_CORE_ARCH)-libs
 
 
 linux-amd64-prepare: common-prepare linux-amd64-libs
@@ -125,7 +134,7 @@ generate_kotlin_protos:
 	# # Find .proto files and update package declarations
 	# find "./android/app/src/main/java/com/hiddify/hiddify/protos" -type f -name "*.java" | while read -r proto_file; do \
 	#     if grep -q "^package " "$$proto_file"; then \
-	#         $(SED) 's/^package \([\w\.]*\)/package com.andybeg.tropa.protos.\1/g' "$$proto_file"; \
+	#         $(SED) 's/^package \([\w\.]*\)/package com.andybeg.road.protos.\1/g' "$$proto_file"; \
 	#     fi \
 	# done
 
@@ -316,15 +325,15 @@ windows-zip-release:
 	$(YELLOW)Post-processing Windows portable$(DONE); \
 	cd "$$ZIP_DIR"; \
 	$(BLUE)Extracting and Repacking...$(DONE); \
-	mkdir -p Tropa; \
-	unzip -q "$$ZIP_FILE" -d Tropa/; \
+	mkdir -p Road; \
+	unzip -q "$$ZIP_FILE" -d Road/; \
 	rm "$$ZIP_FILE"; \
 	if command -v 7z > /dev/null 2>&1; then \
-	  7z a -tzip -bso0 -bsp0 "$$FILE_NAME.zip" Tropa; \
+	  7z a -tzip -bso0 -bsp0 "$$FILE_NAME.zip" Road; \
 	else \
-	  pwsh -NoProfile -Command "Compress-Archive -Path Tropa -DestinationPath '$$FILE_NAME.zip' -Force"; \
+	  pwsh -NoProfile -Command "Compress-Archive -Path Road -DestinationPath '$$FILE_NAME.zip' -Force"; \
 	fi; \
-	rm -rf Tropa; \
+	rm -rf Road; \
 	$(GREEN)Successful$(DONE)
 
 windows-exe-release:
@@ -392,6 +401,7 @@ linux-deb-release:
 # runtime instability. Use only for specific edge cases where standard linking fails.
 # ==============================================================================
 linux-appimage-release:
+	@case "$$(uname -m)" in x86_64) export ARCH=x86_64 ;; aarch64|arm64) export ARCH=aarch64 ;; *) export ARCH=$$(uname -m) ;; esac; \
 	fastforge package \
 	--platform linux \
 	--targets appimage \
@@ -405,38 +415,47 @@ linux-appimage-release:
 	cp ../../linux/packaging/appimage/AppRun squashfs-root/AppRun; \
 	$(BLUE)Granting permissions$(DONE); \
 	chmod -R a+rX squashfs-root && chmod a+rx squashfs-root/AppRun; \
-	$(BLUE)Adding StartupWMClass to tropa.desktop$(DONE); \
-	sed -i '/^\[Desktop Entry\]/a StartupWMClass=com.andybeg.tropa' "squashfs-root/tropa.desktop"; \
+	$(BLUE)Adding StartupWMClass to road.desktop$(DONE); \
+	sed -i '/^\[Desktop Entry\]/a StartupWMClass=com.andybeg.road' "squashfs-root/road.desktop"; \
 	$(BLUE)Removing old AppImage$(DONE); \
 	rm *.AppImage; \
 	$(BLUE)Deleting bundled libstdc++ to fix Arch Linux compatibility...$(DONE); \
 	find squashfs-root/usr/lib -name "libstdc++.so.6" -delete; \
 	$(BLUE)Rebuilding AppImage$(DONE); \
-	ARCH=x86_64 appimagetool --no-appstream squashfs-root Tropa.AppImage > /dev/null || exit 1; \
+	case "$$(uname -m)" in x86_64) AI_ARCH=x86_64 ;; aarch64|arm64) AI_ARCH=aarch64 ;; *) AI_ARCH=$$(uname -m) ;; esac; \
+	ARCH=$$AI_ARCH appimagetool --no-appstream squashfs-root Road.AppImage > /dev/null || exit 1; \
 	$(BLUE)Cleaning up squashfs$(DONE); \
 	rm -rf squashfs-root; \
 	$(YELLOW)Creating Portable Package$(DONE); \
-	PKG_DIR_NAME="tropa-linux-appimage"; \
+	PKG_DIR_NAME="road-linux-appimage"; \
 	$(BLUE)Creating dir: $$PKG_DIR_NAME$(DONE); \
 	mkdir -p "$$PKG_DIR_NAME"; \
-	$(BLUE)Moving Tropa.AppImage$(DONE); \
-	cp -p "Tropa.AppImage" "$$PKG_DIR_NAME/Tropa.AppImage"; \
+	$(BLUE)Moving Road.AppImage$(DONE); \
+	cp -p "Road.AppImage" "$$PKG_DIR_NAME/Road.AppImage"; \
 	$(BLUE)Creating Portable Home directory$(DONE); \
-	mkdir -p "$$PKG_DIR_NAME/Tropa.AppImage.home"; \
+	mkdir -p "$$PKG_DIR_NAME/Road.AppImage.home"; \
 	$(BLUE)Compressing to .tar.gz$(DONE); \
 	tar -czf "$$PKG_DIR_NAME.tar.gz" -C . "$$PKG_DIR_NAME"; \
 	$(BLUE)Removing intermediate directory$(DONE); \
 	rm -rf "$$PKG_DIR_NAME"; \
 	$(GREEN)Successful$(DONE)
 
-DOCKER_IMAGE_NAME := tropa-linux-builder
-DOCKER_FLUTTER_VOL := tropa-flutter-sdk-cache
-DOCKER_PUB_VOL := tropa-pub-cache
+DOCKER_IMAGE_NAME ?= linux-flutter-builder
+DOCKER_FLUTTER_VOL ?= linux-flutter-sdk-cache
+DOCKER_PUB_VOL ?= linux-pub-cache
 
 ifeq ($(OS),Windows_NT)
     FIX_OWNERSHIP := echo \"Windows detected: Skipping chown\"
 else
     FIX_OWNERSHIP := chown -R $(shell id -u):$(shell id -g) /host/dist_docker
+endif
+
+ifeq ($(findstring linux/amd64,$(DOCKER_DEFAULT_PLATFORM)),linux/amd64)
+DOCKER_APPIMAGE_ARCH := x86_64
+else ifeq ($(shell uname -m),x86_64)
+DOCKER_APPIMAGE_ARCH := x86_64
+else
+DOCKER_APPIMAGE_ARCH := aarch64
 endif
 
 DOCKER_CMD := \
@@ -445,10 +464,16 @@ DOCKER_CMD := \
 	mkdir -p /app; \
 	tar -cf - --exclude='build' --exclude='.dart_tool' --exclude='dist' --exclude='dist_docker' --exclude='android' --exclude='windows' --exclude='ios' --exclude='macos' --exclude='.git' -C /host . | tar -xf - -C /app; \
 	cd /app; \
+	if [ ! -x /root/develop/flutter/bin/flutter ]; then \
+		echo '** Seeding Flutter SDK into cache volume...'; \
+		git clone https://github.com/flutter/flutter.git -b stable /root/develop/flutter; \
+	fi; \
 	make linux-flutter-sync; \
+	dart pub global activate fastforge; \
 	make linux-prepare; \
-	echo '** Building Release (linux-release)...'; \
-	make linux-release; \
+	echo '** Building Release (linux-deb, then AppImage)...'; \
+	make linux-deb-release; \
+	make linux-appimage-release || echo '** AppImage failed; keeping the .deb'; \
 	echo '** Copying artifacts to host...'; \
 	rm -rf /host/dist_docker; \
 	if [ -d \"dist\" ]; then \
@@ -460,20 +485,27 @@ DOCKER_CMD := \
 		exit 1; \
 	fi;
 
+DOCKER_PLATFORM_FLAG :=
+ifneq ($(DOCKER_DEFAULT_PLATFORM),)
+DOCKER_PLATFORM_FLAG := --platform $(DOCKER_DEFAULT_PLATFORM)
+endif
+
 linux-docker-release:	
 	@$(BLUE)Building docker image (Cached)$(DONE)
-	docker build -t $(DOCKER_IMAGE_NAME) -f Dockerfile .
+	docker build $(DOCKER_PLATFORM_FLAG) -t $(DOCKER_IMAGE_NAME) -f Dockerfile .
 	
 	@$(BLUE)Ensuring cache volumes exist$(DONE)
 	docker volume create $(DOCKER_FLUTTER_VOL) || true
 	docker volume create $(DOCKER_PUB_VOL) || true
 
 	@$(YELLOW)Running build inside container$(DONE)
-	@docker run --rm \
+	@docker run --rm $(DOCKER_PLATFORM_FLAG) \
 		-v "$(CURDIR)://host" \
 		-v $(DOCKER_FLUTTER_VOL)://root/develop/flutter \
 		-v $(DOCKER_PUB_VOL)://root/.pub-cache \
 		-e APPIMAGE_EXTRACT_AND_RUN=1 \
+		-e CHANNEL="$(CHANNEL)" \
+		-e ARCH="$(DOCKER_APPIMAGE_ARCH)" \
 		$(DOCKER_IMAGE_NAME) \
 		//bin/bash -c "$(DOCKER_CMD)"
 

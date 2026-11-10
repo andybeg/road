@@ -1,9 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/utils/link_parsers.dart';
+import 'package:road/utils/link_parsers.dart';
 
 void main() {
-  group("LinkParser.deep - tropa scheme", () {
+  group("LinkParser.deep - road scheme", () {
     test("install-config is accepted", () {
+      final link = LinkParser.deep("road://install-config?url=https%3A%2F%2Fsub.com%2Fx#MyProfile");
+      expect(link, isNotNull);
+      expect(link!.url, equals("https://sub.com/x"));
+      expect(link.name, equals("MyProfile"));
+    });
+
+    test("tropa:// is still accepted", () {
       final link = LinkParser.deep("tropa://install-config?url=https%3A%2F%2Fsub.com%2Fx#MyProfile");
       expect(link, isNotNull);
       expect(link!.url, equals("https://sub.com/x"));

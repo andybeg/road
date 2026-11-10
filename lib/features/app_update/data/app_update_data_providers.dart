@@ -1,5 +1,5 @@
-import 'package:tropa/core/http_client/http_client_provider.dart';
-import 'package:tropa/features/app_update/data/app_update_repository.dart';
+import 'package:road/core/http_client/http_client_provider.dart';
+import 'package:road/features/app_update/data/app_update_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

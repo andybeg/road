@@ -2,13 +2,13 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/features/proxy/active/active_proxy_notifier.dart';
-import 'package:tropa/features/proxy/active/ip_widget.dart';
-import 'package:tropa/features/proxy/model/proxy_entity.dart';
-import 'package:tropa/features/proxy/overview/proxies_overview_notifier.dart';
-import 'package:tropa/features/proxy/widget/upload_speed.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/features/proxy/active/active_proxy_notifier.dart';
+import 'package:road/features/proxy/active/ip_widget.dart';
+import 'package:road/features/proxy/model/proxy_entity.dart';
+import 'package:road/features/proxy/overview/proxies_overview_notifier.dart';
+import 'package:road/features/proxy/widget/upload_speed.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// A proxy at a glance: who it is and where it leads, then its ping, upload and download speed,

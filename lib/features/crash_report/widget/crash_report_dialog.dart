@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/notification/in_app_notification_controller.dart';
-import 'package:tropa/features/crash_report/data/diagnostics_exporter.dart';
-import 'package:tropa/features/log/overview/logs_modals.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/notification/in_app_notification_controller.dart';
+import 'package:road/features/crash_report/data/diagnostics_exporter.dart';
+import 'package:road/features/log/overview/logs_modals.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final _log = appLogger('CrashReportDialog');

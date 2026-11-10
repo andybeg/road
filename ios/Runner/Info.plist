@@ -9,7 +9,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Tropa</string>
+	<string>Road</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -29,6 +29,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>road</string>
 				<string>tropa</string>
 				<string>hiddify</string>
 				<string>v2ray</string>
@@ -41,7 +42,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.andybeg.tropa</string>
+			<string>com.andybeg.road</string>
 		</dict>
 	</array>
 	<key>FlutterDeepLinkingEnabled</key>

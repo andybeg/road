@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/features/profile/data/reality_handshake.dart';
-import 'package:tropa/singbox/model/singbox_config_enum.dart';
+import 'package:road/features/profile/data/reality_handshake.dart';
+import 'package:road/singbox/model/singbox_config_enum.dart';
 
 void main() {
   const vlessReality =

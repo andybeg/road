@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/failures.dart';
-import 'package:tropa/core/router/dialog/dialog_notifier.dart';
-import 'package:tropa/features/profile/notifier/profiles_update_notifier.dart';
-import 'package:tropa/features/profile/overview/profiles_notifier.dart';
-import 'package:tropa/features/profile/widget/profile_tile.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/failures.dart';
+import 'package:road/core/router/dialog/dialog_notifier.dart';
+import 'package:road/features/profile/notifier/profiles_update_notifier.dart';
+import 'package:road/features/profile/overview/profiles_notifier.dart';
+import 'package:road/features/profile/widget/profile_tile.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfilesModal extends HookConsumerWidget {

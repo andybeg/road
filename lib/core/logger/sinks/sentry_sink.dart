@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:tropa/utils/sentry_utils.dart';
+import 'package:road/utils/sentry_utils.dart';
 import 'package:logging/logging.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/failures.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/failures.dart';
 
 part 'app_update_failure.freezed.dart';
 

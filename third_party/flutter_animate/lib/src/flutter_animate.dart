@@ -51,7 +51,7 @@ class EffectEntry {
 
   /// Builds a sub-animation based on the properties of this entry.
   ///
-  /// Tropa: drive(CurveTween) instead of CurvedAnimation. This runs from [Effect.build] on
+  /// Road: drive(CurveTween) instead of CurvedAnimation. This runs from [Effect.build] on
   /// every rebuild of the [Animate] widget, and a CurvedAnimation registers itself on the
   /// controller and is never disposed, so every rebuild leaked one per effect for the life of
   /// the widget (gskinner/flutter_animate#155, fix of PR #166).

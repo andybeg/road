@@ -1,11 +1,11 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
-import 'package:tropa/core/db/converters/duration_converter.dart';
-import 'package:tropa/core/db/db.steps.dart';
-import 'package:tropa/core/directories/directories_provider.dart';
-import 'package:tropa/features/app_based_routing/model/per_app_proxy_mode.dart';
-import 'package:tropa/features/profile/model/profile_entity.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/db/converters/duration_converter.dart';
+import 'package:road/core/db/db.steps.dart';
+import 'package:road/core/directories/directories_provider.dart';
+import 'package:road/features/app_based_routing/model/per_app_proxy_mode.dart';
+import 'package:road/features/profile/model/profile_entity.dart';
+import 'package:road/utils/custom_loggers.dart';
 
 part 'db.g.dart';
 

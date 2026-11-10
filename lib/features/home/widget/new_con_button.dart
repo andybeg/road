@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/widget/animated_text.dart';
+import 'package:road/core/widget/animated_text.dart';
 
 class CircleDesignWidget extends StatelessWidget {
   final double animationValue;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/router/dialog/dialog_notifier.dart';
-import 'package:tropa/core/utils/preferences_utils.dart';
-import 'package:tropa/features/proxy/active/ip_widget.dart';
-import 'package:tropa/features/settings/notifier/battery_optimization/battery_optimizations_notifier.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/router/dialog/dialog_notifier.dart';
+import 'package:road/core/utils/preferences_utils.dart';
+import 'package:road/features/proxy/active/ip_widget.dart';
+import 'package:road/features/settings/notifier/battery_optimization/battery_optimizations_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ValuePreferenceWidget<T> extends HookConsumerWidget {

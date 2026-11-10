@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:tropa/core/logger/logger_setup.dart';
-import 'package:tropa/core/logger/ring/log_ring.dart';
-import 'package:tropa/core/preferences/general_preferences.dart';
-import 'package:tropa/features/log/overview/logs_overview_state.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/logger/logger_setup.dart';
+import 'package:road/core/logger/ring/log_ring.dart';
+import 'package:road/core/preferences/general_preferences.dart';
+import 'package:road/features/log/overview/logs_overview_state.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

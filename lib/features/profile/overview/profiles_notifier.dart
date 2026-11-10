@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:fpdart/fpdart.dart';
-import 'package:tropa/core/haptic/haptic_service.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/notification/in_app_notification_controller.dart';
-import 'package:tropa/core/preferences/general_preferences.dart';
-import 'package:tropa/features/connection/notifier/connection_notifier.dart';
-import 'package:tropa/features/profile/data/profile_data_providers.dart';
-import 'package:tropa/features/profile/data/profile_repository.dart';
-import 'package:tropa/features/profile/model/profile_entity.dart';
-import 'package:tropa/features/profile/model/profile_sort_enum.dart';
-import 'package:tropa/features/profile/notifier/active_profile_notifier.dart';
-import 'package:tropa/features/settings/data/config_option_repository.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/haptic/haptic_service.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/notification/in_app_notification_controller.dart';
+import 'package:road/core/preferences/general_preferences.dart';
+import 'package:road/features/connection/notifier/connection_notifier.dart';
+import 'package:road/features/profile/data/profile_data_providers.dart';
+import 'package:road/features/profile/data/profile_repository.dart';
+import 'package:road/features/profile/model/profile_entity.dart';
+import 'package:road/features/profile/model/profile_sort_enum.dart';
+import 'package:road/features/profile/notifier/active_profile_notifier.dart';
+import 'package:road/features/settings/data/config_option_repository.dart';
+import 'package:road/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profiles_notifier.g.dart';

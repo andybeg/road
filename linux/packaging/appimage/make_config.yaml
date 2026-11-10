@@ -1,9 +1,9 @@
-display_name: Tropa
+display_name: Road
 
 icon: assets/images/source/ic_launcher_border.png
 
 keywords:
-  - Tropa
+  - Road
   - Proxy
   - VPN
   - V2ray
@@ -12,7 +12,7 @@ keywords:
   - Psiphon
   - OpenVPN
 
-generic_name: Tropa
+generic_name: Road
 
 actions:
   - name: Start
@@ -32,6 +32,7 @@ startup_notify: true
 # app_links setup for Linux
 # https://github.com/llfbandit/app_links/blob/master/doc/README_linux.md
 supported_mime_type:
+  - x-scheme-handler/road
   - x-scheme-handler/tropa
   - x-scheme-handler/hiddify
   - x-scheme-handler/v2ray
@@ -52,4 +53,4 @@ supported_mime_type:
 #   - libcurl.so.4
 include: []
 
-metainfo: linux/packaging/com.andybeg.tropa.appdata.xml
+metainfo: linux/packaging/com.andybeg.road.appdata.xml

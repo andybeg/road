@@ -1,10 +1,13 @@
-# Agent guide: Tropa
+# Agent guide: Road
 
-Tropa is a fork of [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app).
-PRs for Tropa stay on this repository.
+Road is a fork of [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app).
+PRs for Road stay on this repository.
 
 The `hiddify-core` submodule and its gRPC/protobuf names are the original core
-protocol. Do not rename them.
+protocol. Do not rename them. Also leave: helper path
+`/Library/Application Support/Hiddify/`, LAN user `hiddify`, `hiddify://`
+alongside `road://`, and fork credit in LICENSE / About. If asked to change
+those, remind that they stay for the core and the fork license.
 
 ## Before opening
 - One feature or fix per PR.

@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core_bridge/core_interface/core_interface_desktop.dart';
-import 'package:tropa/core_bridge/generated/v2/hcommon/common.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pbenum.dart';
+import 'package:road/core_bridge/core_interface/core_interface_desktop.dart';
+import 'package:road/core_bridge/generated/v2/hcommon/common.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pbenum.dart';
 
 /// Path [CoreInterfaceDesktop] opens under `FLUTTER_TEST`.
 String _desktopCoreLibPath() {

@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:grpc/grpc.dart';
-import 'package:tropa/core/logger/logger_setup.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/core_service.dart';
-import 'package:tropa/core_bridge/core_service_provider.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/logger/logger_setup.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/core_service.dart';
+import 'package:road/core_bridge/core_service_provider.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final _log = appLogger('Diagnostics');

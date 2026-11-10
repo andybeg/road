@@ -1,9 +1,9 @@
-import 'package:tropa/features/chain/model/chain_enum.dart';
-import 'package:tropa/features/profile/data/profile_data_providers.dart';
-import 'package:tropa/features/profile/data/profile_repository.dart';
-import 'package:tropa/features/profile/model/profile_entity.dart';
-import 'package:tropa/features/profile/notifier/active_profile_notifier.dart';
-import 'package:tropa/features/settings/data/config_option_repository.dart';
+import 'package:road/features/chain/model/chain_enum.dart';
+import 'package:road/features/profile/data/profile_data_providers.dart';
+import 'package:road/features/profile/data/profile_repository.dart';
+import 'package:road/features/profile/model/profile_entity.dart';
+import 'package:road/features/profile/notifier/active_profile_notifier.dart';
+import 'package:road/features/settings/data/config_option_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'chain_profile_notifier.g.dart';

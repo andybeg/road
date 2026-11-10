@@ -4,9 +4,9 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:tropa/features/profile/add/phone_import/phone_import_page.dart';
+import 'package:road/features/profile/add/phone_import/phone_import_page.dart';
 
-export 'package:tropa/features/profile/add/phone_import/phone_import_page.dart' show PhoneImportPageText, PhoneImportStep;
+export 'package:road/features/profile/add/phone_import/phone_import_page.dart' show PhoneImportPageText, PhoneImportStep;
 
 /// What a phone sent: a subscription link or a config, waiting for the TV user to import it.
 class PhoneEntry {

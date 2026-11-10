@@ -116,7 +116,7 @@ def main() -> None:
             fail(f"expected one app extension, found {len(extensions)}")
 
         verify_bundle(app, bundle_id, team_id)
-        verify_bundle(extensions[0], f"{bundle_id}.TropaPacketTunnel", team_id)
+        verify_bundle(extensions[0], f"{bundle_id}.RoadPacketTunnel", team_id)
         run("codesign", "--verify", "--deep", "--strict", "--verbose=2", str(app))
         if not (app / "PrivacyInfo.xcprivacy").is_file():
             fail("PrivacyInfo.xcprivacy is missing from the app bundle")

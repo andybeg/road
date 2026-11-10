@@ -1,5 +1,5 @@
-import 'package:tropa/core/directories/directories_provider.dart';
-import 'package:tropa/features/log/data/log_path_resolver.dart';
+import 'package:road/core/directories/directories_provider.dart';
+import 'package:road/features/log/data/log_path_resolver.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

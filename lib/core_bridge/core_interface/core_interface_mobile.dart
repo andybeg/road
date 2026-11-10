@@ -3,24 +3,24 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:grpc/grpc.dart';
-import 'package:tropa/core/model/directories.dart';
-import 'package:tropa/core/utils/laststeam.dart';
-import 'package:tropa/core_bridge/core_interface/core_interface.dart';
-import 'package:tropa/core_bridge/core_interface/grpc_client_identity.dart';
-import 'package:tropa/core_bridge/core_interface/mtls_channel_cred.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
-import 'package:tropa/core_bridge/generated/v2/hello/hello.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hello/hello_service.pbgrpc.dart';
-import 'package:tropa/singbox/model/core_status.dart';
+import 'package:road/core/model/directories.dart';
+import 'package:road/core/utils/laststeam.dart';
+import 'package:road/core_bridge/core_interface/core_interface.dart';
+import 'package:road/core_bridge/core_interface/grpc_client_identity.dart';
+import 'package:road/core_bridge/core_interface/mtls_channel_cred.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
+import 'package:road/core_bridge/generated/v2/hello/hello.pb.dart';
+import 'package:road/core_bridge/generated/v2/hello/hello_service.pbgrpc.dart';
+import 'package:road/singbox/model/core_status.dart';
 
-import 'package:tropa/utils/utils.dart';
+import 'package:road/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CoreInterfaceMobile extends CoreInterface with InfraLogger {
   @override
   bool get coreSharesProcess => Platform.isAndroid;
 
-  static const channelPrefix = "com.andybeg.tropa";
+  static const channelPrefix = "com.andybeg.road";
   static const methodChannel = MethodChannel("$channelPrefix/method");
   static const statusChannel = EventChannel("$channelPrefix/service.status", JSONMethodCodec());
   static const alertsChannel = EventChannel("$channelPrefix/service.alerts", JSONMethodCodec());

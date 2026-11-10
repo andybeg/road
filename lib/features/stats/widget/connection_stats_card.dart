@@ -1,10 +1,10 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/widget/shimmer_skeleton.dart';
-import 'package:tropa/features/proxy/active/active_proxy_notifier.dart';
-import 'package:tropa/features/proxy/active/ip_widget.dart';
-import 'package:tropa/features/stats/widget/stats_card.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/widget/shimmer_skeleton.dart';
+import 'package:road/features/proxy/active/active_proxy_notifier.dart';
+import 'package:road/features/proxy/active/ip_widget.dart';
+import 'package:road/features/stats/widget/stats_card.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ConnectionStatsCard extends HookConsumerWidget {

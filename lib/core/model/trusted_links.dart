@@ -11,7 +11,7 @@
 /// - the path and query are compared exactly (case-sensitive).
 abstract class TrustedLinks {
   static const List<String> entries = [
-    'github.com/andybeg/tropa',
+    'github.com/andybeg/road',
     'github.com/hiddify/hiddify-app',
   ];
 

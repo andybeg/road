@@ -1,6 +1,6 @@
 # Test configs
 
-Sample profiles for Tropa, a fork of [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app).
+Sample profiles for Road, a fork of [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app).
 
 Warp example (from the original repository):
 

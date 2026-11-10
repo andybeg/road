@@ -1,5 +1,5 @@
-import 'package:tropa/core/db/provider/db_providers.dart';
-import 'package:tropa/features/app_based_routing/data/app_proxy_data_source.dart';
+import 'package:road/core/db/provider/db_providers.dart';
+import 'package:road/features/app_based_routing/data/app_proxy_data_source.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

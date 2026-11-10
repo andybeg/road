@@ -1,14 +1,14 @@
-# Tropa
+# Road
 
-Tropa is a multi-platform proxy client.
+Road is a multi-platform proxy client.
 
 This project is a fork of [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app), licensed under the original GPL-3 additional conditions. See [LICENSE.md](LICENSE.md).
 
-Releases: [github.com/andybeg/tropa](https://github.com/andybeg/tropa/releases)
+Releases: [github.com/andybeg/road](https://github.com/andybeg/road/releases)
 
 ## What changed in this fork
 
-- Identity: **Tropa**, Android `com.andybeg.tropa`, Apple `apple.andybeg.tropa`
+- Identity: **Road**, Android `com.andybeg.road`, Apple `apple.andybeg.road`
 - VLESS Reality handshake: classical `key_share` (as in 4.1.1), multiplex off on Reality
 - Optional TCP ping of the VLESS server, configurable in settings
 - macOS unsigned builds: Touch ID first when installing the VPN helper

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/features/proxy/widget/upload_speed.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/features/proxy/widget/upload_speed.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {

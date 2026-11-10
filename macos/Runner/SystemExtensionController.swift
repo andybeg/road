@@ -21,8 +21,8 @@ private enum VPNErrorCode: Int {
 final class SystemExtensionController:
     NSObject,
     OSSystemExtensionRequestDelegate {
-    let extensionIdentifier = Bundle.main.object(forInfoDictionaryKey: "TropaTunnelBundleIdentifier") as? String
-        ?? "apple.andybeg.tropa.PacketTunnel"
+    let extensionIdentifier = Bundle.main.object(forInfoDictionaryKey: "RoadTunnelBundleIdentifier") as? String
+        ?? "apple.andybeg.road.PacketTunnel"
     private(set) var activationState: ExtensionActivationState = .idle
     var onStateChanged: (() -> Void)?
     private var completion: ((Error?) -> Void)?
@@ -42,7 +42,7 @@ final class SystemExtensionController:
         onStateChanged?()
         let callback = completion
         completion = nil
-        callback?(vpnError("Allow the Tropa VPN extension in System Settings, then return to Tropa and connect again.", code: .approvalRequired))
+        callback?(vpnError("Allow the Road VPN extension in System Settings, then return to Road and connect again.", code: .approvalRequired))
     }
 
     func request(
@@ -60,7 +60,7 @@ final class SystemExtensionController:
             case .completed:
                 finish(.activated, error: nil)
             case .willCompleteAfterReboot:
-                finish(.requiresReboot, error: vpnError("Restart your Mac to finish installing the Tropa VPN extension."))
+                finish(.requiresReboot, error: vpnError("Restart your Mac to finish installing the Road VPN extension."))
             @unknown default:
                 finish(.failed("Unknown activation result"), error: vpnError("macOS returned an unknown extension activation result."))
         }
@@ -77,11 +77,11 @@ final class SystemExtensionController:
     func activate(completion: @escaping (Error?) -> Void) {
         if case .activated = activationState { completion(nil); return }
         if case .activating = activationState {
-            completion(vpnError("macOS is still installing the Tropa system extension. Try connecting again when it finishes."))
+            completion(vpnError("macOS is still installing the Road system extension. Try connecting again when it finishes."))
             return
         }
         if case .waitingForApproval = activationState {
-            completion(vpnError("Allow the Tropa VPN extension in System Settings, then return to Tropa and connect again.", code: .approvalRequired))
+            completion(vpnError("Allow the Road VPN extension in System Settings, then return to Road and connect again.", code: .approvalRequired))
             return
         }
         guard self.completion == nil else {
@@ -127,18 +127,18 @@ final class MacOSVPNController: NSObject, FlutterStreamHandler {
     // the tunnel disconnecting, which can take seconds the app would otherwise show as connected.
     private var stopping = false
     private var queuedStop: FlutterResult?
-    private let enabled = Bundle.main.object(forInfoDictionaryKey: "TropaNetworkExtensionEnabled") as? String == "YES"
+    private let enabled = Bundle.main.object(forInfoDictionaryKey: "RoadNetworkExtensionEnabled") as? String == "YES"
     // The Mac App Store build carries the packet tunnel as an app extension, which needs no
     // activation. Its sandbox keeps the app from setting the system proxy, so the tunnel does that.
-    private let appExtension = Bundle.main.object(forInfoDictionaryKey: "TropaTunnelKind") as? String == "app-extension"
+    private let appExtension = Bundle.main.object(forInfoDictionaryKey: "RoadTunnelKind") as? String == "app-extension"
     // Builds without a Network Extension run the VPN in hiddify-core's tunnel service instead.
     private let tunnelService = TunnelServiceController()
 
     init(messenger: FlutterBinaryMessenger) {
         super.init()
-        let methods = FlutterMethodChannel(name: "com.andybeg.tropa/macos-vpn", binaryMessenger: messenger)
+        let methods = FlutterMethodChannel(name: "com.andybeg.road/macos-vpn", binaryMessenger: messenger)
         methods.setMethodCallHandler { [weak self] call, result in self?.handle(call, result: result) }
-        FlutterEventChannel(name: "com.andybeg.tropa/macos-vpn-status", binaryMessenger: messenger).setStreamHandler(self)
+        FlutterEventChannel(name: "com.andybeg.road/macos-vpn-status", binaryMessenger: messenger).setStreamHandler(self)
         activation.onStateChanged = { [weak self] in self?.emitStatus() }
         tunnelService.onStateChanged = { [weak self] in self?.emitStatus() }
     }
@@ -251,14 +251,14 @@ final class MacOSVPNController: NSObject, FlutterStreamHandler {
               appExtension || entitlements["com.apple.developer.system-extension.install"] as? Bool == true,
               let providers = entitlements["com.apple.developer.networking.networkextension"] as? [String],
               providers.contains("packet-tunnel-provider") || providers.contains("packet-tunnel-provider-systemextension") else {
-            throw vpnError("This build is not signed for Network Extension. Select an authorized Apple Developer team for Runner and TropaPacketTunnel.")
+            throw vpnError("This build is not signed for Network Extension. Select an authorized Apple Developer team for Runner and RoadPacketTunnel.")
         }
         let hasTeam = info[kSecCodeInfoTeamIdentifier as String] as? String != nil
         guard hasTeam else {
-            throw vpnError("This build is not signed for Network Extension. Select an authorized Apple Developer team for Runner and TropaPacketTunnel.")
+            throw vpnError("This build is not signed for Network Extension. Select an authorized Apple Developer team for Runner and RoadPacketTunnel.")
         }
         let extensionURL = appExtension
-            ? Bundle.main.builtInPlugInsURL!.appendingPathComponent("TropaPacketTunnel.appex")
+            ? Bundle.main.builtInPlugInsURL!.appendingPathComponent("RoadPacketTunnel.appex")
             : Bundle.main.bundleURL.appendingPathComponent("Contents/Library/SystemExtensions/\(activation.extensionIdentifier).systemextension")
         guard FileManager.default.fileExists(atPath: extensionURL.path) else {
             throw vpnError("The packet tunnel extension is missing from this app bundle.")
@@ -300,13 +300,13 @@ final class MacOSVPNController: NSObject, FlutterStreamHandler {
             let old = (manager.protocolConfiguration as? NETunnelProviderProtocol)?.providerConfiguration
             let proto = NETunnelProviderProtocol()
             proto.providerBundleIdentifier = activation.extensionIdentifier
-            proto.serverAddress = "Tropa"
+            proto.serverAddress = "Road"
             proto.disconnectOnSleep = false
             let secret = try old?["secret"] as? String ?? randomSecret()
             proto.providerConfiguration = [
                 "configContent": arguments["configContent"]!,
                 "settingsJSON": arguments["settingsJSON"]!,
-                "configName": arguments["configName"] as? String ?? "Tropa",
+                "configName": arguments["configName"] as? String ?? "Road",
                 "disableMemoryLimit": arguments["disableMemoryLimit"] as? Bool ?? false,
                 "proxyOnly": arguments["proxyOnly"] as? Bool ?? false,
                 "port": old?["port"] as? Int ?? Int(arc4random_uniform(40000)) + 20000,
@@ -318,7 +318,7 @@ final class MacOSVPNController: NSObject, FlutterStreamHandler {
             }
             proto.providerConfiguration?["resources"] = resources
             manager.protocolConfiguration = proto
-            manager.localizedDescription = "Tropa VPN"
+            manager.localizedDescription = "Road VPN"
             manager.isEnabled = true
             let rule = NEOnDemandRuleConnect()
             rule.interfaceTypeMatch = .any
@@ -395,11 +395,11 @@ final class MacOSVPNController: NSObject, FlutterStreamHandler {
                 connection.fetchLastDisconnectError { [weak self] error in
                     DispatchQueue.main.async {
                         guard self?.operationID == currentID else { return }
-                        self?.finishConnection(error ?? vpnError("The packet tunnel failed to start. See the TropaPacketTunnel logs in Console."))
+                        self?.finishConnection(error ?? vpnError("The packet tunnel failed to start. See the RoadPacketTunnel logs in Console."))
                     }
                 }
             } else {
-                finishConnection(vpnError("The packet tunnel failed to start. See the TropaPacketTunnel logs in Console."))
+                finishConnection(vpnError("The packet tunnel failed to start. See the RoadPacketTunnel logs in Console."))
             }
         }
     }
@@ -429,7 +429,7 @@ final class MacOSVPNController: NSObject, FlutterStreamHandler {
         case .activating: result["activation"] = "activating"
         case .waitingForApproval:
             result["activation"] = "waitingForApproval"
-            result["message"] = "Allow the Tropa VPN extension in System Settings, then return to Tropa and connect again."
+            result["message"] = "Allow the Road VPN extension in System Settings, then return to Road and connect again."
         case .activated: result["activation"] = "activated"
         case .requiresReboot: result["activation"] = "requiresReboot"
         case .failed(let message): result["activation"] = "failed"; result["message"] = message
@@ -453,7 +453,7 @@ final class MacOSVPNController: NSObject, FlutterStreamHandler {
     private func emitStatus() { eventSink?(enabled ? status() : tunnelService.state()) }
     private static func flutterError(_ error: Error) -> FlutterError {
         let nativeError = error as NSError
-        let needsApproval = nativeError.domain == "apple.andybeg.tropa.macos-vpn"
+        let needsApproval = nativeError.domain == "apple.andybeg.road.macos-vpn"
             && nativeError.code == VPNErrorCode.approvalRequired.rawValue
         return FlutterError(code: needsApproval ? "MACOS_VPN_APPROVAL_REQUIRED" : "MACOS_VPN",
                             message: error.localizedDescription, details: nil)
@@ -468,5 +468,5 @@ final class MacOSVPNController: NSObject, FlutterStreamHandler {
 }
 
 private func vpnError(_ message: String, code: VPNErrorCode = .failure) -> NSError {
-    NSError(domain: "apple.andybeg.tropa.macos-vpn", code: code.rawValue, userInfo: [NSLocalizedDescriptionKey: message])
+    NSError(domain: "apple.andybeg.road.macos-vpn", code: code.rawValue, userInfo: [NSLocalizedDescriptionKey: message])
 }

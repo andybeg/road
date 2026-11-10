@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:tropa/gen/fonts.gen.dart';
-import 'package:tropa/gen/translations.g.dart';
+import 'package:road/gen/fonts.gen.dart';
+import 'package:road/gen/translations.g.dart';
 
 extension AppLocaleX on AppLocale {
   String get preferredFontFamily =>

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tropa/core/db/db.dart';
-import 'package:tropa/features/profile/data/profile_data_mapper.dart';
-import 'package:tropa/features/profile/model/profile_entity.dart';
+import 'package:road/core/db/db.dart';
+import 'package:road/features/profile/data/profile_data_mapper.dart';
+import 'package:road/features/profile/model/profile_entity.dart';
 
 void main() {
   ProfileEntry remote({String? url = 'https://example.com/sub', String? headers, String? userOverride}) => ProfileEntry(

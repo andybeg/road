@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tropa/core/router/bottom_sheets/bottom_sheets_notifier.dart';
-import 'package:tropa/core/router/go_router/go_router_notifier.dart';
-import 'package:tropa/features/window/notifier/window_notifier.dart';
+import 'package:road/core/router/bottom_sheets/bottom_sheets_notifier.dart';
+import 'package:road/core/router/go_router/go_router_notifier.dart';
+import 'package:road/features/window/notifier/window_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ShortcutWrapper extends HookConsumerWidget {

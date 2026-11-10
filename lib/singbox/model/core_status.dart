@@ -1,7 +1,7 @@
 import 'package:dartx/dartx.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tropa/features/connection/model/connection_failure.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/features/connection/model/connection_failure.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
 
 part 'core_status.freezed.dart';
 

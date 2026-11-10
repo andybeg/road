@@ -4,18 +4,18 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:grpc/grpc.dart';
-import 'package:tropa/core/model/directories.dart';
-import 'package:tropa/core_bridge/core_interface/core_interface.dart';
-import 'package:tropa/core_bridge/core_interface/core_interface_desktop.dart';
-import 'package:tropa/core_bridge/core_interface/vpn_config_snapshot.dart';
-import 'package:tropa/core_bridge/generated/v2/hcommon/common.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/adminbgservice/admin_bg_service.pbgrpc.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
-import 'package:tropa/core_bridge/grpc_stream_cancel.dart';
-import 'package:tropa/singbox/model/core_status.dart';
-import 'package:tropa/singbox/model/singbox_config_option.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/model/directories.dart';
+import 'package:road/core_bridge/core_interface/core_interface.dart';
+import 'package:road/core_bridge/core_interface/core_interface_desktop.dart';
+import 'package:road/core_bridge/core_interface/vpn_config_snapshot.dart';
+import 'package:road/core_bridge/generated/v2/hcommon/common.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/adminbgservice/admin_bg_service.pbgrpc.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore_service.pbgrpc.dart';
+import 'package:road/core_bridge/grpc_stream_cancel.dart';
+import 'package:road/singbox/model/core_status.dart';
+import 'package:road/singbox/model/singbox_config_option.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -34,8 +34,8 @@ class CoreInterfaceMacOS extends CoreInterfaceDesktop {
     _receiveState(nativeState);
   }
 
-  static const _methods = MethodChannel('com.andybeg.tropa/macos-vpn');
-  static const _events = EventChannel('com.andybeg.tropa/macos-vpn-status');
+  static const _methods = MethodChannel('com.andybeg.road/macos-vpn');
+  static const _events = EventChannel('com.andybeg.road/macos-vpn-status');
   final _status = BehaviorSubject<CoreStatus>.seeded(const CoreStatus.stopped());
   final _clientChanges = StreamController<void>.broadcast();
   StreamSubscription<dynamic>? _nativeSubscription;
@@ -354,7 +354,7 @@ class CoreInterfaceMacOS extends CoreInterfaceDesktop {
     bgClient = fgClient;
 
     // Stop over AdminBg gRPC first. If that works, tell Swift to skip spawning
-    // another `Tropa --tunnel disconnect` (the double-stop was the long hang).
+    // another `Road --tunnel disconnect` (the double-stop was the long hang).
     var engineStopped = false;
     if (stopEngine) {
       engineStopped = await _stopAdminBgEngine();

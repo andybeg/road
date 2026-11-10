@@ -14,7 +14,7 @@ on:
         required: true
         type: string
       asset_pattern:
-        description: 'Scan only assets matching this pattern (default: all Tropa-* packages)'
+        description: 'Scan only assets matching this pattern (default: all Road-* packages)'
         required: false
         type: string
         default: ''
@@ -57,17 +57,17 @@ jobs:
             exit 0
           fi
           gh release download "$TAG_NAME" --dir release_assets \
-            --pattern "Tropa-*.apk" \
-            --pattern "Tropa-*.exe" \
-            --pattern "Tropa-*.Msix" \
-            --pattern "Tropa-*.msix" \
-            --pattern "Tropa-*.zip" \
-            --pattern "Tropa-*.tar.gz" \
-            --pattern "Tropa-*.dmg" \
-            --pattern "Tropa-*.pkg" \
-            --pattern "Tropa-*.AppImage" \
-            --pattern "Tropa-*.deb" \
-            --pattern "Tropa-*.rpm"
+            --pattern "Road-*.apk" \
+            --pattern "Road-*.exe" \
+            --pattern "Road-*.Msix" \
+            --pattern "Road-*.msix" \
+            --pattern "Road-*.zip" \
+            --pattern "Road-*.tar.gz" \
+            --pattern "Road-*.dmg" \
+            --pattern "Road-*.pkg" \
+            --pattern "Road-*.AppImage" \
+            --pattern "Road-*.deb" \
+            --pattern "Road-*.rpm"
           ls -la release_assets
 
       - name: VirusTotal Scan

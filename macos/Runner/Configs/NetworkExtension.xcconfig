@@ -1,30 +1,30 @@
 // Debug supports local development without restricted Apple entitlements.
-TROPA_NETWORK_EXTENSION_ENABLED = YES
-TROPA_NETWORK_EXTENSION_ENABLED[config=Debug] = NO
-TROPA_HOST_ENTITLEMENTS = Runner/Release.entitlements
-TROPA_HOST_ENTITLEMENTS[config=Debug] = Runner/Developer.entitlements
-TROPA_EXTENSION_CODE_SIGN_ALLOWED = YES
-TROPA_EXTENSION_CODE_SIGN_ALLOWED[config=Debug] = NO
+ROAD_NETWORK_EXTENSION_ENABLED = YES
+ROAD_NETWORK_EXTENSION_ENABLED[config=Debug] = NO
+ROAD_HOST_ENTITLEMENTS = Runner/Release.entitlements
+ROAD_HOST_ENTITLEMENTS[config=Debug] = Runner/Developer.entitlements
+ROAD_EXTENSION_CODE_SIGN_ALLOWED = YES
+ROAD_EXTENSION_CODE_SIGN_ALLOWED[config=Debug] = NO
 // The packet tunnel is a system extension, except in the Mac App Store build (AppStore.xcconfig),
 // which carries it as an app extension instead.
-TROPA_TUNNEL_KIND = system-extension
-TROPA_APPEX_CODE_SIGN_ALLOWED = NO
+ROAD_TUNNEL_KIND = system-extension
+ROAD_APPEX_CODE_SIGN_ALLOWED = NO
 // The same identifiers as the iOS app, in the same Apple team
-TROPA_TUNNEL_BUNDLE_IDENTIFIER = apple.andybeg.tropa.PacketTunnel
-TROPA_APP_BUNDLE_IDENTIFIER = apple.andybeg.tropa
-TROPA_VPN_APP_GROUP = $(TeamIdentifierPrefix)apple.andybeg.tropa.vpn
+ROAD_TUNNEL_BUNDLE_IDENTIFIER = apple.andybeg.road.PacketTunnel
+ROAD_APP_BUNDLE_IDENTIFIER = apple.andybeg.road
+ROAD_VPN_APP_GROUP = $(TeamIdentifierPrefix)apple.andybeg.road.vpn
 // Apple Development profiles use the standard value; Developer ID uses the suffix.
-TROPA_NETWORK_EXTENSION_ENTITLEMENT = packet-tunnel-provider-systemextension
-TROPA_NETWORK_EXTENSION_ENTITLEMENT[config=Debug] = packet-tunnel-provider
+ROAD_NETWORK_EXTENSION_ENTITLEMENT = packet-tunnel-provider-systemextension
+ROAD_NETWORK_EXTENSION_ENTITLEMENT[config=Debug] = packet-tunnel-provider
 // Developer ID signing is manual, with the Developer ID profiles (CI supplies them through
 // APPLE_MACOS_SIGNING_XCCONFIG): automatic signing only makes development profiles, which lack the
 // system extension entitlement. Debug signs automatically for development.
-TROPA_CODE_SIGN_STYLE = Manual
-TROPA_CODE_SIGN_STYLE[config=Debug] = Automatic
-TROPA_CODE_SIGN_IDENTITY = Developer ID Application
-TROPA_CODE_SIGN_IDENTITY[config=Debug] = -
-TROPA_HOST_PROVISIONING_PROFILE =
-TROPA_TUNNEL_PROVISIONING_PROFILE =
+ROAD_CODE_SIGN_STYLE = Manual
+ROAD_CODE_SIGN_STYLE[config=Debug] = Automatic
+ROAD_CODE_SIGN_IDENTITY = Developer ID Application
+ROAD_CODE_SIGN_IDENTITY[config=Debug] = -
+ROAD_HOST_PROVISIONING_PROFILE =
+ROAD_TUNNEL_PROVISIONING_PROFILE =
 // Developer ID distribution requires hardened runtime on both executables.
 ENABLE_HARDENED_RUNTIME = YES
 ENABLE_HARDENED_RUNTIME[config=Debug] = NO

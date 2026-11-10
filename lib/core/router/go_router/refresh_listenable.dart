@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tropa/core/preferences/general_preferences.dart';
-import 'package:tropa/core/router/deep_linking/my_app_links.dart';
+import 'package:road/core/preferences/general_preferences.dart';
+import 'package:road/core/router/deep_linking/my_app_links.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // For temporary storage of the link received from AppLinks.

@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/failures.dart';
-import 'package:tropa/features/profile/add/phone_import/phone_import_notifier.dart';
-import 'package:tropa/features/profile/add/phone_import/phone_import_server.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/failures.dart';
+import 'package:road/features/profile/add/phone_import/phone_import_notifier.dart';
+import 'package:road/features/profile/add/phone_import/phone_import_server.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 

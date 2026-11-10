@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:tropa/features/proxy/model/proxy_entity.dart';
+import 'package:road/features/proxy/model/proxy_entity.dart';
 
 /// A proxy's display type on one line. The endpoint the WARP scanner chose stays hidden behind a
 /// magnifier: a tap on it shows the endpoint in place, another tap hides it again.

@@ -1,9 +1,9 @@
-import 'package:tropa/core/preferences/general_preferences.dart';
-import 'package:tropa/core/router/dialog/dialog_notifier.dart';
-import 'package:tropa/core_bridge/generated/v2/hcommon/common.pb.dart';
-import 'package:tropa/core_bridge/generated/v2/hcore/hcore.pb.dart';
-import 'package:tropa/core_bridge/core_service_provider.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/preferences/general_preferences.dart';
+import 'package:road/core/router/dialog/dialog_notifier.dart';
+import 'package:road/core_bridge/generated/v2/hcommon/common.pb.dart';
+import 'package:road/core_bridge/generated/v2/hcore/hcore.pb.dart';
+import 'package:road/core_bridge/core_service_provider.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final _log = appLogger('CrashReport');

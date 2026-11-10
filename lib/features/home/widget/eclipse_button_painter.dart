@@ -174,21 +174,19 @@ void _paintLook(_Ctx x) {
 // ---------------------------------------------------------------------------------------------
 // The looks
 
-/// The bars brighten one after another, left to right; [backwards], as while disconnecting, from the
-/// i back to the short bar, the starting wave played in reverse.
+/// The road brightens from near to far; [backwards], as while disconnecting, from the horizon back.
 void _barsWave(_Ctx x, {bool backwards = false}) {
   if (!x.p.drawLogo) return;
   final color = _alpha(x.col, x.p.logoOpacity);
-  double rank(int part) => backwards ? _HiLogo.rank.last - _HiLogo.rank[part] : _HiLogo.rank[part];
+  double rank(int part) => backwards ? _RoadMark.rank.last - _RoadMark.rank[part] : _RoadMark.rank[part];
   final shade = [for (var i = 0; i < 4; i++) _alpha(color, .4 + .6 * _bump((x.f.time - rank(i) * .3) % 1.6))];
   x.logoSpace((c) {
-    // the H stays one piece: its crossbar fades from the short bar's shade into the tall bar's
-    c.drawPath(
-      _HiLogo.h,
-      Paint()..shader = ui.Gradient.linear(const Offset(16.84, 0), const Offset(23.58, 0), [shade[0], shade[1]]),
-    );
-    c.drawPath(_HiLogo.stem, Paint()..color = shade[2]);
-    c.drawPath(_HiLogo.dot, Paint()..color = shade[3]);
+    for (var i = 0; i < 4; i++) {
+      c.save();
+      c.clipRect(_RoadMark.clipOf(i), doAntiAlias: false);
+      c.drawPath(_RoadMark.all, Paint()..color = shade[i]);
+      c.restore();
+    }
   });
 }
 
@@ -227,16 +225,16 @@ void _error(_Ctx x) {
   final s = x.f.since;
   x.disc();
   x.bevel();
-  const weak = [.72, .52, .34];
+  const weak = [.72, .52, .34, .22];
   final settled = _easeOut((s - .7) / .6);
   x.logo(
     ghost: _alpha(x.col, .16),
     dx: _shake(s),
     parts: _each((i) {
-      final bar = _HiLogo.bar[i];
-      final drop = _easeOut((s - (2 - bar) * .1) / .55);
+      final bar = _RoadMark.bar[i];
+      final drop = _easeOut((s - (3 - bar) * .1) / .55);
       final waver = .06 * math.sin(x.f.time * 2.3 + bar * 1.7) * settled;
-      final fade = bar == 2 ? 1 - .4 * _osc(x.f.time, 2.2) * settled : 1.0;
+      final fade = bar == 3 ? 1 - .4 * _osc(x.f.time, 2.2) * settled : 1.0;
       return _Part(fill: _lerp(1, weak[bar], drop) + waver, opacity: fade);
     }),
   );
@@ -278,21 +276,12 @@ void _connected(_Ctx x) {
   // the thin bright edge where the light meets the button
   x.ring(x.r - .5, _alpha(Color.lerp(downColor, upColor, up / (down + up + 1e-6))!, .55 * math.max(down, up)), 1.6);
 
-  // the bars settle with a spring, then breathe in a slow wave, a little taller with more traffic,
-  // and the dot floats
+  // the road settles with a spring, then breathes in a slow wave from near to far
   final alive = _easeInOut((s - 1.2) / 1.2);
-  final h = [for (var b = 0; b < 3; b++) .75 + .25 * _spring(s * 1.1 - b * .12)];
+  final h = [for (var b = 0; b < 4; b++) .75 + .25 * _spring(s * 1.1 - b * .12)];
   double breathe(int bar) => 1 - alive * (.035 * _osc(x.f.time, 3.2, -bar * .12) - .03 * t.total);
-  final stem = h[2] * breathe(2);
-  x.logo(
-    parts: [
-      _Part(scaleY: h[0] * breathe(0)),
-      _Part(scaleY: h[1] * breathe(1)),
-      _Part(scaleY: stem),
-      _Part(dy: (1 - stem) * 35.2 - 1.2 * alive * _osc(x.f.time, 2.6)),
-    ],
-  );
-  x.star(x.toPx(const Offset(67, -2)), 6 * _bump((s - .5) / .9));
+  x.logo(parts: [for (var b = 0; b < 4; b++) _Part(scaleY: h[b] * breathe(b))]);
+  x.star(x.toPx(const Offset(32, 1)), 6 * _bump((s - .5) / .9));
   if (alive <= 0 || !x.p.drawLogo) return;
   x.logoSpace((c) {
     // some depth: a little lighter at the top
@@ -588,7 +577,7 @@ class _Ctx {
     c.save();
     c.translate(logoRect.left, logoRect.top);
     c.scale(k);
-    c.clipPath(_HiLogo.all);
+    c.clipPath(_RoadMark.all);
     paint(c);
     c.restore();
   }
@@ -644,8 +633,7 @@ class _Ctx {
 }
 
 // ---------------------------------------------------------------------------------------------
-// The Hi logo, from assets/images/logo.svg, in its 64 × 64 units, in four parts: the short bar with
-// the crossbar, the tall bar, the stem and the dot
+// The road mark, from assets/images/logo.svg, in its 64 × 64 units, in four bands near to far.
 
 Path _svgPath(String d) {
   final path = Path();
@@ -688,49 +676,31 @@ Path _svgPath(String d) {
   return path;
 }
 
-abstract final class _HiLogo {
-  static final dot = _svgPath(
-    'M47.1582 14.4283C47.1582 13.8368 47.4684 13.2886 47.9757 12.9842L61.4494 4.89891C62.5721 4.22529 64.0003 '
-    '5.03389 64.0003 6.34306V20.2103C64.0003 21.1405 63.2461 21.8945 62.3161 21.8945H48.8424C47.9124 21.8945 '
-    '47.1582 21.1405 47.1582 20.2103V14.4283Z',
-  );
-
-  static final h = _svgPath(
-    'M24.3966 26.4593C23.8893 26.7637 23.5789 27.3118 23.5789 27.9034V43.7921L23.5789 45.4751L23.5789 45.4763L23.5789 '
-    '48.0001C23.5789 48.9301 22.8249 49.6001 21.8947 49.6001H18.5263C17.5962 49.6001 16.8421 48.9301 16.8421 48.0001V '
-    '45.4751V34.976C16.8421 33.6669 15.4139 32.8583 14.2913 33.5319L0.817607 41.6171C0.310362 41.9216 0 42.4696 0 '
-    '43.0615V60.6342C0 61.5642 0.754048 62.3184 1.68421 62.3184H15.1579C16.0881 62.3184 16.8421 61.5642 16.8421 '
-    '60.6342V58.9488V56.8314C16.8421 55.9011 17.5962 55.3376 18.5263 55.3376H21.8947C22.8249 55.3376 23.5789 55.9011 '
-    '23.5789 56.8314V58.9488L23.5789 60.6342C23.5789 61.5642 24.333 62.3184 25.2632 62.3184H38.7368C39.6669 62.3184 '
-    '40.4211 61.5642 40.4211 60.6342V45.4763V43.7921V19.8182C40.4211 18.509 38.9928 17.7004 37.8701 18.374L24.3966 '
-    '26.4593Z',
+abstract final class _RoadMark {
+  static final all = _svgPath(
+    'M5 63 L59 63 L37 4 L27 4 Z M30.37 58.87 L33.63 58.87 L33.50 53.56 L30.50 53.56 Z M30.65 47.07 L33.35 47.07 '
+    'L33.22 41.76 L30.78 41.76 Z M30.93 35.27 L33.07 35.27 L32.94 29.96 L31.06 29.96 Z M31.22 23.47 L32.78 23.47 '
+    'L32.66 18.16 L31.34 18.16 Z M31.50 11.67 L32.50 11.67 L32.40 7.54 L31.60 7.54 Z',
   )..fillType = PathFillType.evenOdd;
 
-  static final stem = _svgPath(
-    'M47.1592 28.7999V60.7999C47.1592 61.6836 47.9132 62.3999 48.8434 62.3999H62.3171C63.2472 62.3999 64.0013 61.6836 '
-    '64.0013 60.7999V28.7999C64.0013 27.9162 63.2472 27.1999 62.3171 27.1999H48.8434C47.9132 27.1999 47.1592 27.9162 '
-    '47.1592 28.7999Z',
-  );
-
-  static final all = Path.combine(PathOperation.union, Path.combine(PathOperation.union, h, stem), dot);
-
-  static Path pathOf(int part) => part < 2 ? h : (part == 2 ? stem : dot);
+  static Path pathOf(int part) => all;
 
   static Rect clipOf(int part) => switch (part) {
-    0 => const Rect.fromLTRB(-2, -2, 23.58, 66),
-    1 => const Rect.fromLTRB(23.58, -2, 42, 66),
-    _ => const Rect.fromLTRB(-2, -2, 66, 66),
+    0 => const Rect.fromLTRB(-2, 47.5, 66, 66),
+    1 => const Rect.fromLTRB(-2, 32.5, 66, 47.5),
+    2 => const Rect.fromLTRB(-2, 17.5, 66, 32.5),
+    _ => const Rect.fromLTRB(-2, -2, 66, 17.5),
   };
 
-  static const tops = [32.9, 18.2, 27.2, 4.2];
-  static const bottoms = [62.32, 62.32, 62.4, 21.9];
-  static const centersX = [8.4, 32.0, 55.6, 55.6];
+  static const tops = [47.5, 32.5, 17.5, 4.0];
+  static const bottoms = [63.0, 47.5, 32.5, 17.5];
+  static const centersX = [32.0, 32.0, 32.0, 32.0];
 
-  /// The signal bar each part belongs to: the stem and the dot are the third.
-  static const bar = [0, 1, 2, 2];
+  /// The signal band each part belongs to, near to far.
+  static const bar = [0, 1, 2, 3];
 
-  /// The order the parts light up in: the dot just after the stem.
-  static const rank = [0.0, 1.0, 2.0, 2.6];
+  /// The order the bands light up in: nearest first.
+  static const rank = [0.0, 1.0, 2.0, 3.0];
 }
 
 /// How one part of the logo looks.
@@ -752,18 +722,17 @@ void _paintLogo(Canvas c, Rect r, {required Color color, List<_Part>? parts, Col
   c.scale(r.width / 64);
   for (var i = 0; i < 4; i++) {
     final s = parts?[i] ?? const _Part();
-    final top = _HiLogo.tops[i];
-    final bottom = _HiLogo.bottoms[i];
+    final top = _RoadMark.tops[i];
+    final bottom = _RoadMark.bottoms[i];
     c.save();
     c.translate(0, s.dy);
     if (s.scaleY != 1) {
-      c.translate(_HiLogo.centersX[i], bottom);
+      c.translate(_RoadMark.centersX[i], bottom);
       c.scale(1, s.scaleY);
-      c.translate(-_HiLogo.centersX[i], -bottom);
+      c.translate(-_RoadMark.centersX[i], -bottom);
     }
-    // not antialiased, so the two halves of the H meet without a seam
-    c.clipRect(_HiLogo.clipOf(i), doAntiAlias: false);
-    final path = _HiLogo.pathOf(i);
+    c.clipRect(_RoadMark.clipOf(i), doAntiAlias: false);
+    final path = _RoadMark.pathOf(i);
     if (ghost != null) c.drawPath(path, Paint()..color = ghost);
     if (s.fill > 0 && s.opacity > 0) {
       if (s.fill < 1) c.clipRect(Rect.fromLTRB(-2, bottom - s.fill * (bottom - top), 66, 66));

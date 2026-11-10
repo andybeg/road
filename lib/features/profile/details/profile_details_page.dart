@@ -7,14 +7,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/model/failures.dart';
-import 'package:tropa/core/notification/in_app_notification_controller.dart';
-import 'package:tropa/features/profile/details/json_editor.dart';
-import 'package:tropa/features/profile/details/profile_details_notifier.dart';
-import 'package:tropa/features/profile/model/profile_entity.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/model/failures.dart';
+import 'package:road/core/notification/in_app_notification_controller.dart';
+import 'package:road/features/profile/details/json_editor.dart';
+import 'package:road/features/profile/details/profile_details_notifier.dart';
+import 'package:road/features/profile/model/profile_entity.dart';
+import 'package:road/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileDetailsPage extends HookConsumerWidget with PresLogger {

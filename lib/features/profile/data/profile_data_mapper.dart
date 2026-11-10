@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
-import 'package:tropa/core/db/db.dart';
-import 'package:tropa/features/profile/model/profile_entity.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/db/db.dart';
+import 'package:road/features/profile/model/profile_entity.dart';
+import 'package:road/utils/custom_loggers.dart';
 
 final _loggy = infraLogger('ProfileEntryMapper');
 

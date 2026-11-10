@@ -5,6 +5,6 @@
 //  Created by GFWFighter on 7/24/1402 AP.
 //
 
-BASE_BUNDLE_IDENTIFIER=apple.andybeg.tropa
-SERVICE_IDENTIFIER=com.andybeg.tropa
+BASE_BUNDLE_IDENTIFIER=apple.andybeg.road
+SERVICE_IDENTIFIER=com.andybeg.road
 DEVELOPMENT_TEAM=M7Q8ASP66Z

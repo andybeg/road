@@ -32,7 +32,7 @@ class MainFlutterWindow: NSWindow {
     }
 
     FlutterMethodChannel(
-      name: "com.andybeg.tropa/desktop_status",
+      name: "com.andybeg.road/desktop_status",
       binaryMessenger: flutterViewController.engine.binaryMessenger
     ).setMethodCallHandler { (call: FlutterMethodCall, result: @escaping FlutterResult) in
       switch call.method {

@@ -2,10 +2,10 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:tropa/core/preferences/general_preferences.dart';
-import 'package:tropa/features/connection/notifier/connection_notifier.dart';
-import 'package:tropa/core_bridge/core_service_provider.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/preferences/general_preferences.dart';
+import 'package:road/features/connection/notifier/connection_notifier.dart';
+import 'package:road/core_bridge/core_service_provider.dart';
+import 'package:road/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:screen_retriever/screen_retriever.dart';
 import 'package:tray_manager/tray_manager.dart';
@@ -24,7 +24,7 @@ class WindowNotifier extends _$WindowNotifier with AppLogger {
 
     // if (Platform.isWindows) {
     //   loggy.debug("ensuring single instance");
-    //   await WindowsSingleInstance.ensureSingleInstance([], "Tropa");
+    //   await WindowsSingleInstance.ensureSingleInstance([], "Road");
     // }
 
     await windowManager.ensureInitialized();

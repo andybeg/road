@@ -1,12 +1,12 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:tropa/core/http_client/dio_http_client.dart';
-import 'package:tropa/core/model/constants.dart';
-import 'package:tropa/core/model/environment.dart';
-import 'package:tropa/core/utils/exception_handler.dart';
-import 'package:tropa/features/app_update/data/github_release_parser.dart';
-import 'package:tropa/features/app_update/model/app_update_failure.dart';
-import 'package:tropa/features/app_update/model/remote_version_entity.dart';
-import 'package:tropa/utils/utils.dart';
+import 'package:road/core/http_client/dio_http_client.dart';
+import 'package:road/core/model/constants.dart';
+import 'package:road/core/model/environment.dart';
+import 'package:road/core/utils/exception_handler.dart';
+import 'package:road/features/app_update/data/github_release_parser.dart';
+import 'package:road/features/app_update/model/app_update_failure.dart';
+import 'package:road/features/app_update/model/remote_version_entity.dart';
+import 'package:road/utils/utils.dart';
 import 'package:version/version.dart';
 
 abstract interface class AppUpdateRepository {

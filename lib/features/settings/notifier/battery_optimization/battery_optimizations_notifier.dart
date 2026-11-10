@@ -1,4 +1,4 @@
-import 'package:tropa/features/settings/data/battery_optimization_repository.dart';
+import 'package:road/features/settings/data/battery_optimization_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'battery_optimizations_notifier.g.dart';

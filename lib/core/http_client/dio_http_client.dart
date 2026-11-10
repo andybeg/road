@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/utils/custom_loggers.dart';
 
 class DioHttpClient with InfraLogger {
   final Map<String, Dio> _dio = {};

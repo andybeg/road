@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:tropa/core/widget/skeleton_widget.dart';
+import 'package:road/core/widget/skeleton_widget.dart';
 
 class ShimmerSkeleton extends StatelessWidget {
   const ShimmerSkeleton({

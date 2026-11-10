@@ -1,5 +1,5 @@
-import 'package:tropa/core/preferences/preferences_provider.dart';
-import 'package:tropa/utils/custom_loggers.dart';
+import 'package:road/core/preferences/preferences_provider.dart';
+import 'package:road/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tropa/core/localization/translations.dart';
-import 'package:tropa/core/utils/preferences_utils.dart';
+import 'package:road/core/localization/translations.dart';
+import 'package:road/core/utils/preferences_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 bool _testExperimentalNotice = false;
