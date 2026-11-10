@@ -4,7 +4,8 @@ Road is a multi-platform proxy client.
 
 This project is a fork of [hiddify/hiddify-app](https://github.com/hiddify/hiddify-app), licensed under the original GPL-3 additional conditions. See [LICENSE.md](LICENSE.md).
 
-Releases: [github.com/andybeg/road](https://github.com/andybeg/road/releases)
+Releases: [github.com/andybeg/road](https://github.com/andybeg/road/releases).
+Privacy: [docs/privacy.md](docs/privacy.md). Terms: [docs/terms.md](docs/terms.md).
 
 ## What changed in this fork
 

@@ -9,8 +9,8 @@ abstract class Constants {
   static const licenseUrl = "https://github.com/andybeg/road/blob/main/LICENSE.md";
   static const githubReleasesApiUrl = "https://api.github.com/repos/andybeg/road/releases";
   static const githubLatestReleaseUrl = "https://github.com/andybeg/road/releases/latest";
-  static const privacyPolicyUrl = "https://github.com/andybeg/road/blob/main/LICENSE.md";
-  static const termsAndConditionsUrl = "https://github.com/andybeg/road/blob/main/LICENSE.md";
+  static const privacyPolicyUrl = "https://github.com/andybeg/road/blob/main/docs/privacy.md";
+  static const termsAndConditionsUrl = "https://github.com/andybeg/road/blob/main/docs/terms.md";
   static const cfWarpPrivacyPolicy = "https://www.cloudflare.com/application/privacypolicy/";
   static const cfWarpTermsOfService = "https://www.cloudflare.com/application/terms/";
 }
