@@ -1,5 +1,11 @@
 name: CI
 on:
+  workflow_dispatch:
+    inputs:
+      upload-artifact:
+        description: Sign and attach release artifacts (needs Apple/Windows secrets)
+        type: boolean
+        default: false
   # pull_request:
   #   paths-ignore:
   #     - '**.md'
@@ -28,7 +34,7 @@ jobs:
     uses: ./.github/workflows/build.yml
     secrets: inherit
     permissions: write-all
-    if: "${{!contains(github.event.head_commit.message, 'release: version')}}"
+    if: "${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'release: version') }}"
     with:
-      upload-artifact: ${{ github.event_name == 'push' }}
-      
+      upload-artifact: ${{ github.event_name == 'push' || inputs.upload-artifact }}
+       

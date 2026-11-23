@@ -13,6 +13,22 @@
             "solid" : "display-p3:0.29348,0.36978,0.88111,1.00000"
           },
           "glass" : false,
+          "image-name" : "border.svg",
+          "name" : "border",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
+          "fill" : {
+            "solid" : "display-p3:0.29348,0.36978,0.88111,1.00000"
+          },
+          "glass" : false,
           "image-name" : "logo.svg",
           "name" : "logo",
           "position" : {

@@ -88,7 +88,8 @@ class VlessTcpPing {
     Socket? socket;
     try {
       socket = await Socket.connect(host, port, timeout: timeout);
-      return stopwatch.elapsedMilliseconds;
+      final ms = stopwatch.elapsedMilliseconds;
+      return ms == 0 ? 1 : ms;
     } catch (_) {
       return null;
     } finally {

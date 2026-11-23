@@ -39,6 +39,10 @@ final vlessServerPingProvider = StreamProvider.autoDispose<VlessServerPing>((ref
     yield const VlessServerPing.none();
     return;
   }
+  final interval = ref.watch(Preferences.vlessServerPingInterval);
+  final timer = Timer(interval < const Duration(seconds: 5) ? const Duration(seconds: 5) : interval, ref.invalidateSelf);
+  ref.onDispose(timer.cancel);
+
   ref.watch(activeProfileProvider);
   final live = _endpointFromProxy(ref.watch(activeProxyNotifierProvider).valueOrNull);
   VlessServerEndpoint? endpoint = live;
@@ -51,10 +55,6 @@ final vlessServerPingProvider = StreamProvider.autoDispose<VlessServerPing>((ref
       }
     }
   }
-
-  final interval = ref.watch(Preferences.vlessServerPingInterval);
-  final timer = Timer(interval < const Duration(seconds: 5) ? const Duration(seconds: 5) : interval, ref.invalidateSelf);
-  ref.onDispose(timer.cancel);
 
   if (endpoint == null) {
     yield const VlessServerPing.none();

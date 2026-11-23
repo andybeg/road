@@ -56,7 +56,7 @@ for task_existing in "$task_destination" "$task_tropa" "$task_ext" "$task_previo
   fi
 done
 # A root daemon must not run files its user can change, so it runs a root-owned copy of the app.
-rm -rf "$task_destination" "$task_tropa" "$task_previous" "/Library/Application Support/Hiddify/TunnelService"
+rm -rf "$task_destination" "$task_tropa" "$task_ext" "$task_previous" "/Library/Application Support/Hiddify/TunnelService"
 mkdir -p "$(dirname "$task_destination")"
 ditto "$task_source" "$task_destination"
 xattr -cr "$task_destination"

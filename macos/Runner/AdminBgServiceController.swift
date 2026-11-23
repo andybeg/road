@@ -265,10 +265,21 @@ final class TunnelServiceController {
     }
 
     private func serviceReady() -> Bool {
-        guard (try? Self.readSecret()) != nil, Self.serviceListening(),
+        guard Self.helperIsRoad(),
+              (try? Self.readSecret()) != nil, Self.serviceListening(),
               let bundled = bundledCoreBuildId(),
               let stamped = try? Self.readBuildStamp() else { return false }
         return bundled == stamped
+    }
+
+    /// The GUI is Road; an leftover HiddifyExt/Tropa launchd job shares the core build id and
+    /// would otherwise skip reinstall.
+    private static func helperIsRoad() -> Bool {
+        let plist = "/Library/LaunchDaemons/HiddifyAdminBG.plist"
+        guard let dict = NSDictionary(contentsOfFile: plist),
+              let args = dict["ProgramArguments"] as? [String],
+              let exec = args.first else { return false }
+        return exec.contains("/Road.app/")
     }
 
     // Prints the build id embedded in this app's hiddify-core (via Road --tunnel build-id).

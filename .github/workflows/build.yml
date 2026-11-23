@@ -376,6 +376,16 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: make windows-validate
 
+      - name: Copy unsigned Windows tree
+        if: matrix.platform == 'windows' && !inputs.upload-artifact
+        shell: pwsh
+        run: |
+          $src = 'build\windows\x64\runner\Release'
+          if (-not (Test-Path $src)) { throw "missing $src" }
+          New-Item -ItemType Directory -Path out -Force | Out-Null
+          Copy-Item -Path $src -Destination 'out\Road-Windows-x64' -Recurse
+          Get-ChildItem -Path out -Recurse | Select-Object FullName
+
       - name: Code Sign Windows packages
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
         # Signs Setup.exe / MSIX and PE files inside the portable .zip.
@@ -540,7 +550,7 @@ jobs:
         run: python3 .github/scripts/verify_signed_ipa.py out/Road-iOS.ipa
 
       - name: Upload Artifact
-        if: env.UPLOAD_ARTIFACT == 'true'
+        if: ${{ inputs.upload-artifact || matrix.platform == 'windows' }}
         uses: actions/upload-artifact@v6
         with:
           name: ${{matrix.platform}}
